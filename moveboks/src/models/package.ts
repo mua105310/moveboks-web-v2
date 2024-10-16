@@ -7,11 +7,10 @@ export type PackageModel = {
     features?: string[];
     longDescription: string;
     images: string[];
-    prices: DurationPriceModel[];
     options?: PackageOptionModel[];
   }
   
-  enum PackageOptionType {
+  export enum PackageOptionType {
     PrimarySingle = "primarySingle",
     PrimaryMultiple = "primaryMultiple",
     AccessoryQuantity = "accessoryQuantity",
@@ -31,8 +30,6 @@ export type  ProductConstraintModel = {
     productId: string;
     prices: DurationPriceModel[];
     availableQuantity: number;
-    allowedQuantity: number;
-  
   }
   
 export type DurationPriceModel = {
