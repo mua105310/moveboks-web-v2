@@ -7,7 +7,7 @@ export const roskilde2024: EventModel = {
     description: "Lej en soundboks til Roskilde Festival 2024",
     color: "#FF0000",
     packagesID: ['ros-basis', 'ros-plus', 'ros-premium'],
-    images: [],
+    images: ["https://imagedelivery.net/cITCNbiqfZeimGDoNY0eMg/84add849-e7fc-4af9-8eae-5210c6936c00/public"],
     dateInfo: {
         fromDate: new Date("2024-06-29"),
         toDate: new Date("2024-07-06"),
@@ -27,7 +27,7 @@ export const smukfest2024: EventModel = {
     description: "Lej en soundboks til Smukfest 2024",
     color: "#FF0000",
     packagesID: ['smuk-basis', 'smuk-plus', 'smuk-premium'],
-    images: [],
+    images: ["https://imagedelivery.net/cITCNbiqfZeimGDoNY0eMg/5a386a59-d1db-4545-cd4e-f067b1baea00/public"],
     dateInfo: {
         fromDate: new Date("2024-08-07"),
         toDate: new Date("2024-08-11"),
