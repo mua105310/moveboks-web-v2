@@ -3,7 +3,8 @@ export type EventModel = {
     title: string,
     description: string,
     color: string,
-    packagesID: number[],
+    packagesID: string[],
+    dateInfo: datesModel,
     images: string[],
 }
 
