@@ -1,24 +1,17 @@
 export type EventModel = {
     id: number,
-    name: string,
+    title: string,
     description: string,
-    image: string,
-    isActive: boolean,
-    startDate: string,
-    endDate: string,
-    packages: packagesModel[],
+    color: string,
+
+}
+export type datesModel = {
+    fromDate: Date,
+    toDate: Date,
+    showDate?: Date,
 }
 
-export type packagesModel ={
-    id: number,
-    name: string,
-    description: string,
-    products: productModel[],
-}
 
-export type productModel = {
-    id: number,
-    name: string,
-    price: number,
-}
+
+
 
