@@ -1,9 +1,10 @@
-import Image from "next/image";
+import ImageCarousel from "@/components/carousel/image-carousel";
+import { events } from "../data/events";
 
 export default function Home() {
   return (
-   <div>
-    
-   </div>
+    <div>
+      <ImageCarousel events={events} />
+    </div>
   );
 }
