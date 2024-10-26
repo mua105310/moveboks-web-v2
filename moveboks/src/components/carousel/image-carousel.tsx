@@ -72,6 +72,7 @@ const ImageCarousel = ({ events }: ImageCarouselProps) => {
                     <a href={event.path}>
                         <button>Lej nu</button>
                     </a>
+                    {/*  */}
                 </div>
               </div>
           </div>
