@@ -5,7 +5,7 @@ import { events } from "../data/events";
 export default function Home() {
   return (
     <div>
-      <Nav />
+      <Nav events={events}/>
       <ImageCarousel events={events} />
     </div>
   );
