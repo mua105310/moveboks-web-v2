@@ -1,6 +1,7 @@
 export type EventModel = {
     id: string,
     title: string,
+    subtitle?: string,
     path: string,
     description: string,
     color: string,

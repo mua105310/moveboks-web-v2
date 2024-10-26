@@ -51,7 +51,7 @@ const ImageCarousel = ({ events }: ImageCarouselProps) => {
       >
         {events.map((event) => (
           <SwiperSlide key={event.id}>
-            <div className='absolute z-10 top-0 bg-black w-full h-svh opacity-40'></div>
+            <div className='absolute z-10 top-0 bg-black w-full h-svh opacity-50'></div>
             <div className="flex-none w-full relative h-svh z-0">
               <Image
                 src={event.images[0]}
@@ -62,7 +62,7 @@ const ImageCarousel = ({ events }: ImageCarouselProps) => {
               />
             </div>
             <div>
-              <div className="-mt-5 w-[95%] sm:w-auto h-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center z-10">
+              <div className="w-[95%] sm:w-auto h-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center z-10">
                 <div className="tracking-[3px] text-white opacity-65">MOVEBOKS</div>
                 <p
                   className="text-[40px] sm:text-[90px] min-[2000px]:text-[120px] font-bold italic leading-[50px] sm:leading-none mt-10 mb-10 uppercase text-shadow-lg"
@@ -77,6 +77,9 @@ const ImageCarousel = ({ events }: ImageCarouselProps) => {
                   <Button path={event.path} />
                 </div>
             </div>
+          </div>
+          <div className="absolute left-0 top-1/2 -rotate-90 transform ml-10 tracking-[3px] text-[12px] hidden sm:block z-10" style={{ transform: 'rotate(-90deg) translate(-50%, 0%)', transformOrigin: '0 0' }}>
+              <p>{event.subtitle}</p>
           </div>
           </SwiperSlide>
         ))}
@@ -116,6 +119,7 @@ const ImageCarousel = ({ events }: ImageCarouselProps) => {
             </div>
           </div>
         </div>
+        
       )}
     </div>
   );
