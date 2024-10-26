@@ -10,6 +10,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 import './style.css'; 
+import { Button } from '@/components/button/button';
 
 interface ImageCarouselProps {
   events: EventModel[];
@@ -61,20 +62,21 @@ const ImageCarousel = ({ events }: ImageCarouselProps) => {
               />
             </div>
             <div>
-              <div className="w-[95%] sm:w-auto h-auto p-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex-col text-center items-center justify-center z-10">
-                <div className='tracking-[3px] text-white opacity-65'>MOVEBOKS</div>
-                <p className='text-[40px] sm:text-[90px] min-[2000px]:text-[120px] font-bold italic leading-[50px] sm:leading-none mt-8 mb-8 uppercase' style={{textShadow: '0 0 12px rgba(255, 255, 255, 0.8)'}} dangerouslySetInnerHTML={{ __html: event.title }}></p>
-                <div className='h-1 w-32 bg-[var(--secondary)] border-0 mx-auto mb-8'></div>
-                <div className='text-xs sm:text-sm leading-4 w-auto mx-auto'>
-                    <p>{event.description}</p>
+              <div className="w-[95%] sm:w-auto h-auto p-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center z-10">
+                <div className="tracking-[3px] text-white opacity-65">MOVEBOKS</div>
+                <p
+                  className="text-[40px] sm:text-[90px] min-[2000px]:text-[120px] font-bold italic leading-[50px] sm:leading-none mt-10 mb-10 uppercase text-shadow-lg"
+                  dangerouslySetInnerHTML={{ __html: event.title }}
+                  style={{textShadow: '0 0 12px rgba(255, 255, 255, 0.8)'}}
+                ></p>
+                <div className="h-1 w-32 bg-[var(--secondary)] mx-auto mb-8"></div>
+                <div className="text-xs sm:text-sm leading-4 w-auto mx-auto">
+                  <p>{event.description}</p>
                 </div>
-                <div className='mt-8'>
-                    <a href={event.path}>
-                        <button>Lej nu</button>
-                    </a>
-                    {/*  */}
+                <div className="mt-8">
+                  <Button path={event.path} />
                 </div>
-              </div>
+            </div>
           </div>
           </SwiperSlide>
         ))}
@@ -87,7 +89,7 @@ const ImageCarousel = ({ events }: ImageCarouselProps) => {
               <div className="w-[200px] hidden md:block">
                 <button
                   ref={prevRef} 
-                  className="w-full p-3 border flex items-center justify-center gap-2 text-xs tracking-widest uppercase"
+                  className="w-full p-3 border flex items-center justify-center gap-2 text-xs tracking-widest uppercase transition-all duration-500 ease-in-out hover:text-black hover:bg-white"
                 >
                   <CgArrowLongLeft className="text-2xl" /> Prev
                 </button>
@@ -106,7 +108,7 @@ const ImageCarousel = ({ events }: ImageCarouselProps) => {
               <div className="justify-end w-[200px] hidden md:block">
                 <button
                   ref={nextRef}
-                  className="w-full p-3 border flex items-center justify-center gap-2 text-xs uppercase"
+                  className="w-full p-3 border flex items-center justify-center gap-2 text-xs uppercase transition-all duration-500 ease-in-out hover:text-black hover:bg-white"
                 >
                   Next <CgArrowLongRight className="text-2xl" />
                 </button>

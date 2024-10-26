@@ -2,7 +2,7 @@ import { EventModel } from "@/models/event"
 
 export const roskilde2025: EventModel = {
     id: "roskilde-2025",
-    title: "Roskilde Festival 2025",
+    title: "Roskilde Festival",
     path: "lej-soundboks-til-roskilde-festival-2025",
     description: "Lej en SOUNDBOKS til Roskilde Festival 2025 med tyveri- og skadesforsikring. Så længe lager haves",
     color: "#FF0000",
@@ -22,7 +22,7 @@ export const roskilde2025: EventModel = {
 
 export const smukfest2025: EventModel = {
     id: "smukfest-2025",
-    title: "Smukfest 2025",
+    title: "Smukfest festival",
     path: "lej-soundboks-til-smukfest-2025",
     description: "Lej en SOUNDBOKS til Smukfest 2025 med tyveri- og skadesforsikring. Så længe lager haves",
     color: "#FF0000",
