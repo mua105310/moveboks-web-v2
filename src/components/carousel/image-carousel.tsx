@@ -62,7 +62,7 @@ const ImageCarousel = ({ events }: ImageCarouselProps) => {
               />
             </div>
             <div>
-              <div className="w-[95%] sm:w-auto h-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center z-10">
+              <div className="-mt-5 w-[95%] sm:w-auto h-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center z-10">
                 <div className="tracking-[3px] text-white opacity-65">MOVEBOKS</div>
                 <p
                   className="text-[40px] sm:text-[90px] min-[2000px]:text-[120px] font-bold italic leading-[50px] sm:leading-none mt-10 mb-10 uppercase text-shadow-lg"
