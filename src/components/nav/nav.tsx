@@ -38,7 +38,10 @@ export default function Nav({ events }: NavProps) {
         <div className="flex flex-row justify-between items-center">
           {/* Logo start */}
           <div>
-            <Link href="/">
+            <Link 
+            href="/"
+            aria-label={'Home'}
+            >
               <div className="flex items-center cursor-pointer">
                 <Image src={Logo} alt="logo" width={130} priority={true} />
                 <div className="hidden md:block ml-4 h-7 border-r border-white opacity-30" />
@@ -97,7 +100,13 @@ export default function Nav({ events }: NavProps) {
                               key={subIndex}
                               className="relative inline-block group text-xs tracking-wide"
                             >
-                              <Link className='hover:text-[var(--secondary)] transition-all duration-500 ease-in-out' href={subItem.path}>{subItem.title}</Link>
+                            <Link 
+                              className='hover:text-[var(--secondary)] transition-all duration-500 ease-in-out' 
+                              href={subItem.path}
+                              aria-label={subItem.title} // Adds an accessible name attribute
+                            >
+                              {subItem.title}
+                            </Link>
                               {/* Line in the middle for subitems */}
                             </div>
                           ))}
@@ -106,7 +115,10 @@ export default function Nav({ events }: NavProps) {
                     </div>
                   ) : (
                     <div className="relative inline-block group">
-                      <Link href={item.path}>{item.title}</Link>
+                      <Link 
+                      href={item.path}
+                      aria-label={item.title}
+                      >{item.title}</Link>
                       {/* Line in the middle */}
                       <div
                         className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[4px] bg-[var(--secondary)] transition-all duration-700 ease-in-out group-hover:w-full"
@@ -120,7 +132,10 @@ export default function Nav({ events }: NavProps) {
                         <SocialMediaTag />
                         <div className='flex items-center justify-center lg:justify-end'>
                             <div className='opacity-40 text-sm mr-1'>Powered by </div>
-                            <Link href="https://datacvr.virk.dk/enhed/virksomhed/41417749?fritekst=moveboks&sideIndex=0&size=10">Moveboks ApS</Link>
+                            <Link 
+                            href="https://datacvr.virk.dk/enhed/virksomhed/41417749?fritekst=moveboks&sideIndex=0&size=10"
+                            aria-label={'Moveboks ApS'}
+                            >Moveboks ApS</Link>
                         </div>
                     </div>
                 </div>
