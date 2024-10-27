@@ -5,9 +5,10 @@ import Logo from '@/app/assets/logo.png';
 import Link from 'next/link';
 import { HiMenuAlt4 } from 'react-icons/hi';
 import { EventModel } from "@/models/event";
+import SocialMediaTag from '@/components/social/social-media-tag';
 
 interface NavProps {
-  events: EventModel[];
+    events: EventModel[];
 }
 
 export default function Nav({ events }: NavProps) {
@@ -67,7 +68,7 @@ export default function Nav({ events }: NavProps) {
 
       {/* Nav menu */}
       <div
-        className={`absolute top-0 left-0 w-full h-full bg-[var(--background)] transition-transform duration-700 ease-in-out ${
+        className={`absolute top-0 left-0 w-full h-full bg-[var(--background)] transition-transform duration-700 ease-in-out p-10 ${
           open ? 'translate-y-0' : '-translate-y-full'
         } z-20`}
       >
@@ -88,7 +89,7 @@ export default function Nav({ events }: NavProps) {
                       </div>
                       {/* Subitems below the title */}
                       <div
-                        className="max-h-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:max-h-screen"
+                        className="max-h-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:max-h-32 overflow-y-scroll"
                       >
                         <div className="flex flex-col items-center space-y-2 mt-2">
                           {item.subItems.map((subItem, subIndex) => (
@@ -114,6 +115,15 @@ export default function Nav({ events }: NavProps) {
                   )}
                 </div>
               ))}
+                <div>
+                    <div className='absolute bottom-0 left-0 w-full flex flex-col justify-center p-10 text-sm lg:text-md lg:flex lg:flex-row lg:justify-between'>
+                        <SocialMediaTag />
+                        <div className='flex items-center justify-center lg:justify-end'>
+                            <div className='opacity-40 text-sm mr-1'>Powered by </div>
+                            <Link href="https://datacvr.virk.dk/enhed/virksomhed/41417749?fritekst=moveboks&sideIndex=0&size=10">Moveboks ApS</Link>
+                        </div>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
