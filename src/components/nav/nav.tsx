@@ -130,7 +130,7 @@ export default function Nav({ events }: NavProps) {
                 <div>
                     <div className='absolute bottom-0 left-0 w-full flex flex-col justify-center p-10 text-sm lg:text-md lg:flex lg:flex-row lg:justify-between'>
                         <SocialMediaTag />
-                        <div className='flex items-center justify-center lg:justify-end'>
+                        <div className='flex items-center justify-center lg:justify-end mt-5 lg:mt-0'>
                             <div className='opacity-40 text-sm mr-1'>Powered by </div>
                             <Link 
                             href="https://datacvr.virk.dk/enhed/virksomhed/41417749?fritekst=moveboks&sideIndex=0&size=10"
