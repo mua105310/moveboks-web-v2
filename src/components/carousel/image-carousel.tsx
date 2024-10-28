@@ -57,6 +57,7 @@ const ImageCarousel = ({ events }: ImageCarouselProps) => {
                 src={event.images[0]}
                 alt={event.title}
                 fill
+                priority={false}
                 style={{ objectFit: 'cover' }}
                 loading="lazy"
               />
