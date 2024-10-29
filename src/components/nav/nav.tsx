@@ -71,7 +71,7 @@ export default function Nav({ events }: NavProps) {
 
       {/* Nav menu */}
       <div
-        className={`absolute top-0 left-0 w-full h-full bg-[var(--background)] transition-transform duration-700 ease-in-out p-10 ${
+        className={`absolute top-0 left-0 w-full h-full bg-[var(--background)] transition-transform duration-700 ease-in-out p-0 ${
           open ? 'translate-y-0' : '-translate-y-full'
         } z-20`}
       >
