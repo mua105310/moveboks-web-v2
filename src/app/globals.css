@@ -4,6 +4,7 @@
 
 :root {
   --background: #151515;
+  --background-secondary: #1E1E1E; 
   --secondary: #1c4eff;
   --foreground: #ffffff;
 }
@@ -25,4 +26,15 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+.card {
+  background: var(--background-secondary);
+  color: var(--foreground);
 }
