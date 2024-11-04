@@ -24,9 +24,9 @@ export default function Footer({ events }: FooterProps) {
 
   return (
     <div className="w-full h-auto pl-10 pr-10 pt-5 pb-5">
-      <div className="w-full h-auto flex text-xs lg:text-sm items-center flex-col md:flex-row">
+      <div className="w-full h-auto flex text-xs lg:text-sm items-center flex-col md:flex-row md:gap-10">
         {/* Links Section */}
-        <div className="flex flex-wrap items-center w-full gap-4 md:gap-4">
+        <div className="flex flex-wrap md:flex-1 items-center w-full gap-4 md:gap-4">
           {menu.map((item) =>
             item && (
               <React.Fragment key={item.title}>
@@ -58,7 +58,6 @@ export default function Footer({ events }: FooterProps) {
             )
           )}
         </div>
-
 
         {/* Divider */}
         <div className='block md:hidden w-full bg-white h-[1px] opacity-20 mt-5 mb-5'/>
