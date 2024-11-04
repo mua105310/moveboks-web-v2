@@ -23,56 +23,48 @@ export default function Footer({ events }: FooterProps) {
   ];
 
   return (
-    <div className="w-full h-auto p-10 min-[2000px]:pl-[300px] min-[2000px]:pr-[300px]">
-      <div className="w-full h-auto flex text-sm max-[1000px]:flex-col">
+    <div className="w-full h-auto pl-10 pr-10 pt-5 pb-5">
+      <div className="w-full h-auto flex text-xs lg:text-sm items-center flex-col md:flex-row">
         {/* Links Section */}
-        <div className="w-1/2 max-[1000px]:w-full flex flex-wrap gap-1">
+        <div className="flex flex-wrap items-center w-full gap-4 md:gap-4">
           {menu.map((item) =>
-            item.subItems ? (
-              <div key={item.title} className="group mr-5">
-                {/* Main Booking Link */}
-                <div
-                  className="relative inline-block transition-colors duration-300 group"
-                >
-                  {item.title}
-                  <div
-                    className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[3px] bg-[var(--secondary)] transition-all duration-700 ease-in-out group-hover:w-full"
-                  />
-                </div>
-                {/* Sub-items Container */}
-                  <div className="opacity-0 overflow-hidden transition-all duration-500 group-hover:opacity-100">
-                      {item.subItems.map((subItem) => (
-                        <a
-                          key={subItem.path}
-                          href={subItem.path}
-                          className="block mt-1 hover:text-[var(--secondary)] transition-colors duration-300"
-                        >
-                          {subItem.title}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-            ) : (
-              <div>
-                <a
-                href="#" 
-                className="relative mr-5 inline-block transition-colors duration-300 group"
-                >
-                {item.title}
-                <div
-                  className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[3px] bg-[var(--secondary)] transition-all duration-700 ease-in-out group-hover:w-full"
-                />
-                </a>
-              </div>
+            item && (
+              <React.Fragment key={item.title}>
+                {!item.subItems ? (
+                  <a
+                    href={item.path}
+                    className="relative inline-block transition-colors duration-300 group"
+                  >
+                    {item.title}
+                    <div
+                      className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[3px] bg-[var(--secondary)] transition-all duration-700 ease-in-out group-hover:w-full"
+                    />
+                  </a>
+                ) : (
+                  item.subItems.map((subItem) => (
+                    <a
+                      key={subItem.title}
+                      href={subItem.path}
+                      className="relative inline-block transition-colors duration-300 group"
+                    >
+                      {subItem.title}
+                      <div
+                        className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[3px] bg-[var(--secondary)] transition-all duration-700 ease-in-out group-hover:w-full"
+                      />
+                    </a>
+                  ))
+                )}
+              </React.Fragment>
             )
           )}
         </div>
 
+
         {/* Divider */}
-        <hr className="max-[1000px]:block opacity-20 mt-5 mb-5" />
+        <div className='block md:hidden w-full bg-white h-[1px] opacity-20 mt-5 mb-5'/>
 
         {/* Contact and Social Media Section */}
-        <div className="w-1/2 max-[1000px]:w-full flex justify-between items-center">
+        <div className="flex justify-between items-center w-full md:flex-1">
           <div className="flex flex-col space-y-1 text-[10px]">
             <a href="tel:+4520557865">+45 20 55 78 65</a>
             <a href="mailto:Kontakt@moveboks.dk">Kontakt@moveboks.dk</a>
@@ -84,11 +76,11 @@ export default function Footer({ events }: FooterProps) {
         </div>
       </div>
 
-      {/* Additional Divider */}
-      <hr className="opacity-20 mt-5 mb-5" />
+      {/* Divider */}
+      <div className='w-full bg-white h-[1px] opacity-20 mt-5 mb-5'/>
 
       {/* Bottom Section */}
-      <div className="max-[600px]:flex-col flex justify-between text-xs">
+      <div className="max-[600px]:flex-col flex justify-between text-xs ">
         <div className="flex">
           <p className="opacity-50">Executed by</p>
           <a
