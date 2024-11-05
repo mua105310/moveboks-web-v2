@@ -30,11 +30,7 @@ export default function EventPage({event}: {event: EventModel}) {
             {/* Content */}
             <div className='w-full pl-10 pr-10'>
                 <Tile title='Sådan gør du' subtitle='Vælg pakke'/>
-                <div className='w-full flex gap-10 flex-col lg:flex-row'>
-                    {event.packagesID.map((pack) => (
-                        <Card key={pack} data={pack} /> 
-                    ))}
-                </div>
+                <Card data={event.packagesID}  /> 
             </div>
         </Layout>
     );

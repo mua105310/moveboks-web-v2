@@ -2,6 +2,65 @@ import { PackageModel, PackageOptionModel } from "@/models/package";
 import { PackageOptionType } from "@/models/package";
 import { features } from "process";
 
+// Define your packages as an array of PackageModel objects
+export const packages: PackageModel[] = [
+    {
+        id: "ros-basis",
+        title: "Roskilde basis",
+        predefinedLocationAndTime: true,
+        shortDescription: "Basispakken til Roskilde festival uden dækning",
+        longDescription: "Ved køb af basispakken står du selv for ansvaret i tilfælde af tyveri og skade",
+        images: [],
+        features: ["Ingen dækning"],
+    },
+    {
+        id: "ros-plus",
+        title: "Roskilde Plus",
+        predefinedLocationAndTime: true,
+        shortDescription: "Inkluder skadeforsikring",
+        longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade",
+        images: [],
+        features: ["Skadeforsikring"],
+    },
+    {
+        id: "ros-premium",
+        title: "Roskilde Premium",
+        predefinedLocationAndTime: true,
+        shortDescription: "Inkluder skadeforsikring og tyveriforsikring",
+        longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade og tyveri",
+        images: [],
+        features: ["Skadeforsikring", "Tyveriforsikring"],
+    },
+    {
+        id: "smuk-basis",
+        title: "Smukfest basis",
+        predefinedLocationAndTime: true,
+        shortDescription: "Basispakken til Smukfest uden dækning",
+        longDescription: "Ved køb af basispakken står du selv for ansvaret i tilfælde af tyveri og skade",
+        images: [],
+        features: ["Ingen dækning"],
+    },
+    {
+        id: "smuk-plus",
+        title: "Smukfest Plus",
+        predefinedLocationAndTime: true,
+        shortDescription: "Inkluder skadeforsikring",
+        longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade",
+        images: [],
+        features: ["Skadeforsikring"],
+    },
+    {
+        id: "smuk-premium",
+        title: "Smukfest Premium",
+        predefinedLocationAndTime: true,
+        shortDescription: "Inkluder skadeforsikring og tyveriforsikring",
+        longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade og tyveri",
+        images: [],
+        features: ["Skadeforsikring", "Tyveriforsikring"],
+    }
+];
+
+
 
 // Roskilde festival 2024 packages
 
@@ -155,6 +214,7 @@ export const packagesBasis: PackageModel = {
     features: ["Ingen dækning"],
     options: [rosBasis, accesoriesRoskilde],
 }
+
 
 export const packagesPlus: PackageModel = {
     id: "ros-plus",
