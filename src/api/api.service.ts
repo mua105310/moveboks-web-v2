@@ -3,9 +3,20 @@ import { events } from '../data/events';
 import { packages } from '@/data/packages';
 import { products } from '../data/products';
 import { ProductModel } from '@/models/product';
+import { EventModel } from '@/models/event'; 
 
+const eventsCache: EventModel[] = []; 
 
-export const fetchEvents = async () => events;
+export const fetchEvents = async (): Promise<EventModel[]> => {
+    if (eventsCache.length > 0)
+    {
+        console.log('returns cached events');
+        return eventsCache; 
+    } 
+    eventsCache.push(...events);
+    console.log('fetches events');
+    return eventsCache;
+};
 
 export const fetchPackages = async (id: string) => {
     const pack = packages.find((p: PackageModel) => p.id === id);
@@ -19,7 +30,7 @@ export const fetchProducts = async (id: string) => {
     return product || null;
 };
 
-export const fetchAccessories = async (id: string) => {
-    const response = await fetch('https://api.example.com/asscories');
-    return response.json();
-};
+// export const fetchAccessories = async (id: string) => {
+//     const response = await fetch('');
+//     return response.json();
+// };

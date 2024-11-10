@@ -31,9 +31,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Fetch events once on the server
   const events = await getEvents();
-
   return (
     <PrimeReactProvider>
       <html lang="en">

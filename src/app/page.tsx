@@ -1,11 +1,12 @@
 import ImageCarousel from "@/components/carousel/image-carousel";
-import { events } from "../data/events";
+import { getEvents } from "@/controller/eventController";
 
 
-export default function Home() {
+export default async function Home() {
+  const events = await getEvents();
   return (
     <div>
-      <ImageCarousel events={events} />
+      <ImageCarousel events={events}/>
     </div>
   );
 }

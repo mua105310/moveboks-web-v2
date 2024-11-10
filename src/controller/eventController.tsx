@@ -3,14 +3,11 @@ import { fetchEvents, fetchPackages, fetchProducts } from "@/api/api.service";
 import { EventModel } from "@/models/event";
 import { PackageModel } from "@/models/package";
 import { ProductModel } from "@/models/product";
-import { cache } from "react";
 // Fetches all events
 
-export const getEvents = cache(async (): Promise<EventModel[]> => {
-  const events = await fetchEvents();
-  return events;
-});
-
+export const getEvents = (): Promise<EventModel[]> => {
+  return fetchEvents();
+}
 // Fetches packages for given IDs and returns an array of PackageModel
 export async function getPackages(ids: string[]): Promise<PackageModel[]> {
     const packagePromises = ids.map(id => fetchPackages(id));
