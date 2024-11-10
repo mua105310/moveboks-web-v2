@@ -7,7 +7,7 @@ export type PackageModel = {
     features?: string[];
     longDescription: string;
     images: string[];
-    options?: PackageOptionModel[];
+    options?: ProductConstraintModel[];
   }
   
   export enum PackageOptionType {
@@ -17,22 +17,17 @@ export type PackageModel = {
     AccessoryToggle = "accessoryToggle",
   }
   
-export type PackageOptionModel = {
-    flowOrder: number;
-    title: string;
-    required: boolean;
-    type: PackageOptionType;
-    helperText?: string;
-    products: ProductConstraintModel[];
-  }
-  
 export type  ProductConstraintModel = {
     productId: string;
-    prices: DurationPriceModel[];
+    required: boolean;
+    buyPrice?: number;
+    rentPrice?: RentPriceModel[];
     availableQuantity: number;
+    accessoryIds?: string[];
+    type: "rent" | "buy";
   }
   
-export type DurationPriceModel = {
+export type RentPriceModel = {
     hours: number;
     price: number;
   }

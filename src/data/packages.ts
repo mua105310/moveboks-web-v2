@@ -1,210 +1,35 @@
-import { PackageModel, PackageOptionModel } from "@/models/package";
-import { PackageOptionType } from "@/models/package";
-import { features } from "process";
+import { PackageModel, ProductConstraintModel} from "@/models/package";
 
-// Define your packages as an array of PackageModel objects
-export const packages: PackageModel[] = [
+// Shared product constraint data
+const rosProducts: ProductConstraintModel[] = [
     {
-        id: "ros-basis",
-        title: "Roskilde basis",
-        predefinedLocationAndTime: true,
-        shortDescription: "Basispakken til Roskilde festival uden dækning",
-        longDescription: "Ved køb af basispakken står du selv for ansvaret i tilfælde af tyveri og skade",
-        images: [],
-        features: ["Ingen dækning"],
+        productId: "sb-go",
+        rentPrice: [{ hours: 24, price: 3099 }],
+        availableQuantity: 10,
+        accessoryIds: ["sb-batteri-roskilde"],
+        type: "rent",
+        required: true,
     },
     {
-        id: "ros-plus",
-        title: "Roskilde Plus",
-        predefinedLocationAndTime: true,
-        shortDescription: "Inkluder skadeforsikring",
-        longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade",
-        images: [],
-        features: ["Skadeforsikring"],
+        productId: "sb-3",
+        rentPrice: [{ hours: 24, price: 3099 }],
+        availableQuantity: 10,
+        accessoryIds: ["sb-batteri-roskilde"],
+        type: "rent",
+        required: true,
     },
     {
-        id: "ros-premium",
-        title: "Roskilde Premium",
-        predefinedLocationAndTime: true,
-        shortDescription: "Inkluder skadeforsikring og tyveriforsikring",
-        longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade og tyveri",
-        images: [],
-        features: ["Skadeforsikring", "Tyveriforsikring"],
-    },
-    {
-        id: "smuk-basis",
-        title: "Smukfest basis",
-        predefinedLocationAndTime: true,
-        shortDescription: "Basispakken til Smukfest uden dækning",
-        longDescription: "Ved køb af basispakken står du selv for ansvaret i tilfælde af tyveri og skade",
-        images: [],
-        features: ["Ingen dækning"],
-    },
-    {
-        id: "smuk-plus",
-        title: "Smukfest Plus",
-        predefinedLocationAndTime: true,
-        shortDescription: "Inkluder skadeforsikring",
-        longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade",
-        images: [],
-        features: ["Skadeforsikring"],
-    },
-    {
-        id: "smuk-premium",
-        title: "Smukfest Premium",
-        predefinedLocationAndTime: true,
-        shortDescription: "Inkluder skadeforsikring og tyveriforsikring",
-        longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade og tyveri",
-        images: [],
-        features: ["Skadeforsikring", "Tyveriforsikring"],
+        productId: "sb-4",
+        rentPrice: [{ hours: 24, price: 3099 }],
+        availableQuantity: 10,
+        accessoryIds: ["sb-batteri-roskilde"],
+        type: "rent",
+        required: true,
     }
 ];
 
-
-
-// Roskilde festival 2024 packages
-
-export const rosBasis: PackageOptionModel = {
-    flowOrder: 1,
-    title: "Højtalere",
-    required: true,
-    type: PackageOptionType.PrimarySingle,
-    helperText: "",
-    products: [
-        {
-            productId: "sb-go",
-            prices: [
-                {
-                    hours: 24,
-                    price: 3099
-                },
-            ],
-            availableQuantity: 10,
-        },
-        {
-            productId: "sb-3",
-            prices: [
-                {
-                    hours: 24,
-                    price: 3099
-                },
-            ],
-            availableQuantity: 10,
-        },
-        {
-            productId: "sb-4",
-            prices: [
-                {
-                    hours: 24,
-                    price: 3099
-                },
-            ],
-            availableQuantity: 10,
-        },
-    ]
-}
-
-export const rosPlus: PackageOptionModel = {
-    flowOrder: 2,
-    title: "Højtalere",
-    required: true,
-    type: PackageOptionType.PrimarySingle,
-    helperText: "",
-    products: [
-        {
-            productId: "sb-go",
-            prices: [
-                {
-                    hours: 24,
-                    price: 3799
-                },
-            ],
-            availableQuantity: 10,
-        },
-        {
-            productId: "sb-3",
-            prices: [
-                {
-                    hours: 24,
-                    price: 3799
-                },
-            ],
-            availableQuantity: 10,
-        },
-        {
-            productId: "sb-4",
-            prices: [
-                {
-                    hours: 24,
-                    price: 3799
-                },
-            ],
-            availableQuantity: 10,
-        },
-    ]
-}
-
-export const rosPremimum: PackageOptionModel = {
-    flowOrder: 3,
-    title: "Højtalere",
-    required: true,
-    type: PackageOptionType.PrimarySingle,
-    helperText: "",
-    products: [
-        {
-            productId: "sb-go",
-            prices: [
-                {
-                    hours: 24,
-                    price: 4499
-                },
-            ],
-            availableQuantity: 10,
-        },
-        {
-            productId: "sb-3",
-            prices: [
-                {
-                    hours: 24,
-                    price: 4499
-                },
-            ],
-            availableQuantity: 10,
-        },
-        {
-            productId: "sb-4",
-            prices: [
-                {
-                    hours: 24,
-                    price: 4499
-                },
-            ],
-            availableQuantity: 10,
-        },
-    ]
-}
-
-export const accesoriesRoskilde: PackageOptionModel = {
-    flowOrder: 4,
-    title: "Tilbehør",
-    required: false,
-    type: PackageOptionType.AccessoryQuantity,
-    helperText: "Vælg det antal du ønsker",
-    products: [
-        {
-            productId: "sb-batteri-roskilde",
-            prices: [
-                {
-                    hours: 24,
-                    price: 500
-                },
-            ],
-            availableQuantity: 10,
-        },
-    ]
-}
-
-export const packagesBasis: PackageModel = {
+// Roskilde packages
+export const packagesBasisRoskilde: PackageModel = {
     id: "ros-basis",
     title: "Roskilde basis",
     predefinedLocationAndTime: true,
@@ -212,11 +37,10 @@ export const packagesBasis: PackageModel = {
     longDescription: "Ved køb af basispakken står du selv for ansvaret i tilfælde af tyveri og skade",
     images: [],
     features: ["Ingen dækning"],
-    options: [rosBasis, accesoriesRoskilde],
-}
+    options: rosProducts,
+};
 
-
-export const packagesPlus: PackageModel = {
+export const packagesPlusRoskilde: PackageModel = {
     id: "ros-plus",
     title: "Roskilde Plus",
     predefinedLocationAndTime: true,
@@ -224,10 +48,13 @@ export const packagesPlus: PackageModel = {
     longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade",
     images: [],
     features: ["Skadeforsikring"],
-    options: [rosPlus, accesoriesRoskilde],
-}
+    options: rosProducts.map(product => ({
+        ...product,
+        rentPrice: [{ hours: 24, price: 3799 }]
+    }))
+};
 
-export const packagesPremium: PackageModel = {
+export const packagesPremiumRoskilde: PackageModel = {
     id: "ros-premium",
     title: "Roskilde Premium",
     predefinedLocationAndTime: true,
@@ -235,150 +62,39 @@ export const packagesPremium: PackageModel = {
     longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade og tyveri",
     images: [],
     features: ["Skadeforsikring", "Tyveriforsikring"],
-    options: [rosPremimum, accesoriesRoskilde],
-}
+    options: rosProducts.map(product => ({
+        ...product,
+        rentPrice: [{ hours: 24, price: 4499 }]
+    }))
+};
 
-// Smukfest 2024 packages
-
-export const smukBasis: PackageOptionModel = {
-    flowOrder: 1,
-    title: "Højtalere",
-    required: true,
-    type: PackageOptionType.PrimarySingle,
-    helperText: "",
-    products: [
-        {
-            productId: "sb-go",
-            prices: [
-                {
-                    hours: 24,
-                    price: 3099
-                },
-            ],
-            availableQuantity: 10,
-        },
-        {
-            productId: "sb-3",
-            prices: [
-                {
-                    hours: 24,
-                    price: 3099
-                },
-            ],
-            availableQuantity: 10,
-        },
-        {
-            productId: "sb-4",
-            prices: [
-                {
-                    hours: 24,
-                    price: 3099
-                },
-            ],
-            availableQuantity: 10,
-        },
-    ]
-}
-
-export const smukPlus: PackageOptionModel = {
-    flowOrder: 2,
-    title: "Højtalere",
-    required: true,
-    type: PackageOptionType.PrimarySingle,
-    helperText: "",
-    products: [
-        {
-            productId: "sb-go",
-            prices: [
-                {
-                    hours: 24,
-                    price: 3799
-                },
-            ],
-            availableQuantity: 10,
-        },
-        {
-            productId: "sb-3",
-            prices: [
-                {
-                    hours: 24,
-                    price: 3799
-                },
-            ],
-            availableQuantity: 10,
-        },
-        {
-            productId: "sb-4",
-            prices: [
-                {
-                    hours: 24,
-                    price: 3799
-                },
-            ],
-            availableQuantity: 10,
-        },
-    ]
-}
-
-export const smukPremimum: PackageOptionModel = {
-    flowOrder: 3,
-    title: "Højtalere",
-    required: true,
-    type: PackageOptionType.PrimarySingle,
-    helperText: "",
-    products: [
-        {
-            productId: "sb-go",
-            prices: [
-                {
-                    hours: 24,
-                    price: 4499
-                },
-            ],
-            availableQuantity: 10,
-        },
-        {
-            productId: "sb-3",
-            prices: [
-                {
-                    hours: 24,
-                    price: 4499
-                },
-            ],
-            availableQuantity: 10,
-        },
-        {
-            productId: "sb-4",
-            prices: [
-                {
-                    hours: 24,
-                    price: 4499
-                },
-            ],
-            availableQuantity: 10,
-        },
-    ]
-}
-
-export const accesoriesSmukfest: PackageOptionModel = {
-    flowOrder: 4,
-    title: "Tilbehør",
-    required: false,
-    type: PackageOptionType.AccessoryQuantity,
-    helperText: "Vælg det antal du ønsker",
-    products: [
-        {
-            productId: "sb-batteri-smukfest",
-            prices: [
-                {
-                    hours: 24,
-                    price: 500
-                },
-            ],
-            availableQuantity: 10,
-        },
-    ]
-}
+// Smukfest packages
+const smukProducts: ProductConstraintModel[] = [
+    {
+        productId: "sb-go",
+        rentPrice: [{ hours: 24, price: 3099 }],
+        availableQuantity: 10,
+        accessoryIds: ["sb-batteri-smukfest"],
+        type: "rent",
+        required: true,
+    },
+    {
+        productId: "sb-3",
+        rentPrice: [{ hours: 24, price: 3099 }],
+        availableQuantity: 10,
+        accessoryIds: ["sb-batteri-smukfest"],
+        type: "rent",
+        required: true,
+    },
+    {
+        productId: "sb-4",
+        rentPrice: [{ hours: 24, price: 3099 }],
+        availableQuantity: 10,
+        accessoryIds: ["sb-batteri-smukfest"],
+        type: "rent",
+        required: true,
+    }
+];
 
 export const packagesBasisSmukfest: PackageModel = {
     id: "smuk-basis",
@@ -388,8 +104,8 @@ export const packagesBasisSmukfest: PackageModel = {
     longDescription: "Ved køb af basispakken står du selv for ansvaret i tilfælde af tyveri og skade",
     images: [],
     features: ["Ingen dækning"],
-    options: [smukBasis, accesoriesSmukfest],
-}
+    options: smukProducts,
+};
 
 export const packagesPlusSmukfest: PackageModel = {
     id: "smuk-plus",
@@ -399,8 +115,11 @@ export const packagesPlusSmukfest: PackageModel = {
     longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade",
     images: [],
     features: ["Skadeforsikring"],
-    options: [smukPlus, accesoriesSmukfest],
-}
+    options: smukProducts.map(product => ({
+        ...product,
+        rentPrice: [{ hours: 24, price: 3799 }]
+    }))
+};
 
 export const packagesPremiumSmukfest: PackageModel = {
     id: "smuk-premium",
@@ -410,5 +129,18 @@ export const packagesPremiumSmukfest: PackageModel = {
     longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade og tyveri",
     images: [],
     features: ["Skadeforsikring", "Tyveriforsikring"],
-    options: [smukPremimum, accesoriesSmukfest],
-}
+    options: smukProducts.map(product => ({
+        ...product,
+        rentPrice: [{ hours: 24, price: 4499 }]
+    }))
+};
+
+// Final packages array
+export const packages: PackageModel[] = [
+    packagesBasisRoskilde,
+    packagesPlusRoskilde,
+    packagesPremiumRoskilde,
+    packagesBasisSmukfest,
+    packagesPlusSmukfest,
+    packagesPremiumSmukfest,
+];

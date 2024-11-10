@@ -1,6 +1,13 @@
+// app/layout.tsx
 import type { Metadata } from "next";
+import { getEvents } from "@/controller/eventController";
+import Nav from "@/components/nav/nav";
+import Footer from "@/components/footer/footer";
+import { EventsProvider } from "@/provider/eventprovider";
+import { PrimeReactProvider } from "primereact/api";
 import localFont from "next/font/local";
 import "./globals.css";
+import "primereact/resources/themes/lara-light-cyan/theme.css";  
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,18 +26,25 @@ export const metadata: Metadata = {
   keywords: "Leje Soundboks, lej en Soundboks, lydudlejning, bryllup, konfirmation, DJ, festival, Roskilde Festival, Smukfest, events, julefrokost, nytårsfest, Danmark",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  // Fetch events once on the server
+  const events = await getEvents();
+
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <PrimeReactProvider>
+      <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <EventsProvider initialEvents={events}>
+            <Nav events={events} />
+            <main>{children}</main>
+            <Footer events={events}/>
+          </EventsProvider>
+        </body>
+      </html>
+    </PrimeReactProvider>
   );
 }
