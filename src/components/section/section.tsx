@@ -116,7 +116,6 @@ export default function Section({packages, category}: SectionProps) {
                             slidesPerView={1.2}
                             spaceBetween={20}
                             className="!px-10" /* Added padding to maintain inner spacing */
-                            loop={true}
                         >
                             {products.map((item) => (
                                 <SwiperSlide key={item.id}>
