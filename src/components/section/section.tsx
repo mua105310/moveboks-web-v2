@@ -47,7 +47,16 @@ export default function Section({packages, category}: SectionProps) {
         setTimeout(() => {
             setIsVisible(true);
             const productsSection = document.querySelector('.products-section');
-            productsSection?.scrollIntoView({ behavior: 'smooth' });
+            if (productsSection) {
+                const windowHeight = window.innerHeight;
+                const elementTop = productsSection.getBoundingClientRect().top + window.pageYOffset;
+                const elementCenter = elementTop - (windowHeight / 2) + (productsSection.clientHeight / 2);
+                
+                window.scrollTo({
+                    top: elementCenter,
+                    behavior: 'smooth'
+                });
+            }
         }, 100);
     };
 
