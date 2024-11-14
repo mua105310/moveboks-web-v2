@@ -44,6 +44,50 @@ export default function Section({packages, category}: SectionProps) {
         setTimeout(() => setIsVisible(true), 100);
     };
 
+    const responsiveOptions = [
+        {
+            breakpoint: '768px',
+            numVisible: 1,
+            numScroll: 1
+        }
+    ];
+
+    const productTemplate = (item: ProductModel) => (
+        <Card 
+            key={item.id}
+            className={`
+                shadow-lg hover:shadow-xl 
+                transition-all duration-1000 ease-out 
+                border-none card text-white
+                transform 
+                ${isVisible 
+                    ? 'translate-y-0 opacity-100' 
+                    : '-translate-y-10 opacity-0'
+                }
+            `}
+        >
+            <div className="flex flex-col gap-4">
+                <div className="relative h-[200px] w-full">
+                    <Image 
+                        src={item.images[0]} 
+                        alt={item.title} 
+                        fill
+                        className="object-contain rounded-md p-2 hover:scale-105 transition-transform"
+                        priority
+                        draggable={false}
+                    />
+                </div>
+                <div className="flex flex-col gap-1">
+                    <h2 className="text-lg font-medium">{item.title}</h2>
+                    <p className="text-gray-400 text-sm">{item.longDescription}</p>
+                    <button className="bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-600 transition-colors w-fit mt-2">
+                        Tilføj til
+                    </button>
+                </div>
+            </div>
+        </Card>
+    );
+
     return (
         <div className="p-10 flex flex-col gap-10">
             <p className="uppercase text-xl font-semibold">
@@ -65,43 +109,20 @@ export default function Section({packages, category}: SectionProps) {
                     <h3 className="text-lg font-semibold mb-4">
                         Produkter i {selectedPackage.title}
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {products.map((item, index) => (
-                            <Card 
-                                key={item.id}
-                                className={`
-                                    shadow-lg hover:shadow-xl 
-                                    transition-all duration-1000 ease-out 
-                                    border-none card text-white
-                                    transform 
-                                    ${isVisible 
-                                        ? 'translate-y-0 opacity-100' 
-                                        : '-translate-y-10 opacity-0'
-                                    }
-                                    delay-[${index * 100}ms]
-                                `}
-                            >
-                                <div className="flex flex-col gap-4">
-                                    <div className="relative h-[200px] w-full">
-                                        <Image 
-                                            src={item.images[0]} 
-                                            alt={item.title} 
-                                            fill
-                                            className="object-contain rounded-md p-2 hover:scale-105 transition-transform"
-                                            priority
-                                            draggable={false}
-                                        />
-                                    </div>
-                                    <div className="flex flex-col gap-1">
-                                        <h2 className="text-lg font-medium">{item.title}</h2>
-                                        <p className="text-gray-400 text-sm">{item.longDescription}</p>
-                                        <button className="bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-600 transition-colors w-fit mt-2">
-                                            Tilføj til
-                                        </button>
-                                    </div>
-                                </div>
-                            </Card>
-                        ))}
+                    <div className="block md:hidden"> {/* Mobile view */}
+                        <Carousel 
+                            value={products} 
+                            numVisible={1} 
+                            numScroll={1}
+                            showNavigators={false}
+                            showIndicators={false}
+                            responsiveOptions={responsiveOptions}
+                            itemTemplate={productTemplate}
+                            circular
+                        />
+                    </div>
+                    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6"> {/* Desktop view */}
+                        {products.map((item, index) => productTemplate(item))}
                     </div>
                 </div>
             )}
