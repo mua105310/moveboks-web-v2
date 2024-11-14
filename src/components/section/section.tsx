@@ -106,14 +106,13 @@ export default function Section({packages, category}: SectionProps) {
                     <h3 className="text-lg font-semibold mb-4">
                         Produkter i {selectedPackage.title}
                     </h3>
-                    <div className="block md:hidden"> {/* Mobile view */}
+                    <div className="block md:hidden -mx-10"> {/* Added negative margin to counteract parent padding */}
                         <Swiper
                             modules={[Navigation, Autoplay]}
                             slidesPerView={1.2}
                             spaceBetween={20}
-                            className="overflow-visible"
+                            className="!px-10" /* Added padding to maintain inner spacing */
                             loop={true}
-                        
                         >
                             {products.map((item) => (
                                 <SwiperSlide key={item.id}>
