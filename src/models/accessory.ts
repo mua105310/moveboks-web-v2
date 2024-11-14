@@ -6,4 +6,5 @@ export type AccessoryModel = ProductModel & {
   buyPrice?: number;
   availableQuantity: number;
   type: "rent" | "buy";
+  selectionType: "toggle" | "quantity";
 };

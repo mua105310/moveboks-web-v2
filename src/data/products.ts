@@ -21,6 +21,6 @@ export const products: ProductModel[] = [
         title: "Soundboks 4",
         shortDescription: "Den nyeste og kraftigeste højtaler fra Soundboks.",
         longDescription: "Soundboks 4 er en endnu større og kraftigere højtaler, der er perfekt til store fester. Den har en batteritid på op til 100 timer og kan spille op til 130 dB.",
-        images: ["https://imagedelivery.net/cITCNbiqfZeimGDoNY0eMg/cb81b0ad-6a0f-479d-fc8f-22dcfcffdc00/public"],
+        images: ["https://imagedelivery.net/cITCNbiqfZeimGDoNY0eMg/4987b24f-37fe-40e0-ae78-fbbb40673400/public"],
     },
 ]

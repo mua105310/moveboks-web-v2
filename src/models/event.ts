@@ -18,9 +18,9 @@ type DatesModel = {
 }
 
 export type MetaModel = {
-    title: string;                  // Used for both <title> and og:title (can be the same)
-    description: string;            // Used for both <meta description> and og:description (can be the same)
-    keywords?: string;              // For SEO purposes (less important today)
+    title: string;                 
+    description: string;            
+    keywords?: string;          
 };
 
 

@@ -8,13 +8,8 @@ import { EventModel } from '@/models/event';
 const eventsCache: EventModel[] = []; 
 
 export const fetchEvents = async (): Promise<EventModel[]> => {
-    if (eventsCache.length > 0)
-    {
-        console.log('returns cached events');
-        return eventsCache; 
-    } 
+    if (eventsCache.length > 0) return eventsCache; 
     eventsCache.push(...events);
-    console.log('fetches events');
     return eventsCache;
 };
 

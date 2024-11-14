@@ -1,6 +1,5 @@
 import { AccessoryModel } from "@/models/accessory";
 
-
 export const accessories: AccessoryModel[] = [
     {
         id: "sb-batteri-roskilde",
@@ -12,7 +11,8 @@ export const accessories: AccessoryModel[] = [
         rentPrice: [
             { hours: 24, "price": 50 }
         ],
-        type: "rent"
+        type: "rent",
+        selectionType: "quantity"
     },
     {
         id: "mikrofon",
@@ -24,7 +24,8 @@ export const accessories: AccessoryModel[] = [
         rentPrice: [
             { hours: 24, "price": 50 }
         ],
-        type: "rent"
+        type: "rent",
+        selectionType: "quantity"
     },
     {
         id: "stativer",
@@ -36,6 +37,7 @@ export const accessories: AccessoryModel[] = [
         rentPrice: [
             { hours: 24, "price": 50 }
         ],
-        type: "rent"
+        type: "rent",
+        selectionType: "quantity"
     }
 ];

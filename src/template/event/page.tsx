@@ -1,8 +1,15 @@
+'use client'
+
 import { EventModel } from '@/models/event';
 import Image from 'next/image';
 import '../../app/globals.css'
+import Card from '@/components/card/card';
+import Section from '@/components/section/section';
+import { useEffect } from 'react';
 
 export default function EventPage({event}: {event: EventModel}) {
+
+    
 
     return (
         <div>
@@ -23,6 +30,7 @@ export default function EventPage({event}: {event: EventModel}) {
                     <p className='text-xs'>{event.subtitle}</p>
                 </div>
             </div>
+            <Section packages={event.packagesID} category={event.title} />
         </div>
     );
 }
