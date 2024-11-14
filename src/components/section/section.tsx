@@ -44,7 +44,11 @@ export default function Section({packages, category}: SectionProps) {
         setProducts(fetchedProducts);
         setSelectedPackage(item);
         
-        setTimeout(() => setIsVisible(true), 100);
+        setTimeout(() => {
+            setIsVisible(true);
+            const productsSection = document.querySelector('.products-section');
+            productsSection?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
     };
 
     const productTemplate = (item: ProductModel) => (
@@ -102,7 +106,7 @@ export default function Section({packages, category}: SectionProps) {
 
             {/* Show products section when a package is selected */}
             {selectedPackage && (
-                <div className="mt-8">
+                <div className="mt-8 products-section">
                     <h3 className="text-lg font-semibold mb-4">
                         Produkter i {selectedPackage.title}
                     </h3>
