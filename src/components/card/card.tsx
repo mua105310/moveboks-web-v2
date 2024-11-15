@@ -35,7 +35,7 @@ export default function Card({item, onClick}: CardModel) {
           <p className="text-[12px] line-clamp-2 mt-1">{item.longDescription}</p>
         </div>
         
-        <div className="mt-auto flex justify-between items-center">
+        <div className="mt-auto flex justify-between items-center ">
           <span className="font-medium text-white text-[10px] sm:text-[12px] lg:text-[10px]">fra 3099 kr.</span>
           <button className="bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-600 transition-colors text-[12px]">
             Tilføj til
