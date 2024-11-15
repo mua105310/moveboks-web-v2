@@ -1,6 +1,6 @@
 "use client"
 import { PackageModel } from "@/models/package";
-import { getPackages, getProducts } from "@/controller/eventController";
+import { getPackages, getProducts, getAccessories } from "@/controller/eventController";
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { ProductModel } from "@/models/product";
 import Card from "../card/card";
@@ -13,6 +13,8 @@ import { useEventContext } from "@/provider/eventProvider";
 import { useOrderContext } from "@/provider/orderProvider";
 import { useLoading } from "@/provider/loadingProvider";
 import LoadingCard from "../card/loading-card";
+import { AccessoryModel } from "@/models/accessory";
+import Dialog from "@/components/dialog/dialog";
 
 type SectionProps = {
     packages: string[];
@@ -22,15 +24,13 @@ type SectionProps = {
 export default function Section({packages, category}: SectionProps) {
     const [pack, setPack] = useState<PackageModel[]>([]);
     const [products, setProducts] = useState<ProductModel[]>([]);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [dialogProduct, setDialogProduct] = useState<ProductModel | null>(null);
     
-    const { 
-        setIsVisible,
-        isVisible
-    } = useEventContext();
+    const { setIsVisible } = useEventContext();
 
     const {
         selectedPackage,
-        selectedProduct,
         setSelectedPackage,
         setSelectedProduct
     } = useOrderContext();
@@ -48,10 +48,6 @@ export default function Section({packages, category}: SectionProps) {
         };
         fetchPackages();
     }, [packages, setIsLoading]);
-
-    useEffect(() => {
-        console.log(pack);
-    }, [pack]);
 
     const handlePackageClick = useCallback(async (item: PackageModel) => {
         if (!item.options) return;
@@ -81,17 +77,17 @@ export default function Section({packages, category}: SectionProps) {
         }
     }, [setIsLoading, setSelectedPackage, setSelectedProduct]);
 
-    const handleProductSelect = (product: ProductModel) => {
+    const handleProductSelect = async (product: ProductModel) => {
         setIsVisible(false);
+        setIsLoading(true);
         
-        setTimeout(() => {
-            if (selectedProduct?.id === product.id) {
-                setSelectedProduct(null);
-            } else {
-                setSelectedProduct(product);
-            }
+        try {
+            setDialogProduct(product);
+            setIsDialogOpen(true);
+        } finally {
+            setIsLoading(false);
             setIsVisible(true);
-        }, 100);
+        }
     };
 
     const productsSection = useMemo(() => 
@@ -99,8 +95,9 @@ export default function Section({packages, category}: SectionProps) {
             <ProductsSection
                 products={products}
                 packageTitle={selectedPackage.title}
+                onProductSelect={handleProductSelect}
             />
-        ), [selectedPackage, products]
+        ), [selectedPackage, products, handleProductSelect]
     );
 
     return (
@@ -142,7 +139,7 @@ export default function Section({packages, category}: SectionProps) {
                             <SwiperSlide key={item.id}>
                                 <Card
                                     item={item}
-                                    onClick={() => handleProductSelect(item)}
+                                    onClick={() => handlePackageClick(item)}
                                     isSelected={selectedPackage?.id === item.id}
                                 />
                             </SwiperSlide>
@@ -151,6 +148,12 @@ export default function Section({packages, category}: SectionProps) {
                 </Swiper>
             </div>
             {productsSection}
+            
+            <Dialog
+                isOpen={isDialogOpen}
+                onClose={() => setIsDialogOpen(false)}
+                product={dialogProduct}
+            />
         </div>
     );
 }

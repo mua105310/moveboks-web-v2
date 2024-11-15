@@ -10,14 +10,16 @@ import { useOrderContext } from "@/provider/orderProvider";
 type ProductsSectionProps = {
     products: ProductModel[];
     packageTitle: string;
+    onProductSelect: (product: ProductModel) => void;
 }
 
-export default function ProductsSection({ products, packageTitle }: ProductsSectionProps) {
+export default function ProductsSection({ products, packageTitle, onProductSelect }: ProductsSectionProps) {
     const { setIsVisible } = useEventContext();
     const { selectedProduct, setSelectedProduct } = useOrderContext();
 
     const handleProductSelect = (product: ProductModel) => {
         setIsVisible(false);
+        onProductSelect(product);
         setTimeout(() => {
             setSelectedProduct(selectedProduct?.id === product.id ? null : product);
             setIsVisible(true);
