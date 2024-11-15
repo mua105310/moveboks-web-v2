@@ -5,6 +5,10 @@ import { useEffect, useState } from "react";
 import { ProductModel } from "@/models/product";
 import Card from "../card/card";
 import ProductsSection from "./productSection";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 type SectionProps = {
     packages: string[];
@@ -55,7 +59,7 @@ export default function Section({packages, category}: SectionProps) {
             <p className="uppercase text-xl font-semibold">
                 {category}
             </p>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="hidden lg:grid lg:grid-cols-3 gap-6">
                 {pack.map((item) => (
                     <Card
                         key={item.id}
@@ -63,6 +67,23 @@ export default function Section({packages, category}: SectionProps) {
                         onClick={() => handlePackageClick(item)}
                     />
                 ))}
+            </div>
+            <div className="block lg:hidden -mx-10">
+                <Swiper
+                    modules={[Navigation, Autoplay]}
+                    slidesPerView={1.2}
+                    spaceBetween={20}
+                    className="!px-10"
+                >
+                    {pack.map((item) => (
+                        <SwiperSlide key={item.id}>
+                            <Card
+                                item={item}
+                                onClick={() => handlePackageClick(item)}
+                            />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </div>
 
             {selectedPackage && (
