@@ -20,12 +20,15 @@ export default function Section({packages, category}: SectionProps) {
     const [products, setProducts] = useState<ProductModel[]>([]);
     const [selectedPackage, setSelectedPackage] = useState<PackageModel | null>(null);
     const [isVisible, setIsVisible] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<ProductModel | undefined>(undefined);
 
     useEffect(() => {
         const fetchPackages = async () => {
             setPack(await getPackages(packages));
         };
         fetchPackages();
+        console.log(packages);
+        console.log(pack);
     }, [packages]);
 
     const handlePackageClick = async (item: PackageModel) => {
@@ -54,6 +57,15 @@ export default function Section({packages, category}: SectionProps) {
         }, 100);
     };
 
+    const handleProductSelect = (product: ProductModel) => {
+        setIsVisible(false);
+        
+        setTimeout(() => {
+            setSelectedProduct(product);
+            setIsVisible(true);
+        }, 100);
+    };
+
     return (
         <div className="p-10 flex flex-col gap-10">
             <p className="uppercase text-xl font-semibold">
@@ -65,6 +77,7 @@ export default function Section({packages, category}: SectionProps) {
                         key={item.id}
                         item={item}
                         onClick={() => handlePackageClick(item)}
+                        isSelected={selectedPackage?.id === item.id}
                     />
                 ))}
             </div>
@@ -80,6 +93,7 @@ export default function Section({packages, category}: SectionProps) {
                             <Card
                                 item={item}
                                 onClick={() => handlePackageClick(item)}
+                                isSelected={selectedPackage?.id === item.id}
                             />
                         </SwiperSlide>
                     ))}
@@ -91,6 +105,8 @@ export default function Section({packages, category}: SectionProps) {
                     products={products}
                     packageTitle={selectedPackage.title}
                     isVisible={isVisible}
+                    selectedProduct={selectedProduct}
+                    onProductSelect={handleProductSelect}
                 />
             )}
         </div>

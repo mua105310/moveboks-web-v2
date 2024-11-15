@@ -9,9 +9,11 @@ type ProductsSectionProps = {
     products: ProductModel[];
     packageTitle: string;
     isVisible: boolean;
+    selectedProduct?: ProductModel;
+    onProductSelect?: (product: ProductModel) => void;
 }
 
-export default function ProductsSection({ products, packageTitle, isVisible }: ProductsSectionProps) {
+export default function ProductsSection({ products, packageTitle, isVisible, selectedProduct, onProductSelect }: ProductsSectionProps) {
     return (
         <div className="mt-8 products-section">
             <h3 className="text-lg font-semibold mb-4">
@@ -26,14 +28,25 @@ export default function ProductsSection({ products, packageTitle, isVisible }: P
                 >
                     {products.map((product) => (
                         <SwiperSlide key={product.id}>
-                            <ProductCard product={product} isVisible={isVisible} />
+                            <ProductCard 
+                                product={product} 
+                                isVisible={isVisible}
+                                isSelected={selectedProduct?.id === product.id}
+                                onClick={() => onProductSelect?.(product)}
+                            />
                         </SwiperSlide>
                     ))}
                 </Swiper>
             </div>
             <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products.map((product) => (
-                    <ProductCard key={product.id} product={product} isVisible={isVisible} />
+                    <ProductCard 
+                        key={product.id} 
+                        product={product} 
+                        isVisible={isVisible}
+                        isSelected={selectedProduct?.id === product.id}
+                        onClick={() => onProductSelect?.(product)}
+                    />
                 ))}
             </div>
         </div>

@@ -1,12 +1,14 @@
 import { ProductConstraintModel } from "../package";
 
-export type CardModel = {
+export interface CardModel {
     item: {
         title: string;
         longDescription: string;
         badge?: string;
         status?: string;
         images?: string[];
+        features?: string[];
       };
-      onClick: () => void;
+      onClick?: () => void;
+      isSelected?: boolean;
 }
