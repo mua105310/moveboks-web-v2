@@ -12,7 +12,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Card } from 'primereact/card';
 import { Dialog } from "primereact/dialog";
         
 type SectionProps = {
@@ -61,21 +60,27 @@ export default function Section({packages, category}: SectionProps) {
     };
 
     const productTemplate = (item: ProductModel) => (
-        <Card 
+        <div 
             key={item.id}
             className={`
                 shadow-lg hover:shadow-xl 
                 transition-all duration-1000 ease-out 
-                border-none card text-white
+                border border-white/20
+                text-white
                 transform h-[450px]
+                overflow-hidden rounded-lg
                 ${isVisible 
                     ? 'translate-y-0 opacity-100' 
                     : '-translate-y-10 opacity-0'
                 }
             `}
         >
-            <div className="flex flex-col h-full">
-                <div className="relative h-[200px] w-full flex-shrink-0">
+            <div className="flex flex-col h-full bg-[#151515] ">
+                <div className="px-4 pt-2 flex-shrink-0 ">
+                    <h2 className='text-[24px] font-bold' style={{textShadow: '0 0 6px rgba(255, 255, 255, 0.6)'}}>{item.title}</h2>
+                    <p className='text-[12px]'>{item.shortDescription}</p>
+                </div>
+                <div className="relative flex-grow w-40 mx-auto">
                     <Image 
                         src={item.images[0]} 
                         alt={item.title} 
@@ -85,17 +90,14 @@ export default function Section({packages, category}: SectionProps) {
                         draggable={false}
                     />
                 </div>
-                <div className="flex flex-col flex-grow">
-                    <div className="h-[120px]">
-                        <h2 className="text-lg font-medium mb-2">{item.title}</h2>
-                        <p className="text-gray-400 text-sm line-clamp-3">{item.longDescription}</p>
-                    </div>
-                    <button className="bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-600 transition-colors w-fit">
+                <div className="w-full p-4 flex justify-between items-center bg-[#1E1E1E]">
+                    <span className="font-medium text-white text-[10px] sm:text-[12px] lg:text-[10px]">fra 3099 kr.</span>
+                    <button className="bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-600 transition-colors text-[12px]">
                         Tilføj til
                     </button>
                 </div>
             </div>
-        </Card>
+        </div>
     );
 
     return (
@@ -116,7 +118,7 @@ export default function Section({packages, category}: SectionProps) {
             {/* Show products section when a package is selected */}
             {selectedPackage && (
                 <div className="mt-8 products-section">
-                    <h3 className="text-lg font-semibold mb-4">
+                    <h3 className="text-lg font-semibold mb-4 ">
                         Produkter i {selectedPackage.title}
                     </h3>
                     <div className="block md:hidden -mx-10"> {/* Added negative margin to counteract parent padding */}
