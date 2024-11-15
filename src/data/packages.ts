@@ -102,7 +102,7 @@ export const packagesBasisSmukfest: PackageModel = {
     predefinedLocationAndTime: true,
     shortDescription: "Basispakken til Smukfest uden dækning",
     longDescription: "Ved køb af basispakken står du selv for ansvaret i tilfælde af tyveri og skade",
-    images: [],
+    images: ["https://imagedelivery.net/cITCNbiqfZeimGDoNY0eMg/2d809dfb-51fc-4503-b906-0936213dc800/public"],
     features: ["Ingen dækning"],
     options: smukProducts,
 };
@@ -113,7 +113,7 @@ export const packagesPlusSmukfest: PackageModel = {
     predefinedLocationAndTime: true,
     shortDescription: "Inkluder skadeforsikring",
     longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade",
-    images: [],
+    images: ["https://imagedelivery.net/cITCNbiqfZeimGDoNY0eMg/edfb5303-e5e2-4c2d-eae3-e0a8ad18fb00/public"],
     features: ["Skadeforsikring"],
     options: smukProducts.map(product => ({
         ...product,
@@ -127,7 +127,7 @@ export const packagesPremiumSmukfest: PackageModel = {
     predefinedLocationAndTime: true,
     shortDescription: "Inkluder skadeforsikring og tyveriforsikring",
     longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade og tyveri",
-    images: [],
+    images: ["https://imagedelivery.net/cITCNbiqfZeimGDoNY0eMg/3bd01de0-a395-42c0-ca10-7eedbf177500/public"],
     features: ["Skadeforsikring", "Tyveriforsikring"],
     options: smukProducts.map(product => ({
         ...product,
