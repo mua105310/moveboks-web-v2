@@ -4,6 +4,8 @@ import { packages } from '@/data/packages';
 import { products } from '../data/products';
 import { ProductModel } from '@/models/product';
 import { EventModel } from '@/models/event'; 
+import { accessories } from '../data/accessories';
+import { AccessoryModel } from '@/models/accessory';
 
 const eventsCache: EventModel[] = []; 
 
@@ -25,7 +27,8 @@ export const fetchProducts = async (id: string) => {
     return product || null;
 };
 
-// export const fetchAccessories = async (id: string) => {
-//     const response = await fetch('');
-//     return response.json();
-// };
+export const fetchAccessories = async (id: string) => {
+    const accessory = accessories.find((a: AccessoryModel) => a.id === id);
+    if (!accessory) console.warn(`Accessory with id ${id} not found`);
+    return accessory || null;
+};

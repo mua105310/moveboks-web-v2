@@ -14,7 +14,7 @@ import { useOrderContext } from "@/provider/orderProvider";
 import { useLoading } from "@/provider/loadingProvider";
 import LoadingCard from "../card/loading-card";
 import { AccessoryModel } from "@/models/accessory";
-import Dialog from "@/components/dialog/dialog";
+import FormDialog from "@/components/dialog/formDialog";
 
 type SectionProps = {
     packages: string[];
@@ -27,7 +27,7 @@ export default function Section({packages, category}: SectionProps) {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [dialogProduct, setDialogProduct] = useState<ProductModel | null>(null);
     
-    const { setIsVisible } = useEventContext();
+    const { setIsVisible, setAccessories } = useEventContext();
 
     const {
         selectedPackage,
@@ -35,25 +35,37 @@ export default function Section({packages, category}: SectionProps) {
         setSelectedProduct
     } = useOrderContext();
 
-    const { isLoading, setIsLoading } = useLoading();
+    const { isLoading: isCardLoading, setIsLoading: setIsCardLoading } = useLoading();
 
     useEffect(() => {
         const fetchPackages = async () => {
-            setIsLoading(true);
+            setIsCardLoading(true);
             try {
                 setPack(await getPackages(packages));
             } finally {
-                setIsLoading(false);
+                setIsCardLoading(false);
             }
         };
         fetchPackages();
-    }, [packages, setIsLoading]);
+    }, [packages, setIsCardLoading]);
+
+    useEffect(() => {
+        if (isDialogOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isDialogOpen]);
 
     const handlePackageClick = useCallback(async (item: PackageModel) => {
         if (!item.options) return;
         
         setIsVisible(false);
-        setIsLoading(true);
+        setIsCardLoading(true);
         
         try {
             const productIds = item.options.map(option => option.productId);
@@ -73,19 +85,32 @@ export default function Section({packages, category}: SectionProps) {
                 }
             }, 100);
         } finally {
-            setIsLoading(false);
+            setIsCardLoading(false);
         }
-    }, [setIsLoading, setSelectedPackage, setSelectedProduct]);
+
+    }, [setIsCardLoading, setSelectedPackage, setSelectedProduct]);
+
 
     const handleProductSelect = async (product: ProductModel) => {
         setIsVisible(false);
-        setIsLoading(true);
+        setIsCardLoading(true);
         
         try {
+            const productOption = selectedPackage?.options?.find(
+                option => option.productId === product.id
+            );
+
+            if (productOption?.accessoryIds?.length) {
+                const fetchedAccessories = await getAccessories(productOption.accessoryIds);
+                setAccessories(fetchedAccessories);
+            } else {
+                setAccessories([]);
+            }
+
             setDialogProduct(product);
             setIsDialogOpen(true);
         } finally {
-            setIsLoading(false);
+            setIsCardLoading(false);
             setIsVisible(true);
         }
     };
@@ -106,7 +131,7 @@ export default function Section({packages, category}: SectionProps) {
                 {category}
             </p>
             <div className="hidden lg:grid lg:grid-cols-3 gap-6">
-                {isLoading ? (
+                {isCardLoading ? (
                     Array(3).fill(0).map((_, index) => (
                         <LoadingCard key={index} />
                     ))
@@ -128,7 +153,7 @@ export default function Section({packages, category}: SectionProps) {
                     spaceBetween={20}
                     className="!px-10"
                 >
-                    {isLoading ? (
+                    {isCardLoading ? (
                         Array(3).fill(0).map((_, index) => (
                             <SwiperSlide key={index}>
                                 <LoadingCard />
@@ -149,10 +174,9 @@ export default function Section({packages, category}: SectionProps) {
             </div>
             {productsSection}
             
-            <Dialog
+            <FormDialog
                 isOpen={isDialogOpen}
                 onClose={() => setIsDialogOpen(false)}
-                product={dialogProduct}
             />
         </div>
     );

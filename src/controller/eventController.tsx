@@ -1,5 +1,5 @@
 // src/controllers/eventController.ts
-import { fetchEvents, fetchPackages, fetchProducts } from "@/api/api.service";
+import { fetchEvents, fetchPackages, fetchProducts, fetchAccessories } from "@/api/api.service";
 import { EventModel } from "@/models/event";
 import { PackageModel } from "@/models/package";
 import { ProductModel } from "@/models/product";
@@ -25,7 +25,7 @@ export async function getProducts(ids: string[]): Promise<ProductModel[]> {
 
 // Fetches accessories for given IDs and returns an array of AccessoryModel
 export async function getAccessories(ids: string[]): Promise<AccessoryModel[]> {
-    const accessoryPromises = ids.map(id => fetchProducts(id));
+    const accessoryPromises = ids.map(id => fetchAccessories(id));
     const fetchedAccessories = await Promise.all(accessoryPromises);
     return fetchedAccessories.filter(Boolean) as AccessoryModel[];
 }

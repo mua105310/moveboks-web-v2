@@ -8,6 +8,10 @@ export interface CardModel {
         status?: string;
         images?: string[];
         features?: string[];
+        rentPrice?: {
+            price: number;
+            hours: number;
+        }[];
       };
       onClick?: () => void;
       isSelected?: boolean;
