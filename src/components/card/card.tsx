@@ -19,11 +19,11 @@ export default function Card({item, onClick}: CardModel) {
             src={item.images[0]}
             alt={`Image for ${item.title}`}
             fill
-            className="object-cover opacity-80 hover:opacity-30 transition-opacity"
+            className="object-cover"
             priority
             draggable={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-t " />
+          <div className="absolute inset-0" />
         </div>
       )}
 
