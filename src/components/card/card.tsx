@@ -14,7 +14,7 @@ export default function Card({item, onClick}: CardModel) {
       onClick={onClick}
     >
       {item.images && item.images[0] && (
-        <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 w-full h-full z-10">
           <Image
             src={item.images[0]}
             alt={`Image for ${item.title}`}
