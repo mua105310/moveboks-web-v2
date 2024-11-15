@@ -1,8 +1,9 @@
 import { CardModel } from '@/models/internal/card';
+import { PackageModel } from '@/models/package';
 import Image from 'next/image';
 
-// Add helper function to calculate lowest price
-const getLowestPrice = (item: PackageModel): number | null => {
+// Update the type to accept a partial PackageModel
+const getLowestPrice = (item: Partial<PackageModel>): number | null => {
   if (!item.options) return null;
   
   let lowestPrice = Infinity;
@@ -47,7 +48,6 @@ export default function Card({item, onClick, isSelected}: CardModel) {
             priority
             draggable={false}
           />
-          <div className="absolute inset-0" />
         </div>
       )}
 
@@ -73,13 +73,9 @@ export default function Card({item, onClick, isSelected}: CardModel) {
         </div>
         
         <div className="mt-auto flex justify-between items-center ">
-          {getLowestPrice(item) ? (
+          {getLowestPrice(item) && (
             <span className="font-medium text-white text-[10px] sm:text-[12px] lg:text-[10px]">
               fra {getLowestPrice(item)?.toLocaleString('da-DK')} kr.
-            </span>
-          ) : (
-            <span className="font-medium text-white text-[10px] sm:text-[12px] lg:text-[10px]">
-              Pris på forespørgsel
             </span>
           )}
         </div>

@@ -27,9 +27,11 @@ export default function Section({packages, category}: SectionProps) {
             setPack(await getPackages(packages));
         };
         fetchPackages();
-        console.log(packages);
-        console.log(pack);
     }, [packages]);
+
+    useEffect(() => {
+        console.log(pack);
+    }, [pack]);
 
     const handlePackageClick = async (item: PackageModel) => {
         if (!item.options) return;
