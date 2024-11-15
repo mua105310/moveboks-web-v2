@@ -1,32 +1,33 @@
 import Image from 'next/image';
 import { ProductModel } from "@/models/product";
+import { memo, useMemo } from 'react';
+import { useEventContext } from "@/provider/eventProvider";
+import { useOrderContext } from "@/provider/orderProvider";
 
 type ProductCardProps = {
     product: ProductModel;
-    isVisible: boolean;
-    isSelected?: boolean;
-    onClick?: () => void;
+    onClick: () => void;
 }
 
-export default function ProductCard({ product, isVisible, isSelected, onClick }: ProductCardProps) {
+export default memo(function ProductCard({ product, onClick }: ProductCardProps) {
+    const { isVisible } = useEventContext();
+    const { selectedProduct } = useOrderContext();
+    const isSelected = selectedProduct?.id === product.id;
+
+    const cardClassName = useMemo(() => `
+        shadow-lg hover:shadow-xl 
+        transition-all duration-500 ease-out 
+        border ${isSelected ? 'border-blue-500 border-2' : 'border-white/20'}
+        text-white
+        transform h-[450px]
+        overflow-hidden rounded-lg
+        ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}
+        ${isSelected ? 'ring-2 ring-blue-500' : ''}
+        cursor-pointer
+    `, [isSelected, isVisible]);
+
     return (
-        <div 
-            onClick={onClick}
-            className={`
-                shadow-lg hover:shadow-xl 
-                transition-all duration-500 ease-out 
-                border ${isSelected ? 'border-blue-500 border-2' : 'border-white/20'}
-                text-white
-                transform h-[450px]
-                overflow-hidden rounded-lg
-                ${isVisible 
-                    ? 'translate-y-0 opacity-100' 
-                    : 'translate-y-10 opacity-0'
-                }
-                ${isSelected ? 'ring-2 ring-blue-500' : ''}
-                cursor-pointer
-            `}
-        >
+        <div onClick={onClick} className={cardClassName}>
             <div className="flex flex-col h-full bg-[#151515]">
                 <div className="px-4 pt-2 flex-shrink-0">
                     <h2 className='text-[24px] font-bold uppercase' style={{textShadow: '0 0 6px rgba(255, 255, 255, 0.6)'}}>{product.title}</h2>
@@ -51,4 +52,4 @@ export default function ProductCard({ product, isVisible, isSelected, onClick }:
             </div>
         </div>
     );
-}
+});

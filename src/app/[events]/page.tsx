@@ -2,6 +2,8 @@
 import { getEvents } from "@/controller/eventController";
 import EventPage from "@/template/event/page";
 import { notFound } from "next/navigation";
+import { EventProvider } from "@/provider/eventProvider";
+import { OrderProvider } from "@/provider/orderProvider";
 
 // Generate dynamic metadata based on the event data
 export async function generateMetadata({ params }: { params: { events: string } }) {
@@ -37,5 +39,11 @@ export default async function EventPageWrapper({ params }: { params: { events: s
     return notFound();
   }
 
-  return <EventPage event={event} />;
+  return (
+    <OrderProvider>
+      <EventProvider>
+        <EventPage event={event} />
+      </EventProvider>
+    </OrderProvider>
+  );
 }

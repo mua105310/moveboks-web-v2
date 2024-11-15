@@ -4,16 +4,26 @@ import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import ProductCard from "../card/productCard";
+import { useEventContext } from "@/provider/eventProvider";
+import { useOrderContext } from "@/provider/orderProvider";
 
 type ProductsSectionProps = {
     products: ProductModel[];
     packageTitle: string;
-    isVisible: boolean;
-    selectedProduct?: ProductModel;
-    onProductSelect?: (product: ProductModel) => void;
 }
 
-export default function ProductsSection({ products, packageTitle, isVisible, selectedProduct, onProductSelect }: ProductsSectionProps) {
+export default function ProductsSection({ products, packageTitle }: ProductsSectionProps) {
+    const { setIsVisible } = useEventContext();
+    const { selectedProduct, setSelectedProduct } = useOrderContext();
+
+    const handleProductSelect = (product: ProductModel) => {
+        setIsVisible(false);
+        setTimeout(() => {
+            setSelectedProduct(selectedProduct?.id === product.id ? null : product);
+            setIsVisible(true);
+        }, 100);
+    };
+
     return (
         <div className="mt-8 products-section">
             <h3 className="text-lg font-semibold mb-4">
@@ -30,9 +40,7 @@ export default function ProductsSection({ products, packageTitle, isVisible, sel
                         <SwiperSlide key={product.id}>
                             <ProductCard 
                                 product={product} 
-                                isVisible={isVisible}
-                                isSelected={selectedProduct?.id === product.id}
-                                onClick={() => onProductSelect?.(product)}
+                                onClick={() => handleProductSelect(product)}
                             />
                         </SwiperSlide>
                     ))}
@@ -43,9 +51,7 @@ export default function ProductsSection({ products, packageTitle, isVisible, sel
                     <ProductCard 
                         key={product.id} 
                         product={product} 
-                        isVisible={isVisible}
-                        isSelected={selectedProduct?.id === product.id}
-                        onClick={() => onProductSelect?.(product)}
+                        onClick={() => handleProductSelect(product)}
                     />
                 ))}
             </div>
