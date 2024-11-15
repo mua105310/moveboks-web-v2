@@ -4,65 +4,35 @@ import { PackageModel } from "@/models/package";
 import { ProductModel } from "@/models/product";
 import { AccessoryModel } from "@/models/accessory";
 
+interface OrderData {
+  package: PackageModel | null;
+  product: ProductModel | null;
+  accessory: AccessoryModel | null;
+}
+
 interface OrderContextType {
-  // Selected items
-  selectedPackage: PackageModel | null;
-  selectedProduct: ProductModel | null;
-  selectedAccessories: Array<AccessoryModel & { quantity: number }>;
-  
-  // Actions
-  setSelectedPackage: (pkg: PackageModel | null) => void;
-  setSelectedProduct: (product: ProductModel | null) => void;
-  addAccessory: (accessory: AccessoryModel) => void;
-  removeAccessory: (accessoryId: string) => void;
-  updateAccessoryQuantity: (accessoryId: string, quantity: number) => void;
-  
-  // Helper functions
+  order: OrderData;
+  updateOrder: (partialOrder: Partial<OrderData>) => void;
   clearOrder: () => void;
+  isOrderComplete: boolean;
 }
 
 const OrderContext = createContext<OrderContextType | null>(null);
 
 export function OrderProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState({
-    selectedPackage: null as PackageModel | null,
-    selectedProduct: null as ProductModel | null,
-    selectedAccessories: [] as Array<AccessoryModel & { quantity: number }>,
+  const [order, setOrder] = useState<OrderData>({
+    package: null,
+    product: null,
+    accessory: null,
   });
 
   const value = useMemo(() => ({
-    ...state,
-    setSelectedPackage: (pkg: PackageModel | null) => 
-      setState(prev => ({ ...prev, selectedPackage: pkg })),
-    setSelectedProduct: (product: ProductModel | null) => 
-      setState(prev => ({ ...prev, selectedProduct: product })),
-    addAccessory: (accessory: AccessoryModel) =>
-      setState(prev => ({
-        ...prev,
-        selectedAccessories: [...prev.selectedAccessories, { ...accessory, quantity: 1 }]
-      })),
-    removeAccessory: (accessoryId: string) =>
-      setState(prev => ({
-        ...prev,
-        selectedAccessories: prev.selectedAccessories.filter(a => a.id !== accessoryId)
-      })),
-    updateAccessoryQuantity: (accessoryId: string, quantity: number) =>
-      setState(prev => ({
-        ...prev,
-        selectedAccessories: prev.selectedAccessories.map(a => 
-          a.id === accessoryId 
-            ? { ...a, quantity } 
-            : a
-        )
-      })),
-    clearOrder: () => 
-      setState(prev => ({
-        ...prev,
-        selectedPackage: null,
-        selectedProduct: null,
-        selectedAccessories: []
-      }))
-  }), [state]);
+    order,
+    updateOrder: (partialOrder: Partial<OrderData>) => 
+      setOrder(prev => ({ ...prev, ...partialOrder })),
+    clearOrder: () => setOrder({ package: null, product: null, accessory: null }),
+    isOrderComplete: Boolean(order.package && order.product && order.accessory)
+  }), [order]);
 
   return <OrderContext.Provider value={value}>{children}</OrderContext.Provider>;
 }

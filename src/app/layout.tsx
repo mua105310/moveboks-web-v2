@@ -7,7 +7,6 @@ import { PrimeReactProvider } from "primereact/api";
 import localFont from "next/font/local";
 import "./globals.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";  
-import { AppProvider } from "@/provider/appProvider";
 import { LoadingProvider } from "@/provider/loadingProvider";
 
 const geistSans = localFont({
@@ -37,13 +36,11 @@ export default async function RootLayout({
     <PrimeReactProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <AppProvider>
             <LoadingProvider>
               <Nav events={events} />
               <main>{children}</main>
               <Footer events={events}/>
             </LoadingProvider>
-          </AppProvider>
         </body>
       </html>
     </PrimeReactProvider>

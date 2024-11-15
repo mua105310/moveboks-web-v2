@@ -11,8 +11,8 @@ type ProductCardProps = {
 
 export default memo(function ProductCard({ product, onClick }: ProductCardProps) {
     const { isVisible } = useEventContext();
-    const { selectedProduct } = useOrderContext();
-    const isSelected = selectedProduct?.id === product.id;
+    const { order } = useOrderContext();
+    const isSelected = order.product?.id === product.id;
 
     const cardClassName = useMemo(() => `
         shadow-lg hover:shadow-xl 

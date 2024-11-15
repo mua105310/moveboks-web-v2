@@ -15,13 +15,15 @@ type ProductsSectionProps = {
 
 export default function ProductsSection({ products, packageTitle, onProductSelect }: ProductsSectionProps) {
     const { setIsVisible } = useEventContext();
-    const { selectedProduct, setSelectedProduct } = useOrderContext();
+    const { order, updateOrder } = useOrderContext();
 
     const handleProductSelect = (product: ProductModel) => {
         setIsVisible(false);
         onProductSelect(product);
         setTimeout(() => {
-            setSelectedProduct(selectedProduct?.id === product.id ? null : product);
+            updateOrder({ 
+                product: order.product?.id === product.id ? null : product 
+            });
             setIsVisible(true);
         }, 100);
     };
