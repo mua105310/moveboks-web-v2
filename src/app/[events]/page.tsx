@@ -1,9 +1,8 @@
 // [events]/page.tsx
 import { getEvents } from "@/controller/eventController";
+import OrderProvider from "@/provider/orderProvider";
 import EventPage from "@/template/event/page";
 import { notFound } from "next/navigation";
-import { EventProvider } from "@/provider/eventProvider";
-import { OrderProvider } from "@/provider/orderProvider";
 
 // Generate dynamic metadata based on the event data
 export async function generateMetadata({ params }: { params: { events: string } }) {
@@ -41,9 +40,7 @@ export default async function EventPageWrapper({ params }: { params: { events: s
 
   return (
     <OrderProvider>
-      <EventProvider>
-        <EventPage event={event} />
-      </EventProvider>
+      <EventPage event={event} />
     </OrderProvider>
   );
 }

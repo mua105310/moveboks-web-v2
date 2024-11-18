@@ -1,46 +1,57 @@
-"use client";
-import { createContext, useContext, useState, ReactNode, useMemo } from "react";
-import { PackageModel } from "@/models/package";
-import { ProductModel } from "@/models/product";
-import { AccessoryModel } from "@/models/accessory";
-
-interface OrderData {
-  package: PackageModel | null;
-  product: ProductModel | null;
-  accessory: AccessoryModel | null;
-}
-
-interface OrderContextType {
-  order: OrderData;
-  updateOrder: (partialOrder: Partial<OrderData>) => void;
-  clearOrder: () => void;
-  isOrderComplete: boolean;
-}
+'use client'
+import { OrderModel } from '@/models/internal/orderModel';
+import { useState, createContext, useContext, Context } from 'react';
 
 const OrderContext = createContext<OrderContextType | null>(null);
 
-export function OrderProvider({ children }: { children: ReactNode }) {
-  const [order, setOrder] = useState<OrderData>({
-    package: null,
-    product: null,
-    accessory: null,
-  });
-
-  const value = useMemo(() => ({
-    order,
-    updateOrder: (partialOrder: Partial<OrderData>) => 
-      setOrder(prev => ({ ...prev, ...partialOrder })),
-    clearOrder: () => setOrder({ package: null, product: null, accessory: null }),
-    isOrderComplete: Boolean(order.package && order.product && order.accessory)
-  }), [order]);
-
-  return <OrderContext.Provider value={value}>{children}</OrderContext.Provider>;
+interface OrderContextType {
+    order: OrderModel,
+    setOrder: React.Dispatch<React.SetStateAction<OrderModel>>
 }
 
 export const useOrderContext = () => {
-  const context = useContext(OrderContext);
-  if (!context) {
-    throw new Error("useOrderContext must be used within an OrderProvider");
-  }
-  return context;
-}; 
+    const context = useContext(OrderContext);
+    if (!context) {
+        throw new Error('useOrderContext must be used within an OrderProvider');
+    }
+    return context;
+}
+
+export default function OrderProvider({children}: {children: React.ReactNode}) {
+    const [order, setOrder] = useState<OrderModel>({
+        event_id: '',
+        package: {
+            id: '',
+            title: '',
+            predefinedLocationAndTime: false,
+            shortDescription: '',
+            longDescription: '',
+            images: [],
+            options: []
+        },
+        product: [
+            {
+                id: '',
+                quantity: 0,
+                accessories: [
+                    {
+                        id: '',
+                        quantity: 0
+                    },  
+                ],
+            }
+        ],
+        form: {
+            email: '',
+            location: '',
+            date: '',
+            duration: 0,
+        }
+    });
+
+    return (
+        <OrderContext.Provider value={{order, setOrder}}>
+            {children}
+        </OrderContext.Provider>
+    )
+}

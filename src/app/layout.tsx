@@ -3,11 +3,8 @@ import type { Metadata } from "next";
 import { getEvents } from "@/controller/eventController";
 import Nav from "@/components/nav/nav";
 import Footer from "@/components/footer/footer";
-import { PrimeReactProvider } from "primereact/api";
 import localFont from "next/font/local";
 import "./globals.css";
-import "primereact/resources/themes/lara-light-cyan/theme.css";  
-import { LoadingProvider } from "@/provider/loadingProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,16 +30,12 @@ export default async function RootLayout({
 }) {
   const events = await getEvents();
   return (
-    <PrimeReactProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-            <LoadingProvider>
               <Nav events={events} />
               <main>{children}</main>
               <Footer events={events}/>
-            </LoadingProvider>
         </body>
       </html>
-    </PrimeReactProvider>
   );
 }
