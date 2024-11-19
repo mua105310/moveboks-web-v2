@@ -1,4 +1,5 @@
 // [events]/page.tsx
+import Dialog from "@/components/dialog/dialog";
 import { getEvents } from "@/controller/eventController";
 import OrderProvider from "@/provider/orderProvider";
 import EventPage from "@/template/event/page";
@@ -41,6 +42,7 @@ export default async function EventPageWrapper({ params }: { params: { events: s
   return (
     <OrderProvider>
       <EventPage event={event} />
+      <Dialog />
     </OrderProvider>
   );
 }
