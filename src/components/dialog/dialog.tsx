@@ -15,8 +15,8 @@ export default function Dialog() {
     return (
         <>
         {/* Cart Icon - Only visible on desktop */}
-        <div className="fixed hidden lg:flex lg:bottom-10 lg:right-10 w-16 h-16 bg-white rounded-full justify-center items-center z-20 cursor-pointer hover:scale-105 transition-all duration-300">
-            <BsCart size={24} className="text-black" onClick={toggleDialog} />
+        <div className="fixed hidden lg:flex lg:bottom-10 lg:right-10 w-16 h-16 bg-white rounded-full justify-center items-center z-20 cursor-pointer hover:scale-105 transition-all duration-300" onClick={toggleDialog} >
+            <BsCart size={24} className="text-black"/>
         </div>
 
         {/* Desktop Dialog */}
