@@ -29,7 +29,7 @@ export default function Dialog() {
         </div>
 
         {/* Mobile Dialog - Only visible below lg breakpoint */}
-        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex justify-center border-t border-white/40 rounded-t-[50px] transition-all duration-300 ${isOpen ? 'z-[10000] h-[90vh]' : 'z-[10000] h-[5vh]'}`}>
+        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex justify-center border-t border-white/40 rounded-t-[50px] transition-all duration-300 ${isOpen ? 'z-[10000] h-[90svh]' : 'z-[10000] h-[5vh]'}`}>
             <div className="w-24 h-6 bg-white text-black -my-8 rounded-full flex justify-center items-center cursor-pointer hover:scale-105 transition-all duration-300" onClick={toggleDialog}>
                 {isOpen ? <span className="uppercase text-sm tracking-wider">Luk</span> : <span className="uppercase text-sm tracking-wider">Tilbage</span>}
             </div>
