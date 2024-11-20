@@ -32,7 +32,7 @@ export default function Dialog() {
             </div>
 
         {/* Mobile Dialog - Only visible below lg breakpoint */}
-        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex justify-center border-t border-white/40 rounded-t-[50px] transition-all duration-300 ${isOpen ? 'z-20 h-[85svh]' : 'z-20 h-[5vh]'}`}>
+        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex justify-center border-t border-white/40 rounded-t-[50px] transition-all duration-300 ${isOpen ? 'z-20 h-[80svh]' : 'z-20 h-[5vh]'}`}>
             <div className={`h-8 p-3 bg-white text-black -my-10 rounded-full flex flex-row gap-1 justify-center items-center cursor-pointer hover:scale-110 transition-all duration-300 shadow-lg`} onClick={toggleDialog} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {isOpen ? <AiOutlineClose size={14} className="text-black"/> : <IoBagOutline size={14} className="text-black"/>}
             </div>
