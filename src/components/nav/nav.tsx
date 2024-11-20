@@ -72,7 +72,7 @@ export default function Nav({ events }: NavProps) {
       style={{ zIndex: 9999 }}
     >
       <div 
-        className={`p-10 relative z-50 transition-all duration-300 ease-in-out border-b ${
+        className={`p-5 lg:p-10 relative z-50 transition-all duration-300 ease-in-out border-b ${
           bgColor && !open
             ? 'bg-[var(--background)] border-white/20' 
             : 'bg-[var(--background)]/0 border-transparent'
