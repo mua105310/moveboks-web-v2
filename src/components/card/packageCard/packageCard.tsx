@@ -16,12 +16,14 @@ export default function PackageCard({onClick, pack}: PackageCardProps) {
         const buyPrice = pack.options?.find(option => option.type === "buy")?.buyPrice;
         return rentPrice ?? buyPrice ?? 'Pris ikke tilgængelig';
     }
+
+   const isSelected = order.package.id === pack.id;
     
     return (
         <div 
         className=
         {`border border-white/20 flex-1 rounded-lg p-4 relative overflow-hidden cursor-pointer lg:hover:scale-105 lg:transition-all lg:duration-300 h-56
-            ${order.package.id === pack.id && 'border border-[var(--secondary)]'}
+            ${isSelected && 'border-2 border-[#1c4eff]'}
         `} 
         onClick={onClick}>
             <Image 

@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 export default function ProductSelector() {
     const [products, setProducts] = useState<ProductModel[]>([]);
     const {order, setOrder} = useOrderContext();
+    const {setIsDialogOpen,setIsDialogVisible} = useOrderContext();
     // fetch the packages products
     useEffect(() => {
         const fetchProducts = async () => {
@@ -19,6 +20,7 @@ export default function ProductSelector() {
             setProducts(products);
         }
         fetchProducts();
+    
     }, [order.package.id]);
     // handle product click
     const handleProductClick = (product: ProductModel) => {
@@ -26,6 +28,8 @@ export default function ProductSelector() {
             ...order,
             product: [{ id: product.id, quantity: 1, accessories: [] }]
         });
+        setIsDialogVisible(true);
+        setIsDialogOpen(true);
     };
 
     return (

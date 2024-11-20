@@ -1,12 +1,16 @@
 'use client'
 import { OrderModel } from '@/models/internal/orderModel';
-import { useState, createContext, useContext, Context } from 'react';
+import { useState, createContext, useContext, Context, useEffect } from 'react';
 
 const OrderContext = createContext<OrderContextType | null>(null);
 
 interface OrderContextType {
     order: OrderModel,
-    setOrder: React.Dispatch<React.SetStateAction<OrderModel>>
+    setOrder: React.Dispatch<React.SetStateAction<OrderModel>>,
+    isDialogVisible: boolean,
+    setIsDialogVisible: React.Dispatch<React.SetStateAction<boolean>>,
+    isDialogOpen: boolean,
+    setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const useOrderContext = () => {
@@ -18,6 +22,9 @@ export const useOrderContext = () => {
 }
 
 export default function OrderProvider({children}: {children: React.ReactNode}) {
+    const [isDialogVisible, setIsDialogVisible] = useState(false);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+
     const [order, setOrder] = useState<OrderModel>({
         event_id: '',
         package: {
@@ -50,7 +57,7 @@ export default function OrderProvider({children}: {children: React.ReactNode}) {
     });
 
     return (
-        <OrderContext.Provider value={{order, setOrder}}>
+        <OrderContext.Provider value={{order, setOrder, isDialogVisible, setIsDialogVisible, isDialogOpen, setIsDialogOpen}}>
             {children}
         </OrderContext.Provider>
     )
