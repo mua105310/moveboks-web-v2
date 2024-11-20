@@ -40,7 +40,7 @@ export default function Nav({ events }: NavProps) {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      setBgColor(currentScrollY > 100);
+      setBgColor(currentScrollY > 200);
       
       if (currentScrollY > lastScrollY) {
         setIsVisible(false);

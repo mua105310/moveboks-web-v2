@@ -5,6 +5,8 @@ import Nav from "@/components/nav/nav";
 import Footer from "@/components/footer/footer";
 import localFont from "next/font/local";
 import "./globals.css";
+import OrderProvider from "@/provider/orderProvider";
+import OrderDialog from "@/components/dialog/orderDialog";
         
 
 const geistSans = localFont({
@@ -33,9 +35,12 @@ export default async function RootLayout({
   return (
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <OrderProvider>
               <Nav events={events} />
               <main>{children}</main>
               <Footer events={events}/>
+              <OrderDialog/>
+          </OrderProvider>
         </body>
       </html>
   );

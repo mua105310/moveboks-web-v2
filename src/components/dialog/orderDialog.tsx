@@ -7,7 +7,7 @@ import { IoBagOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 import { preventScroll } from "@/controller/appController";
 
-export default function Dialog() {
+export default function OrderDialog() {
     const [isOpen, setIsOpen] = useState(false);
     const { order } = useOrderContext();
 

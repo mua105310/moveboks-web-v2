@@ -39,8 +39,6 @@ export default async function EventPageWrapper({ params }: { params: { events: s
   }
 
   return (
-    <OrderProvider>
       <EventPage event={event} />
-    </OrderProvider>
   );
 }

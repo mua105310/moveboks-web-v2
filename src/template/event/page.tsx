@@ -5,7 +5,6 @@ import PackageSelector from './components/packageSelector';
 import Layout from './components/layout';
 import Section from '@/components/section/section';
 import ProductSelector from './components/productSelector';
-import Dialog from '@/components/dialog/dialog';
 
 export default function EventPage({event}: {event: EventModel}) {
 
@@ -20,7 +19,6 @@ export default function EventPage({event}: {event: EventModel}) {
                     <ProductSelector />
                 </Section>
             </Layout>
-            <Dialog/>
         </>
     );
 }
