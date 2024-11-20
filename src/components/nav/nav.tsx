@@ -63,7 +63,7 @@ export default function Nav({ events }: NavProps) {
 
   return (
     <div 
-      className={`fixed top-0 w-full ${open ? 'h-svh' : 'h-auto'} transition-transform duration-300 ${
+      className={`fixed top-0 w-full ${open ? 'h-dvh' : 'h-auto'} transition-transform duration-300 ${
         isVisible || open ? 'translate-y-0' : '-translate-y-full'
       }`} 
       style={{ zIndex: 9999 }}

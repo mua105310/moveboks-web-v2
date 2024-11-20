@@ -45,7 +45,7 @@ export default function OrderDialog() {
         </div>
 
         {/* Mobile Dialog */}
-        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex justify-center transition-all duration-300 ${isDialogOpen ? 'z-[10000] h-[100svh] rounded-t-[0px] border-transparent' : 'z-40 h-[5vh] rounded-t-[50px] border-t border-white/40'}`}
+        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex justify-center transition-all duration-300 ${isDialogOpen ? 'z-[10000] h-dvh rounded-t-[0px] border-transparent' : 'z-40 h-[5vh] rounded-t-[50px] border-t border-white/40'}`}
              style={{visibility: isDialogVisible ? 'visible' : 'hidden'}}>
             {isDialogOpen ? (
                 <div 
