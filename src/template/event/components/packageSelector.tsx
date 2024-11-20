@@ -9,16 +9,20 @@ import 'swiper/css/navigation';
 import {Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import { useOrderContext } from "@/provider/orderProvider";
+import LoadingPackageCard from "@/components/card/packageCard/loadingPackageCard";
 
 export default function PackageSelector({packagesIds}: {packagesIds: string[]}) {
 
     const [packages, setPackages] = useState<PackageModel[]>([]);
     const {order, setOrder} = useOrderContext();
+    const [isLoading, setIsLoading] = useState(true);
     // fetch packages
     useEffect(() => {
         const fetchPackages = async () => {
+            setIsLoading(true);
             const packages = await getPackages(packagesIds);
-            setPackages(packages)
+            setPackages(packages);
+            setIsLoading(false);
         };
         fetchPackages();
     }, [packagesIds]);
@@ -32,13 +36,21 @@ export default function PackageSelector({packagesIds}: {packagesIds: string[]}) 
             {/* Desktop */}
             <div className="hidden md:block">
                 <div className="flex flex-row gap-10">
-                    {packages.map((pack) => (
-                        <PackageCard 
+                    {isLoading ? (
+                        <>
+                        <LoadingPackageCard />
+                        <LoadingPackageCard />
+                        <LoadingPackageCard />
+                        </>
+                    ) : (
+                        packages.map((pack) => (
+                            <PackageCard 
                         key={pack.id}
                         pack={pack} 
                         onClick={() => {handleClick(pack)}} 
-                        />
-                    ))}
+                            />
+                        ))
+                    )}
                 </div>
             </div>
             {/* Mobile */}

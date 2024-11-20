@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingProductCard from "@/components/card/productCard/loadingProductCard";
 import ProductCard from "@/components/card/productCard/productCard";
 import { getProducts } from "@/controller/eventController";
 import { ProductModel } from "@/models/product";
@@ -13,13 +14,19 @@ export default function ProductSelector() {
     const [products, setProducts] = useState<ProductModel[]>([]);
     const {order, setOrder} = useOrderContext();
     const {setIsDialogOpen,setIsDialogVisible} = useOrderContext();
+    const [isLoading, setIsLoading] = useState(false);
     // fetch the packages products
     useEffect(() => {
         const fetchProducts = async () => {
             const products = await getProducts(order.package.options?.map(option => option.productId) ?? []);
             setProducts(products);
+            setIsLoading(false);
         }
-        fetchProducts();
+        if (order.package.id) {  
+            setIsLoading(true);
+            fetchProducts();
+            setIsLoading(false);
+        }
     
     }, [order.package.id]);
     // handle product click
@@ -37,13 +44,22 @@ export default function ProductSelector() {
             {/* Desktop */}
             <div className="hidden md:block">
                 <div className="flex flex-row gap-10">
-                    {products.map((product) => (
-                        <ProductCard
-                        key={product.id}
-                        product={product} 
-                        onClick={() => {handleProductClick(product)}} 
-                        />
-                    ))}
+                    {isLoading ? (
+                        <>
+                        <LoadingProductCard/>
+                        <LoadingProductCard/>
+                        <LoadingProductCard/>
+                        </>
+                    ) : (
+                        products.map((product) => (
+                            <ProductCard
+                                key={product.id}
+                                product={product} 
+                                onClick={() => handleProductClick(product)} 
+                            />
+                        ))
+                    )}
+                    
                 </div>
             </div>
             {/* Mobile */}
