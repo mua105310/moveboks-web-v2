@@ -7,12 +7,14 @@ import { HiMenuAlt4 } from 'react-icons/hi';
 import { EventModel } from "@/models/event";
 import SocialMediaTag from '@/components/social/social-media-tag';
 import { preventScroll } from '@/controller/appController';
+import { useOrderContext } from '@/provider/orderProvider';
 
 interface NavProps {
     events: EventModel[];
 }
 
 export default function Nav({ events }: NavProps) {
+  const {isDialogOpen} = useOrderContext();
   const [open, setOpen] = useState(false);
   const [bgColor, setBgColor] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -75,7 +77,8 @@ export default function Nav({ events }: NavProps) {
             : 'bg-[var(--background)]/0 border-transparent'
         }`}
       >
-        <div className="flex flex-row justify-between items-center">
+        <div 
+        className={`flex flex-row justify-between items-center ${isDialogOpen ? 'hidden' : 'block'}`}>
           {/* Logo start */}
           <div>
             <Link 
