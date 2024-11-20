@@ -37,7 +37,7 @@ export default function Dialog() {
             </div>
 
         {/* Mobile Dialog - Only visible below lg breakpoint */}
-        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex justify-center transition-all duration-300 ${isOpen ? 'z-[10000] h-[100dvh] rounded-t-[0px] border-transparent' : 'z-40 h-[dvh] rounded-t-[50px] border-t border-white/40'}`}>
+        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex justify-center transition-all duration-300 ${isOpen ? 'z-[10000] h-[100dvh] rounded-t-[0px] border-transparent' : 'z-40 h-[5-svh] rounded-t-[50px] border-t border-white/40'}`}>
             {isOpen ? (
                 <div 
                 onClick={toggleDialog}
