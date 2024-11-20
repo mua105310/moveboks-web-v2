@@ -5,6 +5,7 @@ import { useState } from "react";
 import { BsCart, BsX } from "react-icons/bs";
 import { IoBagOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
+import { preventScroll } from "@/controller/appController";
 
 export default function Dialog() {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,7 @@ export default function Dialog() {
 
     const toggleDialog = () => {
         setIsOpen(!isOpen);
+        preventScroll(!isOpen);
     }
 
     return (
@@ -32,10 +34,19 @@ export default function Dialog() {
             </div>
 
         {/* Mobile Dialog - Only visible below lg breakpoint */}
-        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex justify-center border-t border-white/40 rounded-t-[50px] transition-all duration-300 ${isOpen ? 'z-20 h-[80svh]' : 'z-20 h-[5vh]'}`}>
-            <div className={`h-8 p-3 bg-white text-black -my-10 rounded-full flex flex-row gap-1 justify-center items-center cursor-pointer hover:scale-110 transition-all duration-300 shadow-lg`} onClick={toggleDialog} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    {isOpen ? <AiOutlineClose size={14} className="text-black"/> : <IoBagOutline size={14} className="text-black"/>}
-            </div>
+        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex justify-center transition-all duration-300 ${isOpen ? 'z-[10000] h-[100svh] rounded-t-[0px] border-transparent' : 'z-40 h-[5vh] rounded-t-[50px] border-t border-white/40'}`}>
+            {isOpen ? (
+                <div 
+                onClick={toggleDialog}
+                className=" absolute right-5 top-5 opacity-90"><AiOutlineClose size={24}/></div>
+            ) : (
+                <div 
+                className={`h-8 p-3 bg-white text-black -my-10 rounded-full flex flex-row gap-1 justify-center items-center cursor-pointer hover:scale-110 transition-all duration-300 shadow-lg`} 
+                onClick={toggleDialog} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <IoBagOutline size={14} className="text-black"/>
+                </div>
+            )}
+
         </div>
         </>
     )

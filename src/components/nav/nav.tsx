@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { HiMenuAlt4 } from 'react-icons/hi';
 import { EventModel } from "@/models/event";
 import SocialMediaTag from '@/components/social/social-media-tag';
+import { preventScroll } from '@/controller/appController';
 
 interface NavProps {
     events: EventModel[];
@@ -50,11 +51,7 @@ export default function Nav({ events }: NavProps) {
       setLastScrollY(currentScrollY);
     };
     
-    if (open) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    preventScroll(open);
 
     window.addEventListener('scroll', handleScroll);
     return () => {
