@@ -65,12 +65,12 @@ export default function Nav({ events }: NavProps) {
 
   return (
     <div 
-      className={`fixed top-0 w-full ${open ? 'h-dvh' : 'h-auto'} transition-transform duration-300 ${
+      className={`fixed top-0 w-full ${open ? 'h-[100dvh]' : 'h-auto'} transition-transform duration-300 ${
         isVisible || open ? 'translate-y-0' : '-translate-y-full'
       }`} 
       style={{ zIndex: 9999 }}
     >
-    <div className={`absolute top-0 bg-[var(--background)] transition-all duration-300 ease-in-out ${isDialogOpen ? 'h-100vh' : 'h-0vh'}`} />
+    <div className={`absolute top-0 bg-[var(--background)] transition-all duration-300 ease-in-out ${isDialogOpen ? 'h-[100vh]' : 'h-0'}`} />
       <div 
         className={`p-5 lg:p-10 relative z-50 transition-all duration-300 ease-in-out border-b ${
           bgColor && !open
