@@ -1,7 +1,7 @@
 'use client';
 
 import { useOrderContext } from "@/provider/orderProvider";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BsCart, BsX } from "react-icons/bs";
 import { IoBagOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
@@ -13,8 +13,11 @@ export default function Dialog() {
 
     const toggleDialog = () => {
         setIsOpen(!isOpen);
-        preventScroll(!isOpen);
     }
+
+    useEffect(() => {
+        preventScroll(isOpen);
+    }, [isOpen]);
 
     return (
         <>
