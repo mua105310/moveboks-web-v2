@@ -32,8 +32,8 @@ export default function Card({ item }: any) {
                 </div>
                 {/* Title and subtitle */}
                 <div className="flex-grow flex flex-col pt-2">
-                    <p className="text-sm lg:text-md font-semibold">{item[0].product.title}</p>
-                    <p className="text-[9px] lg:text-sm">{item[0].product.shortDescription}</p>
+                    <p className="text-sm lg:text-md font-semibold uppercase">{item[0].product.title}</p>
+                    <p className="text-[9px] lg:text-xs">{item[0].product.shortDescription}</p>
                 </div>
                 {/* Quantity and Actions */}
                 <div className="flex items-center justify-center gap-2 px-4 ">
