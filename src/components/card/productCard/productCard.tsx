@@ -12,7 +12,7 @@ interface ProductCardProps {
 export default function ProductCard({ product, onClick }: ProductCardProps) {
     const { order } = useOrderContext();
 
-    const isSelected = order.product?.some(p => p.id === product.id);
+    const isSelected = order.product.some(p => p.product.id === product.id);
 
     return (
         <div

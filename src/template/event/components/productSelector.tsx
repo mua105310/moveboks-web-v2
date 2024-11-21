@@ -5,7 +5,7 @@ import ProductCard from "@/components/card/productCard/productCard";
 import { getProducts } from "@/controller/eventController";
 import { ProductModel } from "@/models/product";
 import { useOrderContext } from "@/provider/orderProvider";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Autoplay } from "swiper/modules";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -33,7 +33,7 @@ export default function ProductSelector() {
     const handleProductClick = (product: ProductModel) => {
         setOrder({
             ...order,
-            product: [{ id: product.id, quantity: 1, accessories: [] }]
+            product: [{ product: product, quantity: 1, accessories: [] }]
         });
         setIsDialogVisible(true);
         setIsDialogOpen(true);

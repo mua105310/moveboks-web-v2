@@ -38,7 +38,13 @@ export default function OrderProvider({children}: {children: React.ReactNode}) {
         },
         product: [
             {
-                id: '',
+                product: {
+                    id: '',
+                    title: '',
+                    shortDescription: '',
+                    longDescription: '',
+                    images: []
+                },
                 quantity: 0,
                 accessories: [
                     {
