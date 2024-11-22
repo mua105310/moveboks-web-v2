@@ -25,7 +25,7 @@ export default function PackageCard({onClick, pack, card}: PackageCardProps) {
         className=
         {` flex-1 rounded-lg p-4 relative overflow-hidden cursor-pointer lg:transition-all lg:duration-300
             ${isSelected && !card ? 'border-2 border-[#1c4eff]' : 'border border-white/20'}
-            ${card ? 'h-32' : 'h-56 lg:hover:scale-105'}
+            ${card ? 'h-24' : 'h-56 lg:hover:scale-105'}
         `} 
         onClick={onClick}>
             <Image 
@@ -35,15 +35,15 @@ export default function PackageCard({onClick, pack, card}: PackageCardProps) {
             fill
             draggable={false}
             />
-            <h3 className={`font-bold uppercase mb-2 ${card ? 'text-sm' : 'text-xl'}`} style={{textShadow: "rgba(255, 255, 255, 0.6) 0px 0px 6px"}}>{pack.title}</h3>
-            <p className={`${card ? 'text-xs mb-2' : 'text-xs md:text-sm mb-4'}`}>{pack.shortDescription}</p>
+            <h3 className={`font-bold uppercase ${card ? 'text-sm' : 'text-xl mb-2'}`} style={{textShadow: "rgba(255, 255, 255, 0.6) 0px 0px 6px"}}>{pack.title}</h3>
+            <p className={`${card ? 'text-[10px] mb-2' : 'text-xs md:text-sm mb-4'}`}>{pack.shortDescription}</p>
             <div className="flex flex-wrap gap-2">
                 {pack.features?.map((feature) => (
                     <div 
                     key={feature} 
-                    className="p-2 bg-[var(--secondary)] rounded-lg inline-block"
+                    className={` bg-[var(--secondary)] rounded-lg inline-block ${card ? 'p-1' : 'p-2'}`}
                     >
-                        <p className={`${card ? 'text-xs' : 'text-xs md:text-sm'}`}>{feature}</p>
+                        <p className={`${card ? 'text-[10px]' : 'text-xs md:text-sm'}`}>{feature}</p>
                     </div>
                 ))}
             </div>

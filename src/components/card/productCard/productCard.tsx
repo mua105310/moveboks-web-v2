@@ -21,28 +21,28 @@ export default function ProductCard({ product, onClick, card }: ProductCardProps
             className={`border flex-1rounded-lg flex flex-col w-full cursor-pointer transition-transform duration-300 overflow-hidden z-10 rounded-lg overflow-hidden ${
                 isSelected && !card ? 'border-[var(--secondary)]' : 'border-white/20'
             }
-             ${card ? 'h-[300px]' : 'h-[400px] lg:hover:scale-[1.02]'}`}
+             ${card ? 'h-[240px]' : 'h-[400px] lg:hover:scale-[1.02]'}`}
              >
             <div className="p-4 flex-1 flex flex-col">
                 <h3
-                    className={`font-bold uppercase mb-2 ${card ? 'text-sm' : 'text-xl'}`}
+                    className={`font-bold uppercase ${card ? 'text-sm' : 'text-xl mb-2 '}`}
                     style={{ textShadow: "rgba(255, 255, 255, 0.6) 0px 0px 6px" }}
                 >
                     {product.title}
                 </h3>
-                <p className={`${card ? 'text-xs mb-2' : 'text-xs md:text-sm mb-4'}`}>{product.shortDescription}</p>
-                <div className="flex-1 flex justify-center items-center p-5">
+                <p className={`${card ? 'text-[10px] mb-2' : 'text-xs md:text-sm mb-4'}`}>{product.shortDescription}</p>
+                <div className={`flex-1 flex justify-center items-center ${card ? '' : 'p-5'}`}>
                     <Image
                         src={product.images[0]}
                         alt={product.title}
-                        width={card ? 80 : 110}
-                        height={card ? 80 : 110}
+                        width={card ? 75 : 110}
+                        height={card ? 75 : 110}
                         draggable={false}
                         className="transition-transform duration-300 hover:scale-105"
                     />
                 </div>
             </div>
-            <div className="w-full bg-[#1e1e1e] p-4 flex justify-center items-center h-20">
+            <div className={`w-full bg-[#1e1e1e] p-4 flex justify-center items-center ${card ? 'h-14' : 'h-20'}`}>
                 {/* <p className="text-xs">fra 3099</p> */}
                 {!card && (
                     isSelected ? (
