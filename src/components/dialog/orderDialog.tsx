@@ -8,6 +8,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { preventScroll } from "@/controller/appController";
 import ProductCard from "../card/productCard/productCard";
 import Card from "../card/card/card";
+import PackageCard from "../card/packageCard/packageCard";
 
 export default function OrderDialog() {
     const { isDialogVisible, setIsDialogVisible } = useOrderContext();
@@ -87,7 +88,14 @@ function Content() {
 
     return (
         <div className="pt-5">
-            <Card item={order.product}/>
+            <div className="mb-5">
+                <PackageCard pack={order.package} card={true}/>
+            </div>
+            <div className="">
+                {order.product.map((item, index) => (
+                    <ProductCard key={index} product={item.product} card={true}/>
+                ))}
+            </div>
         </div>
     )
 }

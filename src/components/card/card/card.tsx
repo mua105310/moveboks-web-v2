@@ -15,20 +15,20 @@ export default function Card({ item }: any) {
     useEffect(() => {
         console.log(item);
     }, [item]);
-
-
     
     return (
         <div>
-            <div className="flex flex-row border border-white/20 rounded-lg card h-20 gap-2 overflow-hidden w-full">
+            <div className="flex flex-row border border-white/20 rounded-lg card h-full gap-2 overflow-hidden w-full">
                 {/* Image */}
                 <div className="h-full flex items-center justify-center p-2 bg-white/5 rounded-l-md">
-                    <Image
-                        src={item[0].product.images[0]}
-                        alt={item[0].product.title}
-                        width={50}
-                        height={50}
-                    />
+                    {item[0]?.product?.images?.[0] && (
+                        <Image
+                            src={item[0].product.images[0]}
+                            alt={item[0].product.title || 'Product image'}
+                            width={50}
+                            height={50}
+                        />
+                    )}
                 </div>
                 {/* Title and subtitle */}
                 <div className="flex-grow flex flex-col pt-2">
