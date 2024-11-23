@@ -23,9 +23,9 @@ export default function PackageCard({onClick, pack, card}: PackageCardProps) {
     return (
         <div 
         className=
-        {` flex-1 rounded-lg p-4 relative overflow-hidden cursor-pointer lg:transition-all lg:duration-300
+        {` flex-1 rounded-lg p-4 relative overflow-hidden lg:transition-all lg:duration-300
             ${isSelected && !card ? 'border-2 border-[#1c4eff]' : 'border border-white/20'}
-            ${card ? 'h-24' : 'h-56 lg:hover:scale-105'}
+            ${card ? 'h-24' : 'h-56 lg:hover:scale-105 cursor-pointer'}
         `} 
         onClick={onClick}>
             <Image 

@@ -7,7 +7,7 @@ import { IoBagOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 import { preventScroll } from "@/controller/appController";
 import ProductCard from "../card/productCard/productCard";
-import Card from "../card/card/card";
+import Card from "../card/accessoryCard/accessoryCard";
 import PackageCard from "../card/packageCard/packageCard";
 
 export default function OrderDialog() {

@@ -8,13 +8,9 @@ interface CardProps {
     item: any;
 }
 
-export default function Card({ item }: any) {
+export default function AccessoryCard({ item }: any) {
     
     if (!item.length) return null;
-
-    useEffect(() => {
-        console.log(item);
-    }, [item]);
     
     return (
         <div>

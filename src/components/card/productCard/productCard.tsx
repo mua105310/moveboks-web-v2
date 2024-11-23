@@ -3,6 +3,7 @@
 import { ProductModel } from "@/models/product";
 import { useOrderContext } from "@/provider/orderProvider";
 import Image from "next/image";
+import { useEffect } from 'react';
 
 interface ProductCardProps {
     product: ProductModel;
@@ -18,11 +19,11 @@ export default function ProductCard({ product, onClick, card }: ProductCardProps
     return (
         <div
             onClick={onClick}
-            className={`border flex-1rounded-lg flex flex-col w-full cursor-pointer transition-transform duration-300 overflow-hidden z-10 rounded-lg overflow-hidden ${
+            className={`border flex-1rounded-lg flex flex-col w-full transition-transform duration-300 z-10 rounded-lg overflow-hidden ${
                 isSelected && !card ? 'border-[var(--secondary)]' : 'border-white/20'
             }
-             ${card ? 'h-[240px]' : 'h-[400px] lg:hover:scale-[1.02]'}`}
-             >
+             ${card ? 'h-[240px]' : 'h-[400px] lg:hover:scale-[1.02] cursor-pointer '}`}
+             >                  
             <div className="p-4 flex-1 flex flex-col">
                 <h3
                     className={`font-bold uppercase ${card ? 'text-sm' : 'text-xl mb-2 '}`}

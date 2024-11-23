@@ -2,7 +2,7 @@
 
 import LoadingProductCard from "@/components/card/productCard/loadingProductCard";
 import ProductCard from "@/components/card/productCard/productCard";
-import { getProducts } from "@/controller/eventController";
+import { getAccessories, getProducts } from "@/controller/eventController";
 import { ProductModel } from "@/models/product";
 import { useOrderContext } from "@/provider/orderProvider";
 import { use, useEffect, useState } from "react";
@@ -35,6 +35,7 @@ export default function ProductSelector() {
             ...order,
             product: [{ product: product, quantity: 1, accessories: [] }]
         });
+
         setIsDialogVisible(true);
         setIsDialogOpen(true);
     };

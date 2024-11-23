@@ -31,6 +31,10 @@ export default function PackageSelector({packagesIds}: {packagesIds: string[]}) 
         setOrder({...order, package: pack, product: []});
     }
 
+    useEffect(() => {
+        console.log(order);
+    }, [order]);
+
     return (
         <div>
             {/* Desktop */}
