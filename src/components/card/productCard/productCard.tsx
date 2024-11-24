@@ -14,6 +14,9 @@ interface ProductCardProps {
 export default function ProductCard({ product, onClick, card }: ProductCardProps) {
     const { order } = useOrderContext();
 
+    if(!order.package.id) return null;
+
+
     const isSelected = order.product.some(p => p.product.id === product.id);
 
     return (

@@ -9,7 +9,7 @@ export type OrderModel = {
         product: ProductModel,
         quantity: number
         accessories: {
-            id: string,
+            accessory: AccessoryModel
             quantity: number
         }[],
     }[],

@@ -9,11 +9,16 @@ import { preventScroll } from "@/controller/appController";
 import ProductCard from "../card/productCard/productCard";
 import Card from "../card/accessoryCard/accessoryCard";
 import PackageCard from "../card/packageCard/packageCard";
+import AccessorySelector from "@/template/event/components/accessorySelector";
+import { getProductWithAccessories } from "@/controller/eventController";
+import { AccessoryModel } from "@/models/accessory";
+import AccessoryCard from "../card/accessoryCard/accessoryCard";
 
 export default function OrderDialog() {
     const { isDialogVisible, setIsDialogVisible } = useOrderContext();
     const { isDialogOpen, setIsDialogOpen } = useOrderContext();
     const { order } = useOrderContext();
+    const [accessories, setAccessories] = useState<AccessoryModel[]>();
 
     const toggleDialog = () => {
         setIsDialogOpen(!isDialogOpen);
@@ -23,6 +28,19 @@ export default function OrderDialog() {
         preventScroll(isDialogOpen);
     }, [isDialogOpen]);
 
+    useEffect(() => {
+        if (!order.product[0]?.product.id) return;
+
+        const fetchAccessories = async () => {
+            const accessories  = await getProductWithAccessories(
+                order.product[0]?.product.id,
+                order.package.options
+            )
+            setAccessories(accessories.accessories);
+        }
+        fetchAccessories();
+    
+    }, [order.product[0]?.product.id]);
 
     return (
         <>
@@ -49,7 +67,7 @@ export default function OrderDialog() {
             </div>
             {/* Content */}
             <Content/>
-            <Footer/>
+            <Footer accessories={accessories}/>
         </div>
 
         {/* Mobile Dialog */}
@@ -78,6 +96,7 @@ export default function OrderDialog() {
                 }
 
                 <Content/>
+                <Footer accessories={accessories}/>
         </div>
         </>
     )
@@ -87,24 +106,32 @@ function Content() {
     const { order } = useOrderContext();
 
     return (
-        <div className="pt-5">
-            <div className="mb-5">
-                <PackageCard pack={order.package} card={true}/>
+        <div className="flex flex-col gap-5 mt-5">
+            <div>
+                {order.package.id &&
+                    <PackageCard pack={order.package} card={true}/>
+                }
             </div>
             <div className="">
                 {order.product.map((item, index) => (
                     <ProductCard key={index} product={item.product} card={true}/>
                 ))}
             </div>
+            <div>
+                {order.product[0]?.accessories?.map((accessory, index) => (
+                    <AccessoryCard key={index} accessory={accessory.accessory} type="quantity"/>
+                ))}
+            </div>
         </div>
     )
 }
 
-function Footer() {
+function Footer({ accessories }: { accessories?: AccessoryModel[] }) {
+    const { order } = useOrderContext();
     return (
-        <div className="absolute bottom-0 left-0 w-full">
-            <div className="flex items-center justify-center p-2 bg-white/5">
-                <p>footer</p>
+        <div className="absolute bottom-0 left-0 w-full bg-white/5 p-10">
+            <div className="flex items-center justify-center">
+                <AccessorySelector accessories={accessories || []} type="add"/>
             </div>
         </div>
     )
