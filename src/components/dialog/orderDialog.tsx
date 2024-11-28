@@ -8,6 +8,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { preventScroll } from "@/controller/appController";
 import Footer from "./footer";
 import Content from "./content";
+import Form from "./form";
 
 export default function OrderDialog() {
     const { isDialogVisible, setIsDialogVisible } = useOrderContext();
@@ -37,7 +38,7 @@ export default function OrderDialog() {
         </div>
 
         {/* Desktop Dialog */}
-        <div className={`fixed right-0 top-0 bg-[var(--background)] w-[500px] h-full transition-all duration-300 hidden lg:block ${isDialogOpen ? 'translate-x-0 border-l border-white opacity-100' : 'translate-x-full border-transparent opacity-0'}`}
+        <div className={`fixed right-0 top-0 bg-[var(--background)] w-[500px] h-full transition-all duration-300 hidden lg:block ${isDialogOpen ? 'translate-x-0 border-l border-white/50 opacity-100' : 'translate-x-full border-transparent opacity-0'}`}
             style={{zIndex: 10000, visibility: isDialogVisible ? 'visible' : 'hidden'}}>
 
             {/* Container with flexbox */}
@@ -65,10 +66,10 @@ export default function OrderDialog() {
 
 
         {/* Mobile Dialog */}
-        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex flex-col transition-all duration-300 ${isDialogOpen ? 'z-[10000] h-dvh rounded-t-[0px] border-transparent' : 'z-40 h-[5vh] rounded-t-[50px] border-t border-white/40'}`}
-             style={{visibility: isDialogVisible ? 'visible' : 'hidden'}}>
+        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex flex-col transition-all duration-500 ${isDialogOpen ? 'z-[10000] h-dvh rounded-t-[0px] border-transparent' : 'z-40 h-[5vh] rounded-t-[50px] border-t border-white/40'}`}
+            style={{visibility: isDialogVisible ? 'visible' : 'hidden'}}>
                 <div className="flex flex-col h-full">
-                    <div className="p-5 flex-grow">
+                    <div className="p-5 flex-grow overflow-y-auto">
                         {isDialogOpen &&
                             <div className="w-full">
                                 <div className="border-b border-white/20 flex items-center justify-between pb-3">
@@ -94,6 +95,7 @@ export default function OrderDialog() {
                     <Footer/>
                 </div>
         </div>
+
         </>
     )
 }
