@@ -1,5 +1,5 @@
 // src/controllers/eventController.ts
-import { fetchEvents, fetchPackages, fetchProducts, fetchAccessories } from "@/api/api.service";
+import { fetchEvents, fetchPackages, fetchProducts} from "@/api/api.service";
 import { EventModel } from "@/models/event";
 import { PackageModel, ProductConstraintModel } from "@/models/package";
 import { ProductModel } from "@/models/product";

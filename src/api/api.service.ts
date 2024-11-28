@@ -5,7 +5,6 @@ import { products } from '../data/products';
 import { ProductModel } from '@/models/product';
 import { EventModel } from '@/models/event'; 
 import { accessories } from '../data/accessories';
-import { AccessoryModel } from '@/models/accessory';
 
 const eventsCache: EventModel[] = []; 
 
@@ -25,10 +24,4 @@ export const fetchProducts = async (id: string) => {
     const product = products.find((p: ProductModel) => p.id === id);
     if (!product) console.warn(`Product with id ${id} not found`);
     return product || null;
-};
-
-export const fetchAccessories = async (id: string) => {
-    const accessory = accessories.find((a: AccessoryModel) => a.id === id);
-    if (!accessory) console.warn(`Accessory with id ${id} not found`);
-    return accessory || null;
 };

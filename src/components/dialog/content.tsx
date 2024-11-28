@@ -18,15 +18,13 @@ export default function Content() {
                 ))}
             </div>
             <div className="w-full bg-white/20 h-[1px]"/>
-            <div className="">
+            <div className="flex flex-col gap-5">
                 {order.selectedOptions?.map((item, index) => (
-                    <div key={index}>
-                        {item.accessories?.map((accessory, accessoryIndex) => (
-                            accessory.quantity > 0 && (
-                                <Card key={accessoryIndex} item={accessory}/>
-                            )
-                        ))}
-                    </div>
+                    item.accessories?.map((accessory, accessoryIndex) => (
+                        accessory.quantity > 0 && (
+                            <Card key={accessoryIndex} item={accessory}/>
+                        )
+                    ))
                 ))}
             </div>
         </div>

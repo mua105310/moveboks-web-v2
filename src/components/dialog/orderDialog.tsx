@@ -91,10 +91,8 @@ export default function OrderDialog() {
                         }
                         <Content/>
                     </div>
-
                     <Footer/>
                 </div>
-
         </div>
         </>
     )
