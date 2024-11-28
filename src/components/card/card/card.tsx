@@ -85,14 +85,13 @@ export default function Card({ item }: CardProps) {
         <div>
             <div className="flex flex-row border border-white/20 rounded-lg h-20 gap-2 overflow-hidden w-full">
                 {/* Image */}
-                <div className="flex items-center justify-center p-2 bg-white/5 rounded-l-md w-16">
+                <div className="flex items-center justify-center p-2 bg-white/5 rounded-l-md min-w-20">
                     {item.product.images?.[0] && (
                         <Image
                             src={item.product.images[0]}
                             alt={item.product.title || 'item image'}
                             width={50}
                             height={50}
-                            className="object-contain"
                         />
                     )}
                 </div>
