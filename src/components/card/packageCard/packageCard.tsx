@@ -12,13 +12,14 @@ type PackageCardProps = {
 export default function PackageCard({onClick, pack, card}: PackageCardProps) {
     const {order} = useOrderContext();
 
+
     const getPrice = () => {
         const rentPrice = pack.options?.find(option => option.type === "rent")?.rentPrice?.[0]?.price;
         const buyPrice = pack.options?.find(option => option.type === "buy")?.buyPrice;
         return rentPrice ?? buyPrice ?? 'Pris ikke tilgængelig';
     }
 
-   const isSelected = order.package.id === pack.id;
+   const isSelected = order?.package.id === pack.id;
     
     return (
         <div 

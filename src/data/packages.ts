@@ -1,28 +1,33 @@
 import { PackageModel, ProductConstraintModel} from "@/models/package";
+import { products } from "./products";
+import { accessories } from "./accessories";
 
 // Shared product constraint data
 const rosProducts: ProductConstraintModel[] = [
     {
-        productId: "sb-go",
+        product: products[0],
         rentPrice: [{ hours: 24, price: 3099 }],
         availableQuantity: 10,
-        accessoryIds: ["sb-batteri-roskilde", "mikrofon", "stativer"],
+        allowedQuantity: 5,
+        accessories: accessories,
         type: "rent",
         required: true,
     },
     {
-        productId: "sb-3",
+        product: products[1],
         rentPrice: [{ hours: 24, price: 3099 }],
         availableQuantity: 10,
-        accessoryIds: ["sb-batteri-roskilde", "mikrofon", "stativer"],
+        allowedQuantity: 5,
+        accessories: accessories,
         type: "rent",
         required: true,
     },
     {
-        productId: "sb-4",
+        product: products[2],
         rentPrice: [{ hours: 24, price: 3099 }],
         availableQuantity: 10,
-        accessoryIds: ["sb-batteri-roskilde", "mikrofon", "stativer"],
+        allowedQuantity: 5,
+        accessories: accessories,
         type: "rent",
         required: true,
     }
@@ -32,6 +37,7 @@ const rosProducts: ProductConstraintModel[] = [
 export const packagesBasisRoskilde: PackageModel = {
     id: "ros-basis",
     title: "Roskilde basis",
+    actived: false,
     predefinedLocationAndTime: true,
     shortDescription: "Basispakken til Roskilde festival uden dækning",
     longDescription: "Ved køb af basispakken står du selv for ansvaret i tilfælde af tyveri og skade",
@@ -43,6 +49,7 @@ export const packagesBasisRoskilde: PackageModel = {
 export const packagesPlusRoskilde: PackageModel = {
     id: "ros-plus",
     title: "Roskilde Plus",
+    actived: false,
     predefinedLocationAndTime: true,
     shortDescription: "Inkluder skadeforsikring",
     longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade",
@@ -57,6 +64,7 @@ export const packagesPlusRoskilde: PackageModel = {
 export const packagesPremiumRoskilde: PackageModel = {
     id: "ros-premium",
     title: "Roskilde Premium",
+    actived: false,
     predefinedLocationAndTime: true,
     shortDescription: "Inkluder skadeforsikring og tyveriforsikring",
     longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade og tyveri",
@@ -71,26 +79,29 @@ export const packagesPremiumRoskilde: PackageModel = {
 // Smukfest packages
 const smukProducts: ProductConstraintModel[] = [
     {
-        productId: "sb-go",
+        product: products[0],
         rentPrice: [{ hours: 24, price: 3099 }],
         availableQuantity: 10,
-        accessoryIds: ["sb-batteri-smukfest", "mikrofon", "stativer"],
+        allowedQuantity: 5,
+        accessories: accessories,
         type: "rent",
         required: true,
     },
     {
-        productId: "sb-3",
+        product: products[1],
         rentPrice: [{ hours: 24, price: 3099 }],
         availableQuantity: 10,
-        accessoryIds: ["sb-batteri-smukfest", "mikrofon", "stativer"],
+        allowedQuantity: 5,
+        accessories: accessories,
         type: "rent",
         required: true,
     },
     {
-        productId: "sb-4",
+        product: products[2],
         rentPrice: [{ hours: 24, price: 3099 }],
         availableQuantity: 10,
-        accessoryIds: ["sb-batteri-smukfest", "mikrofon", "stativer"],
+        allowedQuantity: 5,
+        accessories: accessories,
         type: "rent",
         required: true,
     }
@@ -99,6 +110,7 @@ const smukProducts: ProductConstraintModel[] = [
 export const packagesBasisSmukfest: PackageModel = {
     id: "smuk-basis",
     title: "Smukfest basis",
+    actived: false,
     predefinedLocationAndTime: true,
     shortDescription: "Basispakken til Smukfest uden dækning",
     longDescription: "Ved køb af basispakken står du selv for ansvaret i tilfælde af tyveri og skade",
@@ -110,6 +122,7 @@ export const packagesBasisSmukfest: PackageModel = {
 export const packagesPlusSmukfest: PackageModel = {
     id: "smuk-plus",
     title: "Smukfest Plus",
+    actived: false,
     predefinedLocationAndTime: true,
     shortDescription: "Inkluder skadeforsikring",
     longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade",
@@ -123,6 +136,7 @@ export const packagesPlusSmukfest: PackageModel = {
 
 export const packagesPremiumSmukfest: PackageModel = {
     id: "smuk-premium",
+    actived: false,
     title: "Smukfest Premium",
     predefinedLocationAndTime: true,
     shortDescription: "Inkluder skadeforsikring og tyveriforsikring",

@@ -2,7 +2,8 @@
 
 import LoadingProductCard from "@/components/card/productCard/loadingProductCard";
 import ProductCard from "@/components/card/productCard/productCard";
-import { getAccessories, getProducts } from "@/controller/eventController";
+import { getProducts } from "@/controller/eventController";
+import { ProductConstraintModel } from "@/models/package";
 import { ProductModel } from "@/models/product";
 import { useOrderContext } from "@/provider/orderProvider";
 import { use, useEffect, useState } from "react";
@@ -11,31 +12,32 @@ import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function ProductSelector() {
-    const [products, setProducts] = useState<ProductModel[]>([]);
     const {order, setOrder} = useOrderContext();
     const {setIsDialogOpen,setIsDialogVisible} = useOrderContext();
     const [isLoading, setIsLoading] = useState(false);
-    // fetch the packages products
-    useEffect(() => {
-        const fetchProducts = async () => {
-            const products = await getProducts(order.package.options?.map(option => option.productId) ?? []);
-            setProducts(products);
-            setIsLoading(false);
-        }
-        if (order.package.id) {  
-            setIsLoading(true);
-            fetchProducts();
-            setIsLoading(false);
-        }
-    
-    }, [order.package.id]);
+
     // handle product click
-    const handleProductClick = (product: ProductModel) => {
+    const handleProductClick = (productConstraint: ProductConstraintModel) => {
+        if (!order) return;
+        
         setOrder({
             ...order,
-            product: [{ product: product, quantity: 1, accessories: [] }]
+            selectedOptions: [
+                { 
+                    product: productConstraint.product, 
+                    quantity: 1, 
+                    constraint:productConstraint,
+                    accessories: productConstraint.accessories?.map(accessory => ({
+                        ...accessory,
+                        constraint: accessory,
+                        product: accessory.product,
+                        quantity: 0
+                    }))
+                }
+            ]
         });
-
+    
+        // Open the dialog
         setIsDialogVisible(true);
         setIsDialogOpen(true);
     };
@@ -52,11 +54,11 @@ export default function ProductSelector() {
                         <LoadingProductCard/>
                         </>
                     ) : (
-                        products.map((product) => (
+                        order?.package.options?.map((productConstraint,index) => (
                             <ProductCard
-                                key={product.id}
-                                product={product} 
-                                onClick={() => handleProductClick(product)} 
+                                key={productConstraint.product.id}
+                                product={productConstraint.product} 
+                                onClick={() => handleProductClick(productConstraint)} 
                             />
                         ))
                     )}
@@ -73,11 +75,12 @@ export default function ProductSelector() {
                     slidesOffsetAfter={40}
                     grabCursor
                 >
-                    {products.map((product) => (
-                        <SwiperSlide key={product.id}>
+                    {order?.package.options?.map((productConstraint) => (
+                        <SwiperSlide key={productConstraint.product.id}>
                             <ProductCard
-                                product={product} 
-                                onClick={() => handleProductClick(product)}
+                                key={productConstraint.product.id}
+                                product={productConstraint.product} 
+                                onClick={() => handleProductClick(productConstraint)}
                             />
                         </SwiperSlide>
                     ))}

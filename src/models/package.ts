@@ -1,6 +1,10 @@
+import { AccessoryConstraints } from "./accessory";
+import { ProductModel } from "./product";
+
 export type PackageModel = {
     id: string;
     parentEventId?: string;
+    actived: boolean;
     title: string;
     predefinedLocationAndTime: boolean;
     shortDescription: string;
@@ -18,12 +22,13 @@ export type PackageModel = {
   }
   
 export type  ProductConstraintModel = {
-    productId: string;
+    product: ProductModel;
     required: boolean;
     buyPrice?: number;
     rentPrice?: RentPriceModel[];
     availableQuantity: number;
-    accessoryIds?: string[];
+    allowedQuantity: number;
+    accessories: AccessoryConstraints[];
     type: "rent" | "buy";
   }
   

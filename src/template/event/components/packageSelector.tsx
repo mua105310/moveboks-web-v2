@@ -28,12 +28,8 @@ export default function PackageSelector({packagesIds}: {packagesIds: string[]}) 
     }, [packagesIds]);
     // handle package click
     const handleClick = (pack: PackageModel) => {
-        setOrder({...order, package: pack, product: []});
+        setOrder({...order,eventId: pack.id, package: pack});
     }
-
-    useEffect(() => {
-        console.log(order);
-    }, [order]);
 
     return (
         <div>

@@ -14,10 +14,8 @@ interface ProductCardProps {
 export default function ProductCard({ product, onClick, card }: ProductCardProps) {
     const { order } = useOrderContext();
 
-    if(!order.package.id) return null;
 
-
-    const isSelected = order.product.some(p => p.product.id === product.id);
+    const isSelected = order?.selectedOptions?.some(p => p.product.id === product.id);
 
     return (
         <div
@@ -65,7 +63,7 @@ export default function ProductCard({ product, onClick, card }: ProductCardProps
                             -
                         </div>
                         {/* Quantity */}
-                        <span className="text-white font-semibold">{order.product[0].quantity}</span>
+                        <span className="text-white font-semibold">Quantity</span>
                         {/* Increment Button */}
                         <div className="w-8 px-2 py-1 text-sm bg-[#151515] text-white rounded hover:opacity-70 transition text-center cursor-pointer">
                             +

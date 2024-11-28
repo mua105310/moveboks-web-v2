@@ -1,40 +1,56 @@
 "use client";
 
-import AccessoryCard from "@/components/card/accessoryCard/accessoryCard";
-import { AccessoryModel } from "@/models/accessory";
+import Card from "@/components/card/card/card";
 import { useOrderContext } from "@/provider/orderProvider";
-import { Autoplay, Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useRef, useEffect, useState } from "react";
 
-interface AccessorySelectorProps {
-    accessories: AccessoryModel[];
-    type: "quantity" | "add";
-}
-
-
-export default function AccessorySelector({accessories, type}: AccessorySelectorProps) {
+export default function AccessorySelector() {
     const { order } = useOrderContext();
-    
-    // Filter accessories before passing to Swiper
-    const availableAccessories = accessories.filter(acc => 
-        !order.product[0]?.accessories.some(existingAcc => 
-            existingAcc.accessory.id === acc.id
-        )
-    );
+    const swiperRef = useRef<any>(null); // To access the Swiper instance
+
+    // Filtered accessories with quantity === 0
+    const accessories = order?.selectedOptions?.[0]?.accessories?.filter(
+        (accessory) => accessory.quantity === 0
+    ) || [];
+
+    // Automatically slide to the next available accessory
+    useEffect(() => {
+        const swiperInstance = swiperRef.current?.swiper;
+
+        if (swiperInstance) {
+            const activeIndex = swiperInstance.activeIndex;
+
+            // Check if the current slide is valid
+            if (accessories[activeIndex] === undefined) {
+                // Find the next available slide
+                const nextIndex = accessories.findIndex((_, index) => index > activeIndex);
+
+                if (nextIndex !== -1) {
+                    swiperInstance.slideTo(nextIndex);
+                } else if (activeIndex >= accessories.length) {
+                    // If no valid slides are left, move to the last valid slide
+                    swiperInstance.slideTo(accessories.length - 1);
+                }
+            }
+        }
+    }, [accessories]);
 
     return (
         <div className="w-full">
             <Swiper
                 modules={[Navigation]}
                 slidesPerView={1.2}
+                slidesOffsetBefore={20}
+                slidesOffsetAfter={20}
                 spaceBetween={10}
-                slidesOffsetBefore={10}
-                slidesOffsetAfter={10}
                 grabCursor
+                ref={swiperRef}
             >
-                {availableAccessories.map((acc) => (
-                    <SwiperSlide key={acc.id}>
-                        <AccessoryCard accessory={acc} type={type} />
+                {accessories.map((accessory, index) => (
+                    <SwiperSlide key={index}>
+                        <Card item={accessory} />
                     </SwiperSlide>
                 ))}
             </Swiper>
