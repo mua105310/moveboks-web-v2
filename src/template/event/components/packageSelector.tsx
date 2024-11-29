@@ -29,6 +29,10 @@ export default function PackageSelector({packagesIds}: {packagesIds: string[]}) 
     // handle package click
     const handleClick = (pack: PackageModel) => {
         setOrder({...order,eventId: pack.id, package: pack});
+            // Scroll to the 'products' section
+            document.getElementById('products')?.scrollIntoView();
+
+            
     }
 
     return (

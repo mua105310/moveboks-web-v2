@@ -7,6 +7,7 @@
   --background-secondary: #1E1E1E; 
   --secondary: #1c4eff;
   --foreground: #ffffff;
+  scroll-behavior: smooth;
 }
 
 @media (prefers-color-scheme: dark) {

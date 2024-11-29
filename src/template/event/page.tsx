@@ -15,7 +15,7 @@ export default function EventPage({event}: {event: EventModel}) {
                 <Section title={event.title}>
                     <PackageSelector packagesIds={event.packagesID} />
                 </Section>
-                <Section title="Vælg produkt">
+                <Section title="Vælg produkt" id='products'>
                     <ProductSelector />
                 </Section>
             </Layout>
