@@ -38,7 +38,7 @@ export default function PackageSelector({packagesIds}: {packagesIds: string[]}) 
     return (
         <div>
             {/* Desktop */}
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
                 <div className="flex flex-row gap-10">
                     {isLoading ? (
                         <>
@@ -58,7 +58,7 @@ export default function PackageSelector({packagesIds}: {packagesIds: string[]}) 
                 </div>
             </div>
             {/* Mobile */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
                 <Swiper
                     modules={[Navigation, Autoplay]}
                     slidesPerView={1.2}

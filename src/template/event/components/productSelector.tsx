@@ -45,7 +45,7 @@ export default function ProductSelector() {
     return (
         <div>
             {/* Desktop */}
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
                 <div className="flex flex-row gap-10">
                     {isLoading ? (
                         <>
@@ -66,7 +66,7 @@ export default function ProductSelector() {
                 </div>
             </div>
             {/* Mobile */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
                 <Swiper
                     modules={[Navigation, Autoplay]}
                     slidesPerView={1.2}
