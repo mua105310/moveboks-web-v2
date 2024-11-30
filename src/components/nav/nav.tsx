@@ -59,7 +59,6 @@ export default function Nav({ events }: NavProps) {
       
       setLastScrollY(currentScrollY);
     };
-    
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);

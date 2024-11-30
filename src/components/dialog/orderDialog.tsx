@@ -15,15 +15,12 @@ export default function OrderDialog() {
     const { isDialogOpen, setIsDialogOpen } = useOrderContext();
     const { order } = useOrderContext();
 
-    const toggleDialog = () => {
-        setIsDialogOpen(!isDialogOpen);
-        const html = document.documentElement;
-        if (!isDialogOpen) {
-            html.classList.add("no-doc-scroll");
-          } else {
-            html.classList.remove("no-doc-scroll");
-          }
-    }
+    useEffect(() => {
+        document.documentElement.classList.toggle("no-doc-scroll", isDialogOpen);
+        return () => document.documentElement.classList.remove("no-doc-scroll");
+      }, [isDialogOpen]);
+    
+      const toggleDialog = () => setIsDialogOpen((prev) => !prev);
     return (
         <>
         {/* Layer */}
