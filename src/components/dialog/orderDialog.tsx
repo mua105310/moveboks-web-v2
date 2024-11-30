@@ -17,12 +17,13 @@ export default function OrderDialog() {
 
     const toggleDialog = () => {
         setIsDialogOpen(!isDialogOpen);
+        const html = document.documentElement;
+        if (!isDialogOpen) {
+            html.classList.add("no-doc-scroll");
+          } else {
+            html.classList.remove("no-doc-scroll");
+          }
     }
-
-    useEffect(() => {
-        preventScroll(isDialogOpen);
-    }, [isDialogOpen]);
-
     return (
         <>
         {/* Layer */}

@@ -10,6 +10,11 @@
   scroll-behavior: smooth;
 }
 
+.no-doc-scroll {
+  overflow: hidden;
+  touch-action: none; 
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #151515;

@@ -34,9 +34,16 @@ export default function Nav({ events }: NavProps) {
     { title: 'Galleri', path: '/galleri' },
   ];
 
-  function toggleOpen() {
+  const toggleOpen = () => {
+    const html = document.documentElement;
     setOpen(!open);
-  }
+
+    if (!open) {
+      html.classList.add("no-doc-scroll");
+    } else {
+      html.classList.remove("no-doc-scroll");
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,8 +60,6 @@ export default function Nav({ events }: NavProps) {
       setLastScrollY(currentScrollY);
     };
     
-    preventScroll(open);
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
