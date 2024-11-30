@@ -69,7 +69,7 @@ export default function Nav({ events }: NavProps) {
 
   return (
     <div 
-      className={`fixed top-0 w-full ${open ? 'h-[100dvh]' : 'h-auto'} transition-transform duration-300 ${
+      className={`fixed top-0 w-full ${open ? 'h-svh' : 'h-auto'} transition-transform duration-300 ${
         isVisible || open ? 'translate-y-0' : '-translate-y-full'
       }`} 
       style={{ zIndex: 9999 }}
@@ -123,7 +123,7 @@ export default function Nav({ events }: NavProps) {
           open ? 'translate-y-0 visible' : '-translate-y-full invisible'
         } z-20`}
       >
-        <div className={`h-full flex flex-col justify-between ${
+        <div className={`h-svh flex flex-col justify-between ${
                 open ? 'opacity-100 translate-y-0 transition-all ease-in-out duration-700 ' : 'opacity-0 -translate-y-10 transition-all ease-in-out duration-500'
               }`}>
           <div className="flex-1 flex items-center justify-center">

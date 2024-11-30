@@ -19,7 +19,7 @@ export default function Footer() {
                     order?.package && order?.selectedOptions
                         ? "bg-[var(--secondary)]"
                         : "bg-[var(--secondary)] opacity-20"
-                } text-white uppercase font-bold w-full transition-all duration-300 p-4 md:hover:opacity-75`}
+                } text-white uppercase font-bold w-full transition-all duration-300 p-5 md:hover:opacity-75`}
                 disabled={!order?.package || !order?.selectedOptions}
             >
                 Betal

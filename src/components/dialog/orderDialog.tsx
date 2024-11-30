@@ -21,6 +21,7 @@ export default function OrderDialog() {
       }, [isDialogOpen]);
     
       const toggleDialog = () => setIsDialogOpen((prev) => !prev);
+      
     return (
         <>
         {/* Layer */}
