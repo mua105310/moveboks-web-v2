@@ -10,8 +10,9 @@ import {Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import { useOrderContext } from "@/provider/orderProvider";
 import LoadingPackageCard from "@/components/card/packageCard/loadingPackageCard";
+import { EventModel } from "@/models/event";
 
-export default function PackageSelector({packagesIds}: {packagesIds: string[]}) {
+export default function PackageSelector({event}: {event: EventModel}) {
 
     const [packages, setPackages] = useState<PackageModel[]>([]);
     const {order, setOrder} = useOrderContext();
@@ -20,19 +21,17 @@ export default function PackageSelector({packagesIds}: {packagesIds: string[]}) 
     useEffect(() => {
         const fetchPackages = async () => {
             setIsLoading(true);
-            const packages = await getPackages(packagesIds);
+            const packages = await getPackages(event.packagesID);
             setPackages(packages);
             setIsLoading(false);
         };
         fetchPackages();
-    }, [packagesIds]);
+    }, [event.packagesID]);
     // handle package click
     const handleClick = (pack: PackageModel) => {
-        setOrder({...order,eventId: pack.id, package: pack});
+        setOrder({...order, event: event, package: pack});
             // Scroll to the 'products' section
             document.getElementById('products')?.scrollIntoView();
-
-            
     }
 
     return (

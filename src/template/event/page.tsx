@@ -13,7 +13,7 @@ export default function EventPage({event}: {event: EventModel}) {
             <HeroSection event={event} />
             <Layout>
                 <Section title={event.title}>
-                    <PackageSelector packagesIds={event.packagesID} />
+                    <PackageSelector event={event} />
                 </Section>
                 <Section title="Vælg produkt" id='products'>
                     <ProductSelector />

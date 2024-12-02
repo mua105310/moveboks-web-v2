@@ -37,7 +37,8 @@ const rosProducts: ProductConstraintModel[] = [
 export const packagesBasisRoskilde: PackageModel = {
     id: "ros-basis",
     title: "Roskilde basis",
-    actived: false,
+    archived: false,
+    pickupPoints: ["Valby", "Frederiksberg"],
     predefinedLocationAndTime: true,
     shortDescription: "Basispakken til Roskilde festival uden dækning",
     longDescription: "Ved køb af basispakken står du selv for ansvaret i tilfælde af tyveri og skade",
@@ -49,7 +50,8 @@ export const packagesBasisRoskilde: PackageModel = {
 export const packagesPlusRoskilde: PackageModel = {
     id: "ros-plus",
     title: "Roskilde Plus",
-    actived: false,
+    archived: false,
+    pickupPoints: ["Valby", "Frederiksberg"],
     predefinedLocationAndTime: true,
     shortDescription: "Inkluder skadeforsikring",
     longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade",
@@ -64,7 +66,8 @@ export const packagesPlusRoskilde: PackageModel = {
 export const packagesPremiumRoskilde: PackageModel = {
     id: "ros-premium",
     title: "Roskilde Premium",
-    actived: false,
+    archived: false,
+    pickupPoints: ["Valby", "Frederiksberg"],
     predefinedLocationAndTime: true,
     shortDescription: "Inkluder skadeforsikring og tyveriforsikring",
     longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade og tyveri",
@@ -110,7 +113,8 @@ const smukProducts: ProductConstraintModel[] = [
 export const packagesBasisSmukfest: PackageModel = {
     id: "smuk-basis",
     title: "Smukfest basis",
-    actived: false,
+    archived: false,
+    pickupPoints: ["Valby", "Frederiksberg"],
     predefinedLocationAndTime: true,
     shortDescription: "Basispakken til Smukfest uden dækning",
     longDescription: "Ved køb af basispakken står du selv for ansvaret i tilfælde af tyveri og skade",
@@ -122,7 +126,8 @@ export const packagesBasisSmukfest: PackageModel = {
 export const packagesPlusSmukfest: PackageModel = {
     id: "smuk-plus",
     title: "Smukfest Plus",
-    actived: false,
+    archived: false,
+    pickupPoints: ["Valby", "Frederiksberg"],
     predefinedLocationAndTime: true,
     shortDescription: "Inkluder skadeforsikring",
     longDescription: "Ved køb af pluspakken er du dækket i tilfælde af skade",
@@ -136,7 +141,8 @@ export const packagesPlusSmukfest: PackageModel = {
 
 export const packagesPremiumSmukfest: PackageModel = {
     id: "smuk-premium",
-    actived: false,
+    archived: false,
+    pickupPoints: ["Valby", "Frederiksberg"],
     title: "Smukfest Premium",
     predefinedLocationAndTime: true,
     shortDescription: "Inkluder skadeforsikring og tyveriforsikring",

@@ -39,6 +39,24 @@ export const smukfest2025: EventModel = {
         title : "Lej en soundboks til Smukfest 2025",
         description: "Lej en soundboks til Smukfest 2025",
         keywords: "Smukfest, Soundboks, lej, 2025",
+    },
+    fixedPackageInfo: {
+        pickupPoint: {
+            address: "Birkevej 20",
+            city: "Skanderborg",
+            zip: "8660 ",
+        },
+        returnPoint: {
+            address: "Birkevej 20",
+            city: "Skanderborg",
+            zip: "8660 ",
+        },
+        startDate: {
+            date: new Date("2025-08-07"),
+            time: "12:00",
+        },
+        endTimeRemark: "Senest 12:00",
+        duration: 5,
     }
 }
 

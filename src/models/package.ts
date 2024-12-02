@@ -4,8 +4,9 @@ import { ProductModel } from "./product";
 export type PackageModel = {
     id: string;
     parentEventId?: string;
-    actived: boolean;
+    archived: boolean;
     title: string;
+    pickupPoints?: string[];
     predefinedLocationAndTime: boolean;
     shortDescription: string;
     features?: string[];
@@ -36,4 +37,3 @@ export type RentPriceModel = {
     hours: number;
     price: number;
   }
-  

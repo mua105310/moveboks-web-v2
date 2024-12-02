@@ -1,17 +1,18 @@
 import { AccessoryConstraints } from "../accessory"
+import { DateTime, EventModel, PickupPoint } from "../event"
 import { PackageModel, ProductConstraintModel } from "../package"
 import { ProductModel } from "../product"
 
 
 export type BookingCreation = {
-    eventId: string
+    event: EventModel
     package: PackageModel
-    //reservedDates: List<DateTime>
-    //duration: int (int hours) ˇ
-    //startDate: DateTime?
+    reservedDates: DateTime[]
+    duration: number 
+    startDate: DateTime
     selectedOptions?: ProductionSelection[]
-    //pickupPoint: PickupPoint
-    //dropoffPoint: PickupPoint
+    pickupPoint: PickupPoint
+    dropoffPoint: PickupPoint
 }   
 
 export type ProductionSelection = {
@@ -26,3 +27,4 @@ export type AccesorySelection = {
     constraint: AccessoryConstraints,
     quantity: number
 }
+

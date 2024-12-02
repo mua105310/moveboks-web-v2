@@ -9,6 +9,7 @@ export type EventModel = {
     dateInfo: DatesModel,
     images: string[],
     meta: MetaModel,
+    fixedPackageInfo?: FixedPackageInfo,
 }
 
 type DatesModel = {
@@ -22,6 +23,25 @@ export type MetaModel = {
     description: string;            
     keywords?: string;          
 };
+
+export type FixedPackageInfo = {
+    pickupPoint?: PickupPoint,
+    returnPoint?: PickupPoint,
+    startDate?: DateTime,
+    endTimeRemark?: String
+    duration?: number,
+}
+
+export type PickupPoint = {
+    address: string,
+    city: string,
+    zip: string,
+}
+
+export type DateTime = {
+    date: Date,
+    time: string,
+}
 
 
 
