@@ -155,14 +155,24 @@ export default function Form() {
                             <p className="mb-2 font-bold">Vælg dato</p>
                             <input
                                 type="date"
-                                className="w-full p-3 border border-white/20 rounded-lg bg-white/5 outline-none"
+                                className="w-full p-3 border border-white/20 rounded-lg bg-white/5 text-white outline-none appearance-none"
+                                style={{
+                                    colorScheme: "dark", // Ensures white icons for browsers that respect this property
+                                    backgroundColor: "rgba(255, 255, 255, 0.05)", // Matches bg-white/5
+                                    color: "white", // Text color
+                                }}
                             />
                         </div>
                         <div className="mb-5">
                             <p className="mb-2 font-bold">Vælg tidspunkt</p>
                             <input
                                 type="time"
-                                className="w-full p-3 border border-white/20 rounded-lg bg-white/5 outline-none"
+                                className="w-full p-3 border border-white/20 rounded-lg bg-white/5 text-white outline-none appearance-none"
+                                style={{
+                                    colorScheme: "dark", // Ensures white icons for browsers that respect this property
+                                    backgroundColor: "rgba(255, 255, 255, 0.05)", // Matches bg-white/5
+                                    color: "white", // Text color
+                                }}
                             />
                         </div>
                         <div className="mb-5">
