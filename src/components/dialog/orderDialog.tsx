@@ -99,6 +99,7 @@ export default function OrderDialog() {
                 <div className="flex-grow overflow-y-auto px-5">
                     <Content />
                 </div>
+                
                 <Footer />
             </div>
         </div>
