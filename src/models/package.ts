@@ -1,4 +1,5 @@
 import { AccessoryConstraints } from "./accessory";
+import { PickupPoint } from "./event";
 import { ProductModel } from "./product";
 
 export type PackageModel = {
@@ -6,7 +7,7 @@ export type PackageModel = {
     parentEventId?: string;
     archived: boolean;
     title: string;
-    pickupPoints?: string[];
+    pickupPoints?: PickupPoint[];
     predefinedLocationAndTime: boolean;
     shortDescription: string;
     features?: string[];
