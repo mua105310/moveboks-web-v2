@@ -8,12 +8,23 @@ import { AiOutlineClose } from "react-icons/ai";
 import { preventScroll } from "@/controller/appController";
 import Footer from "./footer";
 import Content from "./content";
-import Form from "./form";
+
+import { Dropdown } from 'primereact/dropdown';
 
 export default function OrderDialog() {
     const { isDialogVisible, setIsDialogVisible } = useOrderContext();
     const { isDialogOpen, setIsDialogOpen } = useOrderContext();
     const { order } = useOrderContext();
+
+    const [selectedCity, setSelectedCity] = useState(null);
+    const cities = [
+        { name: 'New York', code: 'NY' },
+        { name: 'Rome', code: 'RM' },
+        { name: 'London', code: 'LDN' },
+        { name: 'Istanbul', code: 'IST' },
+        { name: 'Paris', code: 'PRS' }
+    ];
+
 
     useEffect(() => {
         document.documentElement.classList.toggle("no-doc-scroll", isDialogOpen);
@@ -26,7 +37,7 @@ export default function OrderDialog() {
         <>
         {/* Layer */}
         <div className={`fixed top-0 h-screen bg-black/50 z-50 transition-all duration-300 ${isDialogOpen ? 'lg:w-full opacity-100' : 'w-0 opacity-0'} hidden lg:block`} 
-             style={{zIndex: 10000, visibility: isDialogVisible ? 'visible' : 'hidden'}}>
+             style={{zIndex: 20, visibility: isDialogVisible ? 'visible' : 'hidden'}}>
         </div>
         
         {/* Cart Icon - Only visible on desktop */}
@@ -38,7 +49,7 @@ export default function OrderDialog() {
 
         {/* Desktop Dialog */}
         <div className={`fixed right-0 top-0 bg-[var(--background)] w-[500px] h-full transition-all duration-300 hidden lg:block ${isDialogOpen ? 'translate-x-0 border-l border-white/50 opacity-100' : 'translate-x-full border-transparent opacity-0'}`}
-            style={{zIndex: 10000, visibility: isDialogVisible ? 'visible' : 'hidden'}}>
+            style={{zIndex: 20, visibility: isDialogVisible ? 'visible' : 'hidden'}}>
 
             {/* Flex container for dialog content */}
             <div className="flex flex-col h-full relative">
@@ -68,7 +79,7 @@ export default function OrderDialog() {
         </div>
 
         {/* Mobile Dialog */}
-        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex flex-col transition-all duration-500 ${isDialogOpen ? 'z-[10000] h-dvh rounded-t-[0px] border-transparent' : 'z-40 h-[5vh] rounded-t-[50px] border-t border-white/40'}`}
+        <div className={`fixed bottom-0 lg:hidden bg-[var(--background)] w-full flex flex-col transition-all duration-500 ${isDialogOpen ? 'z-[20] h-dvh rounded-t-[0px] border-transparent' : 'z-40 h-[5vh] rounded-t-[50px] border-t border-white/40'}`}
             style={{ visibility: isDialogVisible ? 'visible' : 'hidden' }}>
             <div className="flex flex-col h-full">
                 {/* Header section with padding */}
