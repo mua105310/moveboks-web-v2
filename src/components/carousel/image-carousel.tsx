@@ -125,5 +125,4 @@ const ImageCarousel = ({ events }: ImageCarouselProps) => {
     </div>
   );
 };
-
 export default ImageCarousel;
