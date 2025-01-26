@@ -1,7 +1,7 @@
 import { EventModel } from "@/internal/models/event";
 import Image from "next/image";
 
-export default function BusinessComponentHerosection({business}: {business: EventModel}) {
+export default function HeroSectionComponent({business}: {business: EventModel}) {
     return (
         <div>
             <div className="relative" style={{ height: 'calc(40svh)' }}>

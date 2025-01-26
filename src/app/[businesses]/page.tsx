@@ -1,6 +1,6 @@
 // [businesses]/page.tsx
-import { getAllBusinesses } from "@/controller/business/controller-business";
-import BusinessPage from "@/pages/business-page/buisness-page";
+import { getAllBusinesses } from "@/controller/controller-service";
+import BusinessPage from "@/pages/business/buisness-page";
 import { notFound } from "next/navigation";
 
 // Define the Params type for dynamic segments

@@ -7,12 +7,13 @@ import { ProductModel } from "../models/product"
 export type BookingCreation = {
     event: EventModel
     package: PackageModel
-    reservedDates?: DateTime[]
+    reserved_dates?: DateTime[]
     duration?: number 
-    startDate?: DateTime
-    selectedOptions?: ProductionSelection[]
-    pickupPoint?: PickupPoint
-    dropoffPoint?: PickupPoint
+    start_date?: DateTime
+    // selectedOptions?: ProductionSelection[]
+    selected_options?: ProductionSelection
+    pickup_point?: PickupPoint
+    dropoff_Point?: PickupPoint
 }   
 
 export type ProductionSelection = {

@@ -1,9 +1,11 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-import { getAllBusinesses } from "@/controller/business/controller-business";
 import { BusinessProvider } from "@/provider/business-provider"; 
 import { OrderProvider } from "@/provider/provider-business-order";
+import Footer from "@/components/footer/footer";
+import { getAllBusinesses } from "@/controller/controller-service";
+import Nav from "@/components/nav/nav";
 
 export const metadata: Metadata = {
   title: "Moveboks",
@@ -22,9 +24,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {/* Provide the businesses to the context */}
-        <BusinessProvider businesses={businesses}>
+        <BusinessProvider>
           <OrderProvider>
             {children}
+            <Footer events={businesses} />
+            <Nav events={businesses} />
           </OrderProvider>
         </BusinessProvider>
       </body>

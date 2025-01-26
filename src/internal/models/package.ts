@@ -4,14 +4,14 @@ import { ProductModel } from "./product";
 
 export type PackageModel = {
     ID: string;
-    parentEventId?: string;
     archived: boolean;
     title: string;
-    pickupPoints?: PickupPoint[];
+    parent_business_id: string;
+    pickup_points?: PickupPoint[];
     predefinedLocationAndTime: boolean;
-    shortDescription: string;
+    short_description: string;
     features?: string[];
-    longDescription: string;
+    long_description: string;
     image_url: string;
     options?: ProductConstraintModel[];
   }
@@ -26,10 +26,10 @@ export type PackageModel = {
 export type  ProductConstraintModel = {
     product: ProductModel;
     required: boolean;
-    buyPrice?: number;
-    rentPrice?: RentPriceModel[];
-    availableQuantity: number;
-    allowedQuantity: number;
+    buy_price?: number;
+    rent_prices?: RentPriceModel[];
+    available_quantity: number;
+    allowed_quantity: number;
     accessories: AccessoryConstraints[];
     type: "rent" | "buy";
   }

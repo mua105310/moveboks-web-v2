@@ -1,36 +1,40 @@
 "use client";
-import React, {use, useContext, useEffect, useState} from 'react';
-import { PackageModel } from "@/internal/models/package";
-import BusinessComponentPackageCard from './busniess-component-package-card';
-import { useOrder } from '@/provider/provider-business-order';
-import { BookingCreation } from '@/internal/models/bookingcreation-model';
-
+import React, {useEffect} from 'react';
+import { ProductModel } from '@/internal/models/product';
+import ProductCardComponent  from './product-card-component';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
+import { useOrder } from '@/provider/provider-business-order';
+import { ProductConstraintModel } from '@/internal/models/package';
+import { BookingCreation } from '@/internal/models/bookingcreation-model';
 
-export default function BusinessComponentPackages({ packages }: { packages: PackageModel[] }) {
-    if (!packages) {
+export default function ProductsComponent({ products }: { products: ProductConstraintModel[] }) {
+    if (!products) {
         return 
-    }
+    }  
     const { order, setOrder } = useOrder();
 
-    function handleClick(pkg: PackageModel) {
-        console.log('package clicked', pkg);
+    function handleClick(product: ProductModel): void {
         setOrder({
-          package: pkg,
+          ...order,
+          selected_options: {
+            product: product,
+            quantity: 1,
+          },
         } as BookingCreation);
       }
 
-    //   useEffect(() => {
-    //     console.log('packages', packages);
-    //   }, [order]);
+      useEffect(() => {
+        console.log("product selcted: ", order);
+        }, [order]);
+
 
     return (
-        <div>
-            <Swiper
+        <div className=''>
+        <Swiper
             modules={[Navigation, Autoplay]}
             spaceBetween={20}
             slidesOffsetBefore={40}
@@ -51,9 +55,9 @@ export default function BusinessComponentPackages({ packages }: { packages: Pack
                 },
             }}
             >
-            {packages.map((pkg, index) => (
+            {products.map((option, index) => (
                 <SwiperSlide key={index}>
-                    <BusinessComponentPackageCard package={pkg} onClick={() => handleClick(pkg)} />
+                    <ProductCardComponent product={option.product} onClick={() => handleClick(option.product)} />
                 </SwiperSlide>
             ))}
             </Swiper>
