@@ -1,6 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
+import { getAllBusinesses } from "@/controller/business/controller-business";
         
 
 export const metadata: Metadata = {
@@ -14,6 +15,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const businesses = await getAllBusinesses();
+  console.log(businesses);
   return (
       <html lang="en">
         <body className={`antialiased`}>
