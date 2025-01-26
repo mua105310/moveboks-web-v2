@@ -3,74 +3,65 @@
 @tailwind utilities;
 
 :root {
-  --background: #151515;
-  --background-secondary: #1E1E1E; 
-  --secondary: #1c4eff;
-  --foreground: #ffffff;
-  scroll-behavior: smooth;
+  --background-light: #ffffff;
+  --primary-light: #1c4eff;
+  --foreground-light: black;
+
+  --background-dark: black;
+  --primary-dark: #1c4eff;
+  --foreground-dark: #ffffff;
 }
+
 .no-doc-scroll {
   overflow: hidden;
   touch-action: none; 
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #151515;
-    --foreground: #ffffff;
+    --background: var(--background-dark);
+    --foreground: var(--foreground-dark);
   }
 }
+
+body.light-mode {
+  --background: var(--background-light);
+  --primary: var(--primary-light);
+  --foreground: var(--foreground-light);
+}
+
+body.dark-mode {
+  --background: var(--background-dark);
+  --primary: var(--primary-dark);
+  --foreground: var(--foreground-dark);
+}
+
 body {
+  background-color: var(--background);
   color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   overscroll-behavior: none;
 }
+
+@layer components {
+  .card {
+    background-color: var(--background-light);
+    color: var(--foreground-light);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .card.dark {
+    background-color: var(--background-dark);
+    color: var(--foreground-dark);
+    border: 1px solid #444;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
-h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  opacity: 0.9;
-}
-.card {
-  background: var(--background-secondary);
-  color: var(--foreground);
-}
-
-/* Dropdown */
-
-/* Ensure the dropdown itself has the desired background */
-.p-dropdown {
-  background: var(--background-secondary) !important; /* Use your secondary background */
-  color: var(--foreground) !important; /* Maintain readable text color */
-}
-/* Set consistent background and text color for dropdown items */
-.p-dropdown-panel {
-  background: var(--background-secondary) !important;
-  color: var(--foreground) !important;
-  font-size: 14px;
-}
-/* Handle individual items in the dropdown */
-.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
-  background: var(--background-secondary) !important;
-  color: var(--foreground) !important;
-  transition: background-color 0.2s, color 0.2s;
-  border-radius: 10px;
-}
-/* Prevent focus and hover from altering the dropdown itself */
-.p-dropdown:not(.p-disabled):hover,
-.p-dropdown:not(.p-disabled).p-focus {
-  background: var(--background-secondary) !important;
-  box-shadow: none !important;
-}
-/* Handle placeholder styles to match the background */
-.p-dropdown .p-dropdown-label.p-placeholder {
-  color: var(--foreground) !important;
-  font-size: 14px;
-}
-
-/* Input */
-
