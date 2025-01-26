@@ -1,13 +1,18 @@
+import { PackageModel } from "./package";
+
 export type EventModel = {
-    id: string,
+    ID: string,
     title: string,
     subtitle?: string,
     path: string,
     description: string,
+    short_description: string,
+    long_description: string,
+    lonm: string,
     color: string,
-    packagesID: string[],
+    packages: PackageModel[],
     dateInfo: DatesModel,
-    images: string[],
+    image_url: string,
     meta: MetaModel,
     fixedPackageInfo?: FixedPackageInfo,
 }

@@ -2,6 +2,7 @@
 const nextConfig = {
     images: {
         domains: ['imagedelivery.net'], 
+        domains: ['images.pexels.com'],
       },
 };
 

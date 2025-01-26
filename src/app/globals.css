@@ -2,40 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Default values */
 :root {
-  --background-light: #ffffff;
-  --primary-light: #1c4eff;
-  --foreground-light: black;
-
-  --background-dark: black;
-  --primary-dark: #1c4eff;
-  --foreground-dark: #ffffff;
+  --background: #ffffff;
+  --foreground: black;
+  --primary: #1c4eff;
 }
 
-.no-doc-scroll {
-  overflow: hidden;
-  touch-action: none; 
-}
-
+/* Dark mode defaults */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: var(--background-dark);
-    --foreground: var(--foreground-dark);
+    --background: black;
+    --foreground: #ffffff;
+    --primary: #1c4eff;
   }
 }
 
+/* Light mode overrides */
 body.light-mode {
-  --background: var(--background-light);
-  --primary: var(--primary-light);
-  --foreground: var(--foreground-light);
+  --background: #ffffff;
+  --foreground: black;
+  --primary: #1c4eff;
 }
 
+/* Dark mode overrides */
 body.dark-mode {
-  --background: var(--background-dark);
-  --primary: var(--primary-dark);
-  --foreground: var(--foreground-dark);
+  --background: black;
+  --foreground: #ffffff;
+  --primary: #1c4eff;
 }
 
+/* Global styles */
 body {
   background-color: var(--background);
   color: var(--foreground);
@@ -43,23 +40,30 @@ body {
   overscroll-behavior: none;
 }
 
+.no-doc-scroll {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Components */
 @layer components {
   .card {
-    background-color: var(--background-light);
-    color: var(--foreground-light);
+    background-color: var(--background);
+    color: var(--foreground);
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
   }
-  
+
   .card.dark {
-    background-color: var(--background-dark);
-    color: var(--foreground-dark);
+    background-color: var(--background);
+    color: var(--foreground);
     border: 1px solid #444;
   }
 }
 
+/* Utilities */
 @layer utilities {
   .text-balance {
     text-wrap: balance;

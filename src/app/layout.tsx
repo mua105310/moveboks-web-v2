@@ -2,7 +2,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { getAllBusinesses } from "@/controller/business/controller-business";
-        
+import { BusinessProvider } from "@/provider/business-provider"; 
+import { OrderProvider } from "@/provider/provider-business-order";
 
 export const metadata: Metadata = {
   title: "Moveboks",
@@ -15,13 +16,18 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Fetch all businesses
   const businesses = await getAllBusinesses();
-  console.log(businesses);
   return (
-      <html lang="en">
-        <body className={`antialiased`}>
-                <main>{children}</main>
-        </body>
-      </html>
+    <html lang="en">
+      <body className="antialiased">
+        {/* Provide the businesses to the context */}
+        <BusinessProvider businesses={businesses}>
+          <OrderProvider>
+            {children}
+          </OrderProvider>
+        </BusinessProvider>
+      </body>
+    </html>
   );
 }

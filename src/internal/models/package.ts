@@ -3,7 +3,7 @@ import { PickupPoint } from "./event";
 import { ProductModel } from "./product";
 
 export type PackageModel = {
-    id: string;
+    ID: string;
     parentEventId?: string;
     archived: boolean;
     title: string;
@@ -12,7 +12,7 @@ export type PackageModel = {
     shortDescription: string;
     features?: string[];
     longDescription: string;
-    images: string[];
+    image_url: string;
     options?: ProductConstraintModel[];
   }
   

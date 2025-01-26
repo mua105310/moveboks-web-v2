@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import MainCarousel from "@/components/carousel/main-carousel";
+import { getAllBusinesses } from "@/controller/business/controller-business";
 
-export default async function Home() {
-
+const Home = async () => {
+  const businesses = await getAllBusinesses();
   return (
-    <div>
-      <div></div>
-    </div>
+    <MainCarousel businesses={businesses} />
   );
-}
+};
+
+export default Home;

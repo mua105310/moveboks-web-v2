@@ -3,5 +3,5 @@ export type ProductModel = {
     title: string;
     shortDescription: string;
     longDescription: string;
-    images: string[];
+    image_url: string;
 }
