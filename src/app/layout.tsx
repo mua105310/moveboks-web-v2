@@ -6,6 +6,7 @@ import { OrderProvider } from "@/provider/provider-business-order";
 import Footer from "@/components/footer/footer";
 import { getAllBusinesses } from "@/controller/controller-service";
 import Nav from "@/components/nav/nav";
+import { DialogProvider } from "@/provider/dialog-provider";
 
 export const metadata: Metadata = {
   title: "Moveboks",
@@ -26,9 +27,11 @@ export default async function RootLayout({
         {/* Provide the businesses to the context */}
         <BusinessProvider>
           <OrderProvider>
-            {children}
-            <Footer events={businesses} />
-            <Nav events={businesses} />
+            <DialogProvider>
+              {children}
+              <Footer events={businesses} />
+              <Nav events={businesses} />
+            </DialogProvider>
           </OrderProvider>
         </BusinessProvider>
       </body>

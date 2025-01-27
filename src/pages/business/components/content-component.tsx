@@ -21,6 +21,7 @@ export default function ContentComponent({ business }: { business: EventModel}) 
     fetchData();
   }, [business.ID]);
 
+
   return (
     <div className="min-h-[1000px]">
       {/* Show all packages  */}

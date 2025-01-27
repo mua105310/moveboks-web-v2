@@ -10,12 +10,14 @@ import 'swiper/css/scrollbar';
 import { useOrder } from '@/provider/provider-business-order';
 import { ProductConstraintModel } from '@/internal/models/package';
 import { BookingCreation } from '@/internal/models/bookingcreation-model';
+import { useDialog } from '@/provider/dialog-provider';
 
 export default function ProductsComponent({ products }: { products: ProductConstraintModel[] }) {
     if (!products) {
         return 
     }  
     const { order, setOrder } = useOrder();
+    const { openDialog } = useDialog();
 
     function handleClick(product: ProductModel): void {
         setOrder({
@@ -25,6 +27,7 @@ export default function ProductsComponent({ products }: { products: ProductConst
             quantity: 1,
           },
         } as BookingCreation);
+        openDialog();
       }
 
       useEffect(() => {
