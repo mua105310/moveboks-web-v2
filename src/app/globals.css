@@ -25,7 +25,7 @@ body.light-mode {
   --primary: #1c4eff;
 }
 
-/* Dark mode overrides */
+/* Dark mode overrides w*/
 body.dark-mode {
   --background: black;
   --foreground: #ffffff;
