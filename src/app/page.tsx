@@ -1,12 +1,9 @@
-import ImageCarousel from "@/components/carousel/image-carousel";
-import { getEvents } from "@/controller/eventController";
+import Image from "next/image";
 
-
-export default async function Home() {
-  const events = await getEvents();
+export default function Home() {
   return (
-    <div>
-      <ImageCarousel events={events}/>
-    </div>
+   <div>
+    Klar
+   </div>
   );
 }

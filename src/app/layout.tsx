@@ -1,51 +1,34 @@
-// app/layout.tsx
 import type { Metadata } from "next";
-import { getEvents } from "@/controller/eventController";
-import Nav from "@/components/nav/nav";
-import Footer from "@/components/footer/footer";
-import localFont from "next/font/local";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import OrderProvider from "@/provider/orderProvider";
-import OrderDialog from "@/components/dialog/orderDialog";
-import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
-import "primereact/resources/themes/lara-light-cyan/theme.css";
-        
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+const geistSans = Geist({
   variable: "--font-geist-sans",
-  weight: "100 900",
+  subsets: ["latin"],
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+
+const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  weight: "100 900",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "Moveboks",
-  description: "Lej en Soundboks til dit næste arrangement gennem Moveboks app – perfekt til festivaler og events.",
-  keywords: "Leje Soundboks, lej en Soundboks, lydudlejning, bryllup, konfirmation, DJ, festival, Roskilde Festival, Smukfest, events, julefrokost, nytårsfest, Danmark",
+  description: "Lej en soundboks",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
-  const events = await getEvents();
+}>) {
   return (
-      <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <PrimeReactProvider>
-            <OrderProvider>
-                <Nav events={events} />
-                <main>{children}</main>
-                <Footer events={events}/>
-                <OrderDialog/>
-            </OrderProvider>
-          </PrimeReactProvider>
-        </body>
-      </html>
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {children}
+      </body>
+    </html>
   );
 }
