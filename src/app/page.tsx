@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { EventModel } from "@/internal/models/event";
 import MainCarousel from "@/components/carousel/main-carousel";
-import { getAllBusinesses } from "@/controller/controller-service";
+import { getAllEvents } from "@/controller/controller-service";
 
 const Home = async () => {
-  const businesses = await getAllBusinesses();
+  const events: EventModel[] = await getAllEvents();
   return (
-    <MainCarousel businesses={businesses} />
+    <div>
+      <MainCarousel events={events} />
+    </div>
   );
 };
 

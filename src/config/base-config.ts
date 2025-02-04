@@ -1,3 +1,3 @@
 export const baseConfig = {
-  company: 'RentHub',
+  company: 'Moveboks',
 };

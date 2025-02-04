@@ -8,7 +8,7 @@ export type PackageModel = {
     title: string;
     parent_business_id: string;
     pickup_points?: PickupPoint[];
-    predefinedLocationAndTime: boolean;
+    predefined_location_and_time: boolean;
     short_description: string;
     features?: string[];
     long_description: string;

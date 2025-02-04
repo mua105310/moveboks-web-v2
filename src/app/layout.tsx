@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { BusinessProvider } from "@/provider/business-provider"; 
 import { OrderProvider } from "@/provider/provider-business-order";
-import Footer from "@/components/footer/footer";
-import { getAllBusinesses } from "@/controller/controller-service";
-import Nav from "@/components/nav/nav";
 import { DialogProvider } from "@/provider/dialog-provider";
+import Footer from "@/components/footer/footer";
+import { getAllEvents } from "@/controller/controller-service";
+import Nav from "@/components/nav/nav";
 
 export const metadata: Metadata = {
   title: "Moveboks",
@@ -19,8 +19,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Fetch all businesses
-  const businesses = await getAllBusinesses();
+  const events = await getAllEvents();
   return (
     <html lang="en">
       <body className="antialiased">
@@ -29,8 +28,8 @@ export default async function RootLayout({
           <OrderProvider>
             <DialogProvider>
               {children}
-              <Footer events={businesses} />
-              <Nav events={businesses} />
+              <Nav events={events} />
+              <Footer events={events} />
             </DialogProvider>
           </OrderProvider>
         </BusinessProvider>

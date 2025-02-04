@@ -97,8 +97,7 @@ export default function Nav({ events }: NavProps) {
             aria-label={'Home'}
             >
               <div className="flex items-center cursor-pointer">
-                {/* <Image src={Logo} alt="logo" width={130} priority={true} /> */}
-                <h1 className='text-3xl font-bold'>RentHub</h1>
+                <Image src={Logo} alt="logo" width={130} priority={true} />
                 <div className="hidden md:block ml-4 h-7 border-r border-white opacity-30" />
                 <div
                   className="ml-4 hidden md:block leading-4 tracking-[1.5px]"

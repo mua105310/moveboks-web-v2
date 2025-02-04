@@ -1,39 +1,32 @@
 import { EventModel } from '@/internal/models/event';
-import { config } from '@/config/config';
-import { fetchAllBusinesses, fetchItemById } from '@/api/api-service';
 
+const baseUrl = 'http://localhost:3000/api';
 
 //*********business controller ****************/
 
-let cache: { data: EventModel[] | null; expiry: number } = { data: null, expiry: 0 };
+// let cache: { data: EventModel[] | null; expiry: number } = { data: null, expiry: 0 };
 
-export async function getAllBusinesses(): Promise<EventModel[]> {
-  if (cache.data && cache.expiry > Date.now()) {
-    return cache.data;
-  }
+export async function getAllEvents(): Promise<EventModel[]> {
 
-  const response = await fetchAllBusinesses();
-  cache = {
-    data: response || [],
-    expiry: Date.now() + 60000, // Cache valid for 60 seconds
-  };
+    const response = await fetch(`${baseUrl}/events`);
+    const events: EventModel[] = await response.json();
+    console.log(events);
 
-  return cache.data || [];
+    return events;
 }
-
 
 //*********item controller ****************/
 
-export async function getItemByID(id: string, item: string): Promise<any> {
-  try {
-      const response = await fetchItemById(id, item);
-      // Ensure we only return the `data` field from the response
-      return response || [];
-  } catch (error) {
-      console.error('Error fetching item:', error);
-      throw new Error('Unable to retrieve item at this time. Please try again later.');
-  }
-}
+// export async function getItemByID(id: string, item: string): Promise<any> {
+//   try {
+//       const response = await fetchItemById(id, item);
+//       // Ensure we only return the `data` field from the response
+//       return response || [];
+//   } catch (error) {
+//       console.error('Error fetching item:', error);
+//       throw new Error('Unable to retrieve item at this time. Please try again later.');
+//   }
+// }
 
 
 //*********item controller ****************/

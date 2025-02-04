@@ -30,10 +30,10 @@ export type MetaModel = {
 };
 
 export type FixedPackageInfo = {
-    pickupPoint?: PickupPoint,
-    returnPoint?: PickupPoint,
-    startDate?: DateTime,
-    endTimeRemark?: String
+    pickup_point?: PickupPoint,
+    return_point?: PickupPoint,
+    start_date?: DateTime,
+    end_time_remark?: String
     duration?: number,
 }
 

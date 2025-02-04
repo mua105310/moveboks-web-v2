@@ -11,8 +11,8 @@ const productionConfig: AppConfig = {
 };
 
 const localConfig: AppConfig = {
-  API_ENDPOINT: 'http://127.0.0.1:3000/v1',
-  baseUrl: 'http://localhost:3000/',
+  API_ENDPOINT: 'http://127.0.0.1:3001/v1',
+  baseUrl: 'http://localhost:3001/',
 };
 
 const isProduction = process.env.NODE_ENV === 'production';

@@ -15,10 +15,10 @@ import './style.css';
 import Button from '../button/button';
 
 interface MainCarouselProps {
-    businesses: EventModel[];
+    events: EventModel[];
 }
 
-const MainCarousel = ({ businesses }: MainCarouselProps) => {
+const MainCarousel = ({ events }: MainCarouselProps) => {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
   const autoplayDelay = 7000; // Autoplay delay in ms
@@ -51,7 +51,7 @@ const MainCarousel = ({ businesses }: MainCarouselProps) => {
       }}
       loop={true}
     >
-{businesses.map((business, index) => (
+{events.map((business, index) => (
   <SwiperSlide key={`${business.ID}_${index}`}>
           <div className='absolute z-10 top-0 bg-black w-full h-svh opacity-50'></div>
           <div className="flex-none w-full relative h-svh z-0">
@@ -88,7 +88,7 @@ const MainCarousel = ({ businesses }: MainCarouselProps) => {
       ))}
     </Swiper>
 
-    {businesses.length > 1 && (
+    {events.length > 1 && (
       <div>
         <div className="absolute bottom-0 w-full p-10 z-10">
           <div className="flex flex-row justify-between gap-10 sm:tracking-[2px]">
