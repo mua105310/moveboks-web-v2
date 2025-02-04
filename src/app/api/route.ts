@@ -1,1 +1,0 @@
-// Handles the communication between the client and the server
