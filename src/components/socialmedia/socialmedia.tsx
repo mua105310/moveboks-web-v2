@@ -29,7 +29,7 @@ export default function SocialMediaTag (){
                 href={item.link}
                 aria-label={item.aria}
                 >
-                    <div className='w-auto h-auto border-[1px] p-2 ml-2 hover:bg-[var(--secondary)] transition-all ease-in-out duration-500 hover:text-white'>
+                    <div className='w-auto h-auto border-[1px] p-2 ml-2 hover:bg-[var(--primary)] transition-all ease-in-out duration-500 hover:text-white'>
                             {item.icon}
                     </div>
                 </Link>

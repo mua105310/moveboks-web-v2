@@ -72,12 +72,12 @@ const MainCarousel = ({ events }: MainCarouselProps) => {
                 dangerouslySetInnerHTML={{ __html: business.title }}
                 style={{textShadow: '0 0 12px rgba(255, 255, 255, 0.8)'}}
               ></p>
-              <div className="h-1 w-32 bg-[var(--secondary)] mx-auto mb-8"></div>
+              <div className="h-1 w-32 bg-[var(--primary)] mx-auto mb-8"></div>
               <div className="text-xs sm:text-sm leading-4 w-auto mx-auto">
                 <p>{business.long_description}</p>
               </div>
               <div className="mt-8">
-                <Button path={business.path} />
+                <Button path={business.path} label='BOOK' />
               </div>
           </div>
         </div>

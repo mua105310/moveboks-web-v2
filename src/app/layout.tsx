@@ -1,9 +1,6 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-import { BusinessProvider } from "@/provider/business-provider"; 
-import { OrderProvider } from "@/provider/provider-business-order";
-import { DialogProvider } from "@/provider/dialog-provider";
 import Footer from "@/components/footer/footer";
 import { getAllEvents } from "@/controller/controller-service";
 import Nav from "@/components/nav/nav";
@@ -24,15 +21,9 @@ export default async function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {/* Provide the businesses to the context */}
-        <BusinessProvider>
-          <OrderProvider>
-            <DialogProvider>
-              {children}
-              <Nav events={events} />
-              <Footer events={events} />
-            </DialogProvider>
-          </OrderProvider>
-        </BusinessProvider>
+            {children}
+            <Nav events={events} />
+            <Footer events={events} />
       </body>
     </html>
   );

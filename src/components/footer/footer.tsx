@@ -39,7 +39,7 @@ export default function Footer({ events }: FooterProps) {
                   >
                     {item.title}
                     <div
-                      className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[3px] bg-[var(--secondary)] transition-all duration-700 ease-in-out group-hover:w-full"
+                      className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[3px] bg-[var(--primary)] transition-all duration-700 ease-in-out group-hover:w-full"
                     />
                   </Link>
                 ) : (
@@ -51,7 +51,7 @@ export default function Footer({ events }: FooterProps) {
                     >
                       {subItem.title}
                       <div
-                        className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[3px] bg-[var(--secondary)] transition-all duration-700 ease-in-out group-hover:w-full"
+                        className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[3px] bg-[var(--primary)] transition-all duration-700 ease-in-out group-hover:w-full"
                       />
                     </Link>
                   ))
@@ -85,22 +85,22 @@ export default function Footer({ events }: FooterProps) {
         <div className="flex">
           <p className="opacity-50">Executed by</p>
           <Link
-            className="ml-1 hover:text-[var(--secondary)] transition-colors duration-300"
+            className="ml-1 hover:text-[var(--primary)] transition-colors duration-300"
             href="https://datacvr.virk.dk/enhed/virksomhed/41417749?fritekst=moveboks&sideIndex=0&size=10"
           >
             {baseConfig.company}
           </Link>
         </div>
         <div className="flex flex-wrap max-[600px]:mt-5 gap-2">
-          <Link href="/handelsbetingelser" className="hover:text-[var(--secondary)] transition-colors duration-300">
+          <Link href="/handelsbetingelser" className="hover:text-[var(--primary)] transition-colors duration-300">
             Handelsbetingelser
           </Link>
           <div className="h-full w-[1px] bg-white ml-2 mr-2 opacity-15" />
-          <Link href="/persondatapolitik" className="hover:text-[var(--secondary)] transition-colors duration-300">
+          <Link href="/persondatapolitik" className="hover:text-[var(--primary)] transition-colors duration-300">
             Persondatapolitik
           </Link>
           <div className="h-full w-[1px] bg-white ml-2 mr-2 opacity-15" />
-          <Link href="/kontakt" className="hover:text-[var(--secondary)] transition-colors duration-300">
+          <Link href="/kontakt" className="hover:text-[var(--primary)] transition-colors duration-300">
             Kontakt
           </Link>
         </div>

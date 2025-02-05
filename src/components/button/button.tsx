@@ -5,18 +5,11 @@ interface ButtonProps {
   label?: string;
 }
 
-export default function Button({ path, label = "Click here" }: ButtonProps) {
+export default function Button({ path, label = "BOOK" }: ButtonProps) {
   return (
     <Link
       href={path}
-      className="inline-block px-6 py-2 text-center text-sm font-medium transition-all rounded-sm hover:scale-105"
-      style={{
-        backgroundColor: "var(--primary) !important",
-        color: "var(--foreground) !important",
-        textDecoration: "none",
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-      }}
-    >
+      className="inline-block px-6 py-2 text-center text-sm font-medium rounded-sm bg-white text-black transition ease-in-out duration-500 hover:bg-[var(--primary)] hover:text-white">
       {label}
     </Link>
   );
