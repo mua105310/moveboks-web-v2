@@ -1,6 +1,6 @@
 // [businesses]/page.tsx
 import { getAllEvents } from "@/controller/controller-service";
-import EventPage from "@/pages/event/page";
+import Event from "@/pages/event";
 import { notFound } from "next/navigation";
 
 // Define the Params type for dynamic segments
@@ -43,5 +43,5 @@ export default async function EventPageWrapper({ params }: { params: Params }) {
     return notFound();
   }
 
-  return <EventPage event={event} />;
+  return <Event event={event} />;
 }

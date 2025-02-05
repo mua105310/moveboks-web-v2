@@ -5,13 +5,11 @@ import { config } from "@/config/config";
 export async function GET() {
     try {
         const response = await fetch(`${config.API_ENDPOINT}/businesses`);
-        
         if (!response.ok) {
             throw new Error(`Failed to fetch events: ${response.statusText}`);
         }
 
         const data = await response.json();
-
         return NextResponse.json(data.data);
     } catch (error) {
         console.error("Error events:", error);

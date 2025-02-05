@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/components/footer/footer";
 import { getAllEvents } from "@/controller/controller-service";
 import Nav from "@/components/nav/nav";
+import { EventProvider } from "@/provider/event-provider";
 
 export const metadata: Metadata = {
   title: "Moveboks",
@@ -21,9 +22,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {/* Provide the businesses to the context */}
+        <EventProvider>
             {children}
             <Nav events={events} />
             <Footer events={events} />
+        </EventProvider>
       </body>
     </html>
   );
