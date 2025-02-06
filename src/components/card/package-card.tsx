@@ -15,7 +15,7 @@ export default function PackageCard({ pack }: PackageCardProps) {
     : null;
 
   return (
-    <article className="relative flex-1 rounded-lg border border-white/20 p-20 sm:p-32 overflow-hidden cursor-pointer">
+    <article className="relative flex-1 rounded-lg border border-white/20 p-20 sm:p-28 overflow-hidden cursor-pointer">
       {/* Optimized Image */}
       {pack.image_url && (
         <Image
