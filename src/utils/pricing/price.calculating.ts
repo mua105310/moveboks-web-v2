@@ -13,8 +13,6 @@ export const getMinimumPrice = (productConstraint: ProductConstraintModel): numb
         }
         }
     }
-
-   
     return totalPrice;
 };
 
