@@ -1,18 +1,17 @@
 "use client";
+
 import { Swiper, SwiperSlide } from "swiper/react";
-import React, { JSX } from "react";
+import React from "react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
-import PackageCard from "../card/package-card";
-import { PackageModel } from "@/internal/models/package";
 
-interface CardSliderProps<T> {
-  items: PackageModel[];
+interface SwiperCarouselProps {
+  children: React.ReactNode;
 }
 
-export default function CardSlider<T>({ items }: CardSliderProps<T>) {
+export default function SwiperCarousel({ children }: SwiperCarouselProps) {
   return (
     <div>
       <Swiper
@@ -27,8 +26,8 @@ export default function CardSlider<T>({ items }: CardSliderProps<T>) {
           1024: { slidesPerView: 3.2 },
         }}
       >
-        {items.map((item, index) => (
-          <SwiperSlide key={index}><PackageCard pack={item}/></SwiperSlide>
+        {React.Children.map(children, (child, index) => (
+          <SwiperSlide key={index}>{child}</SwiperSlide>
         ))}
       </Swiper>
     </div>
