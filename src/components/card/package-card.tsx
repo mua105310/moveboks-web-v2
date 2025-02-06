@@ -28,7 +28,7 @@ export default function PackageCard({ pack }: PackageCardProps) {
       )}
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/50 p-2 sm:p-3" />
+      <div className="absolute inset-0 bg-black/70 p-2 sm:p-3" />
 
       {/* Content */}
       <div className="absolute inset-0 p-2 sm:p-3 flex flex-row justify-between">

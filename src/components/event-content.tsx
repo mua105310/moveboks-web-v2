@@ -19,12 +19,12 @@ export default function EventContent({ event }: { event: EventModel }) {
 
     return (
         <div className="pt-10 pb-10">
-            {selectedEvent && selectedEvent.packages && selectedEvent.packages.length > 0 && (
-                <CardSlider
-                    items={selectedEvent.packages}
-                    renderItem={(pack) => <PackageCard key={pack.ID} pack={pack} />}
-                />
-            )}
+                {selectedEvent && selectedEvent.packages && selectedEvent.packages.length > 0 && (
+                    <CardSlider
+                        items={selectedEvent.packages}
+                        renderItem={(pack) => <PackageCard key={pack.ID} pack={pack} />}
+                    />
+                )}
         </div>
     );
 }
