@@ -3,7 +3,7 @@
   "version": "v0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "buildprod": "npm run version:patch && cross-env NODE_ENV=production npm run build",
     "buildlocal": "cross-env NODE_ENV=local npm run build",

@@ -8,7 +8,7 @@ const baseUrl = 'http://localhost:3000/api';
 
 export async function getAllEvents(): Promise<EventModel[]> {
     try {
-        const response = await fetch(`${config.API_ENDPOINT}/businesses`, {
+        const response = await fetch(`${config.API_ENDPOINT}/events`, {
             next: { revalidate: 60 }, 
         });
 
@@ -29,7 +29,7 @@ export async function getEventById(id: string): Promise<EventModel | null> {
     }
 
     try {
-        const response = await fetch(`${config.API_ENDPOINT}/businesses/${id}`);
+        const response = await fetch(`${config.API_ENDPOINT}/events/${id}`);
         if (!response.ok) throw new Error(`Failed to fetch event ${id}: ${response.status} ${response.statusText}`);
 
         const json = await response.json();
