@@ -68,9 +68,8 @@ const MainCarousel = ({ events }: MainCarouselProps) => {
             <div className="w-[95%] sm:w-auto h-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center z-10">
               <div className="tracking-[3px] text-white opacity-65">{baseConfig.company}</div>
               <p
-                className="text-[40px] sm:text-[90px] min-[2000px]:text-[120px] font-bold italic leading-[50px] sm:leading-none mt-10 mb-10 uppercase text-shadow-lg"
+                className="text-[40px] sm:text-[90px] min-[2000px]:text-[120px] font-bold italic leading-[50px] sm:leading-none mt-10 mb-10 uppercase text-shadow-lg lightning-text "
                 dangerouslySetInnerHTML={{ __html: business.title }}
-                style={{textShadow: '0 0 12px rgba(255, 255, 255, 0.8)'}}
               ></p>
               <div className="h-1 w-32 bg-[var(--primary)] mx-auto mb-8"></div>
               <div className="text-xs sm:text-sm leading-4 w-auto mx-auto">
