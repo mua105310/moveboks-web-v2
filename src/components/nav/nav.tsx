@@ -80,9 +80,9 @@ export default function Nav({ events }: NavProps) {
       }`} 
       style={{ zIndex: 100 }}
     >
-    <div className={`absolute top-0 bg-[var(--background)] transition-all duration-300 ease-in-out `} />
+    <div className={`absolute top-0 bg-[var(--background)] transition `} />
       <div 
-        className={`p-5 lg:p-10 relative z-50 transition-all duration-300 ease-in-out border-b ${
+        className={`p-5 lg:p-10 relative z-50 transition border-b ${
           bgColor && !open
             ? 'bg-[var(--background)] border-white/20' 
             : 'bg-[var(--background)]/0 border-transparent'
@@ -115,7 +115,7 @@ export default function Nav({ events }: NavProps) {
           {/* Menu Icon */}
           <div onClick={toggleOpen} className="cursor-pointer">
             <HiMenuAlt4
-              className={`text-white transition-all duration-500 text-3xl ${
+              className={`text-white transition text-3xl ${
                 open ? 'rotate-90' : ''
               } hover:text-[#1c4eff]`}
             />
@@ -125,16 +125,16 @@ export default function Nav({ events }: NavProps) {
 
       {/* Nav menu */}
       <div
-        className={`absolute top-0 left-0 w-full h-svh bg-[var(--background)] transition-all duration-700 ease-in-out ${
+        className={`absolute top-0 left-0 w-full h-svh bg-[var(--background)] transition ${
           open ? 'translate-y-0 visible' : '-translate-y-full invisible'
         } z-20`}
       >
         <div className={`h-svh flex flex-col justify-between ${
-                open ? 'opacity-100 translate-y-0 transition-all ease-in-out duration-700 ' : 'opacity-0 -translate-y-10 transition-all ease-in-out duration-500'
+                open ? 'opacity-100 translate-y-0 transition ' : 'opacity-0 -translate-y-10 transition'
               }`}>
           <div className="flex-1 flex items-center justify-center">
             <div className="w-auto text-center text-[34px] sm:text-[40px] min-[2000px]:text-[55px] tracking-widest">
-              <div className={`space-y-4 transition-all duration-700 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>
+              <div className={`space-y-4 transition absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>
                 {menu.map((item, index) => (
                   <div key={index} className="uppercase">
                     {item.subItems ? (
@@ -144,12 +144,12 @@ export default function Nav({ events }: NavProps) {
                           <div>{item.title}</div>
                           {/* Line in the middle */}
                           <div
-                            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[4px] bg-[#1c4eff] transition-all duration-700 ease-in-out group-hover:w-full"
+                            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[4px] bg-[#1c4eff] transition group-hover:w-full"
                           />
                         </div>
                         {/* Subitems below the title */}
                         <div
-                          className="max-h-0 overflow-hidden transition-all duration-500 ease-in-out group-hover:max-h-32 overflow-y-scroll"
+                          className="max-h-0 overflow-hidden transition group-hover:max-h-32 overflow-y-scroll"
                         >
                           <div className="flex flex-col items-center space-y-2 mt-2">
                             {item.subItems.map((subItem, subIndex) => (
@@ -159,7 +159,7 @@ export default function Nav({ events }: NavProps) {
                               >
                               <Link 
                                 onClick={toggleOpen}
-                                className='hover:text-[#1c4eff] transition-all duration-500 ease-in-out' 
+                                className='hover:text-[#1c4eff] transition' 
                                 href={subItem.path}
                                 aria-label={subItem.title} // Adds an accessible name attribute
                               >
@@ -180,7 +180,7 @@ export default function Nav({ events }: NavProps) {
                         >{item.title}</Link>
                         {/* Line in the middle */}
                         <div
-                          className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[4px] bg-[#1c4eff] transition-all duration-700 ease-in-out group-hover:w-full"
+                          className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[4px] bg-[#1c4eff] transition group-hover:w-full"
                         />
                       </div>
                     )}

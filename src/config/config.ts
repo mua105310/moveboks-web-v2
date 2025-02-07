@@ -17,4 +17,4 @@ const localConfig: AppConfig = {
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-export const config: AppConfig = isProduction ? productionConfig : localConfig;
+export const config: AppConfig = isProduction ? localConfig : localConfig;

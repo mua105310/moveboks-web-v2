@@ -6,6 +6,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
+import  LoadingCard  from "@/components/card/loading-card";
 
 interface SwiperCarouselProps {
   children: React.ReactNode;
@@ -27,7 +28,8 @@ export default function SwiperCarousel({ children }: SwiperCarouselProps) {
         }}
       >
         {React.Children.map(children, (child, index) => (
-          <SwiperSlide key={index}>{child}</SwiperSlide>
+          //if child is null, return LoadingCard
+          <SwiperSlide key={index}>{child ? child : <LoadingCard />}</SwiperSlide>
         ))}
       </Swiper>
     </div>

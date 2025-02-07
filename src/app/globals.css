@@ -69,3 +69,10 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Create a default transistion ease-in-out duration 600ms */
+@layer utilities {
+  .transition {
+    transition: all 0.4s ease-in-out;
+  }
+}

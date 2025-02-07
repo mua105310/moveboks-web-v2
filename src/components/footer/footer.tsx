@@ -39,7 +39,7 @@ export default function Footer({ events }: FooterProps) {
                   >
                     {item.title}
                     <div
-                      className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[3px] bg-[var(--primary)] transition-all duration-700 ease-in-out group-hover:w-full"
+                      className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[3px] bg-[var(--primary)] transition group-hover:w-full"
                     />
                   </Link>
                 ) : (
@@ -51,7 +51,7 @@ export default function Footer({ events }: FooterProps) {
                     >
                       {subItem.title}
                       <div
-                        className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[3px] bg-[var(--primary)] transition-all duration-700 ease-in-out group-hover:w-full"
+                        className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[3px] bg-[var(--primary)] transition group-hover:w-full"
                       />
                     </Link>
                   ))

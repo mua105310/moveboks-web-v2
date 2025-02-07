@@ -1,12 +1,15 @@
+"use client";
 import { PackageModel } from "@/internal/models/package";
 import Image from "next/image";
 import { getMinimumPrice } from "@/utils/pricing/price.calculating";
+import  LoadingCard  from "@/components/card/loading-card";
 
 interface PackageCardProps {
   item: PackageModel;
+  onClick: () => void;
 }
 
-export default function PackageCard({ item }: PackageCardProps) {
+export default function PackageCard({ item, onClick }: PackageCardProps) {
   if (!item) return null;
 
   const minPrice = item.options
@@ -14,7 +17,10 @@ export default function PackageCard({ item }: PackageCardProps) {
     : null;
 
   return (
-    <article className="relative flex-1 rounded-lg border border-white/20 p-20 sm:p-28 overflow-hidden cursor-pointer">
+    <article 
+    onClick={onClick}
+    className="relative flex-1 rounded-lg border border-white/20 p-20 sm:p-28 overflow-hidden cursor-pointer hover:scale-95 transition"
+    >
       {item.image_url && (
         <Image
           src={item.image_url}
@@ -32,13 +38,6 @@ export default function PackageCard({ item }: PackageCardProps) {
           <h3 className="text-lg sm:text-2xl font-semibold">{item.title}</h3>
           <p className="text-xs sm:text-sm opacity-80">{item.short_description}</p>
         </div>
-
-        <button
-          className="px-4 py-2 sm:px-6 sm:py-3 bg-blue-500 text-lg sm:text-xl rounded-lg hover:bg-blue-600 transition self-start"
-          aria-label={`Add ${item.title} to cart`}
-        >
-          +
-        </button>
       </div>
 
       {minPrice !== null && (
