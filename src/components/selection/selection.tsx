@@ -21,7 +21,6 @@ export default function Selection({ event }: { event: EventModel }) {
     
     function handleSelectProduct(option: ProductConstraintModel): void {
         console.log(option);
-        
     }
 
     useEffect(() => {

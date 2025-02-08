@@ -34,7 +34,7 @@ export default function ProductCard({ product, onClick, price }: ProductCardProp
       <div className="p-4 sm:p-6 flex flex-col flex-grow">
         <div>
           <h2 className="font-semibold text-lg mb-2 text-white line-clamp-1">{product.title}</h2>
-          <p className="text-gray-300 text-sm mb-4 line-clamp-2">{product.short_description}</p>
+          <p className="text-gray-300 text-sm mb-4 line-clamp-1 text-ellipsis">{product.short_description}</p>
         </div>
         <div>
           <div className="flex justify-between items-center mb-4">
