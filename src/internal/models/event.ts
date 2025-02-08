@@ -13,7 +13,7 @@ export type EventModel = {
     packages: PackageModel[],
     dateInfo: DatesModel,
     image_url: string,
-    meta: MetaModel,
+    meta_data: MetaModel,
     fixedPackageInfo?: FixedPackageInfo,
 }
 
@@ -24,9 +24,9 @@ type DatesModel = {
 }
 
 export type MetaModel = {
-    title: string;                 
-    description: string;            
-    keywords?: string;          
+    meta_title: string;                 
+    meta_description: string;            
+    meta_keywords?: string;          
 };
 
 export type FixedPackageInfo = {

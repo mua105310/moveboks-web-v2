@@ -6,7 +6,7 @@ import  LoadingCard  from "@/components/card/loading-card";
 
 interface PackageCardProps {
   item: PackageModel;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export default function PackageCard({ item, onClick }: PackageCardProps) {

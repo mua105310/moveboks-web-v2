@@ -5,6 +5,7 @@ import Footer from "@/components/footer/footer";
 import { getAllEvents } from "@/controller/controller-service";
 import Nav from "@/components/nav/nav";
 import { EventProvider } from "@/provider/event-provider";
+import { OrderProvider } from "@/provider/order-provider";
 
 export const metadata: Metadata = {
   title: "Moveboks",
@@ -23,9 +24,11 @@ export default async function RootLayout({
       <body className="antialiased">
         {/* Provide the businesses to the context */}
         <EventProvider>
+          <OrderProvider>
             {children}
             <Nav events={events} />
             <Footer events={events} />
+          </OrderProvider>
         </EventProvider>
       </body>
     </html>
