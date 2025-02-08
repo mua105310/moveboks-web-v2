@@ -19,8 +19,6 @@ export async function generateMetadata({ params }: { params: Params }) {
     };
   }
 
-  console.log(event);
-
   return {
     title: `${event.meta_data.meta_title}`,
     description: `${event.meta_data.meta_description}`,

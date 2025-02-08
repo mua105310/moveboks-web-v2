@@ -23,7 +23,7 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
 };
 
 // Create custom hook
-export const useOrder = () => {
+export const useOrderProvider = () => {
     const context = useContext(OrderContext);
     if (!context) {
         throw new Error('useOrder must be used within a OrderProvider');
