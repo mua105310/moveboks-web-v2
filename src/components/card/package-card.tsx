@@ -2,7 +2,7 @@
 import { PackageModel } from "@/internal/models/package";
 import Image from "next/image";
 import { getMinimumPrice } from "@/utils/pricing/price.calculating";
-import  LoadingCard  from "@/components/card/loading-card";
+import { useOrderProvider } from "@/provider/order-provider";
 
 interface PackageCardProps {
   item: PackageModel;
@@ -11,6 +11,7 @@ interface PackageCardProps {
 
 export default function PackageCard({ item, onClick }: PackageCardProps) {
   if (!item) return null;
+  const { bookingCreation } = useOrderProvider();
 
   const minPrice = item.options
     ? Math.min(...item.options.map((option) => getMinimumPrice(option)))
@@ -19,7 +20,11 @@ export default function PackageCard({ item, onClick }: PackageCardProps) {
   return (
     <article 
     onClick={onClick}
-    className="relative flex-1 rounded-lg border bg-[#151515] border-white/20 p-20 sm:p-28 overflow-hidden cursor-pointer hover:scale-95 transition"
+    className={`
+      relative flex-1 rounded-lg border-2 bg-[#151515] border-white/20 p-24  sm:p-28 lg:p-24 overflow-hidden cursor-pointer hover:scale-95 transition
+      ${bookingCreation?.package?.ID === item.ID && 'border-blue-600 scale-95'}
+
+      `}
     >
       {/* {item.image_url && (
         <Image
@@ -38,6 +43,14 @@ export default function PackageCard({ item, onClick }: PackageCardProps) {
           <h3 className="text-lg sm:text-2xl lg:text-3xl font-semibold lightning-text">{item.title}</h3>
           <p className="text-xs sm:text-sm opacity-80">{item.short_description}</p>
           <p className="text-xs sm:text-sm opacity-80">{item.long_description}</p>
+        </div>
+      </div>
+
+      <div className="absolute bottom-3 left-3">
+        <div className="flex flex-col lg:flex-row gap-2">
+            {item.features?.map((feature, index) => (
+              <p key={index} className="text-xs sm:text-sm opacity-80 py-1 px-3 bg-[var(--primary)] rounded-lg">{feature}</p>
+            ))}
         </div>
       </div>
 

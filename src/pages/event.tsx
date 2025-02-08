@@ -8,7 +8,7 @@ export default function Event({ event }: { event: EventModel }) {
         return null;
     }
     return (
-        <div className="h-svh">
+        <div className="h-auto">
             <HeroSection event={event} />
             <EventContent event={event} />
         </div>

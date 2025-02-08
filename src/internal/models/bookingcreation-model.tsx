@@ -11,7 +11,7 @@ export type BookingCreation = {
     duration?: number 
     start_date?: DateTime
     // selectedOptions?: ProductionSelection[]
-    selected_options?: ProductionSelection
+    selected_option?: ProductionSelection
     pickup_point?: PickupPoint
     dropoff_Point?: PickupPoint
 }   

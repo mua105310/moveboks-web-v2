@@ -7,7 +7,7 @@ export default async function EventContent({ event }: { event: EventModel }) {
     if (!selectedEvent) return null;
     
     return (
-        <div className="pt-20 pb-20">
+        <div className="pt-20 pb-20 max-w-[1300px] mx-auto">
             {/* CHOOSE PACKAGE AND PRODUCT*/}
             <Selection event={selectedEvent} />
         </div>
