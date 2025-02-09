@@ -1,5 +1,5 @@
 import { EventModel } from "@/internal/models/event";
-import MainCarousel from "@/components/selection/carousel/main-carousel";
+import MainCarousel from "@/components/carousel/main-carousel";
 import { getAllEvents } from "@/controller/controller-service";
 
 const Home = async () => {
