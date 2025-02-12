@@ -6,6 +6,8 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 interface OrderState {
     bookingCreation: BookingCreation | undefined;
     setBookingCreation: (bookingCreation: BookingCreation) => void;
+    isOrderOpen: boolean;
+    setIsOrderOpen: (isOrderOpen: boolean) => void;
 }
 
 // Create context
@@ -14,9 +16,10 @@ const OrderContext = createContext<OrderState | undefined>(undefined);
 // Create provider
 export const OrderProvider = ({ children }: { children: ReactNode }) => {
     const [bookingCreation, setBookingCreation] = useState<BookingCreation | undefined>(undefined);
+    const [isOrderOpen, setIsOrderOpen] = useState<boolean>(false);
 
     return (
-        <OrderContext.Provider value={{ bookingCreation, setBookingCreation }}>
+        <OrderContext.Provider value={{ bookingCreation, setBookingCreation, isOrderOpen, setIsOrderOpen }}>
             {children}
         </OrderContext.Provider>
     );

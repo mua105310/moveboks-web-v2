@@ -7,9 +7,11 @@ import { PackageModel, ProductConstraintModel } from "@/internal/models/package"
 import { useOrderProvider } from "@/provider/order-provider";
 import ProductCard from "../card/product-card";
 import { getMinimumPrice } from "@/utils/pricing/price.calculating";
+import { FaBasketShopping } from "react-icons/fa6";
 
 export default function Selection({ event }: { event: EventModel }) {
     const {bookingCreation, setBookingCreation } = useOrderProvider();
+    const { isOrderOpen, setIsOrderOpen } = useOrderProvider();
 
     useEffect(() => {
         if (!bookingCreation) {
@@ -29,6 +31,8 @@ export default function Selection({ event }: { event: EventModel }) {
     
     function handleSelectProduct(option: ProductConstraintModel): void {
         if (!bookingCreation) return;
+        //if it is the same product jut return
+        if (bookingCreation.selected_option?.product.ID === option.product.ID) return;
         setBookingCreation({
             ...bookingCreation,
             selected_option: {
@@ -37,6 +41,11 @@ export default function Selection({ event }: { event: EventModel }) {
                 constraint: option,
             }
         })
+        setIsOrderOpen(true);
+    }
+
+    function openMenu(){
+        setIsOrderOpen(!isOrderOpen);
     }
 
     return (
@@ -71,6 +80,14 @@ export default function Selection({ event }: { event: EventModel }) {
                         />
                     ))}
                 </SwiperCarousel>
+            </div>
+        )}
+        {/* PlaceOrder */}
+        {bookingCreation?.selected_option && !isOrderOpen && (
+            <div
+            onClick={openMenu}
+            className="bottom-5 right-5 p-4 bg-white text-black  fixed rounded-full flex justify-center items-center shadow-lg cursor-pointer hover:scale-95 hover:text-blue-600 transition z-30">
+                <p className="font-bold tracking-wide text-2xl"><FaBasketShopping /></p>
             </div>
         )}
         </div>

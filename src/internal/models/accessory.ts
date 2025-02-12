@@ -2,12 +2,12 @@ import { RentPriceModel} from "./package";
 import { ProductModel } from "./product";
 
 export type AccessoryConstraints = {
-  productId: string,
+  product_Id: string,
   product: ProductModel,
-  selectionType: "toggle" | "quantity";
-  rentPrice?: RentPriceModel[],
-  buyPrice?: number,
-  availableQuantity: number,
-  allowedQuantity: number,
+  selection_type: "toggle" | "quantity";
+  rent_prices?: RentPriceModel[],
+  buy_price?: number,
+  available_quantity: number,
+  allowed_quantity: number,
   type: "rent" | "buy",
 }
