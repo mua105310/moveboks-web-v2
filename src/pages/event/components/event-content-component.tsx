@@ -8,6 +8,7 @@ import SectionComponent from "./section-component";
 import { useOrderHook } from "../hooks/use-order-hook";
 import { useOrderProvider } from "@/provider/order-provider";
 import ProductCardComponent from "./product-card-component";
+import { getMinimumPrice } from "@/utils/pricing/price.calculating";
 
 export default function EventContentComponent({event}: {event: EventModel}) {
     // State
@@ -41,7 +42,7 @@ export default function EventContentComponent({event}: {event: EventModel}) {
             <SectionComponent title='Vælg Produkt'>
                 <SwiperCarousel>
                     {bookingCreation.package.options?.map((option, index) => (
-                        <ProductCardComponent key={index} product={option.product} onClick={() => setProduct(option)}  />
+                        <ProductCardComponent key={index} product={option.product} onClick={() => setProduct(option)} price={getMinimumPrice(option)}  />
                     ))}
                 </SwiperCarousel>
             </SectionComponent>

@@ -16,10 +16,31 @@ export default function ProductCardComponent({ product, onClick, price, isDelete
   const { bookingCreation } = useOrderProvider()
   //Variables
   const isSelected = bookingCreation?.selected_option?.product.ID === product.ID
+  //Settings for buttons state
+  function getButtonProps(isSelected: boolean, isDelete: boolean) {
+    switch (true) {
+      case isDelete:
+        return { 
+          color: "bg-red-600 text-white hover:bg-red-700",
+          text: "Fjern fra kurv" 
+        };
+      case isSelected:
+        return { 
+          color: "bg-blue-600 text-white", 
+          text: "Valgt" 
+        };
+      default:
+        return { 
+          color: "bg-white text-[#151515] hover:bg-white/90", 
+          text: "Tilføj til kurv" 
+        };
+    }
+  }
+  
+  const { color, text } = getButtonProps(isSelected, !!isDelete);
   return (
     <div
-      className={`
-        bg-[#151515] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-white/10 flex flex-col w-full h-full min-h-[400px] cursor-pointer hover:scale-95
+      className={`bg-[#151515] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-white/10 flex flex-col w-full h-full min-h-[400px] cursor-pointer hover:scale-95
         ${isSelected ? "border-2 border-blue-500 scale-95" : ""}`}
       onClick={!isDelete ? onClick : undefined}
     >
@@ -43,26 +64,15 @@ export default function ProductCardComponent({ product, onClick, price, isDelete
             <span className="text-2xl font-bold text-white">{price}</span>
           </div>
           <div className="flex gap-2">
-            <button
-              className={`flex-1 font-medium py-2 px-4 rounded-lg transition-colors duration-200 ease-in-out flex items-center justify-center ${
-                isDelete
-                  ? "bg-red-600 text-white hover:bg-red-700"
-                  : "bg-white text-[#151515] hover:bg-white/90"
-              }`}
-              onClick={isDelete ? onClick : undefined}
-            >
-              {isDelete ? (
-                "Fjern fra kurv"
-              ) : (
-                <>
-                  <ShoppingCart size={18} className="mr-2" />
-                  Tilføj til kurv
-                </>
-              )}
+            <button className={`flex-1 font-medium py-2 px-4 rounded-lg transition-colors duration-200 ease-in-out flex items-center justify-center ${color}`}>
+              {isDelete ? text : <>
+                <ShoppingCart size={18} className="mr-2" />
+                {text}
+              </>}
             </button>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
