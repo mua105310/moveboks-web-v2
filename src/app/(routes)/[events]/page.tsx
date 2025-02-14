@@ -1,6 +1,6 @@
 // [businesses]/page.tsx
 import { getAllEvents } from "@/controller/controller-service";
-import Event from "@/pages/event";
+import Event from "@/pages/event/event";
 import { notFound } from "next/navigation";
 
 // Define the Params type for dynamic segments

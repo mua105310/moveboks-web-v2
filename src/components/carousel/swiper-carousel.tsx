@@ -6,8 +6,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
-import LoadingCard from "@/components/card/loading-card";
-
+import LoadingCard from "@/pages/event/components/loading-card-component";
 interface SwiperCarouselProps {
   children: React.ReactNode;
   slidesPerView?: number; // Optional prop

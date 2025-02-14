@@ -9,7 +9,7 @@ interface PackageCardProps {
   onClick?: () => void;
 }
 
-export default function PackageCard({ item, onClick }: PackageCardProps) {
+export default function PackageCardComponent({ item, onClick }: PackageCardProps) {
   if (!item) return null;
   const { bookingCreation } = useOrderProvider();
 
@@ -18,7 +18,7 @@ export default function PackageCard({ item, onClick }: PackageCardProps) {
     : null;
 
   return (
-    <article 
+    <div
     onClick={onClick}
     className={`
       relative flex-1 rounded-lg border-2 bg-[#151515] border-white/20 p-24  sm:p-28 lg:p-24 overflow-hidden cursor-pointer hover:scale-95 transition
@@ -59,6 +59,6 @@ export default function PackageCard({ item, onClick }: PackageCardProps) {
           fra {minPrice},-
         </div>
       )}
-    </article>
+    </div>
   );
 }
