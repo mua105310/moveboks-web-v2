@@ -2,6 +2,7 @@
 import Image from "next/image"
 import { ShoppingCart } from "lucide-react"
 import { ProductModel } from "@/internal/models/product"
+import { useOrderProvider } from "@/provider/order-provider"
 
 interface ProductCardProps {
   product: ProductModel
@@ -10,10 +11,16 @@ interface ProductCardProps {
   isDelete?: boolean
 }
 
-export default function ProductCard({ product, onClick, price, isDelete }: ProductCardProps) {
+export default function ProductCardComponent({ product, onClick, price, isDelete }: ProductCardProps) {
+  // Provider
+  const { bookingCreation } = useOrderProvider()
+  //Variables
+  const isSelected = bookingCreation?.selected_option?.product.ID === product.ID
   return (
     <div
-      className="bg-[#151515] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-white/10 flex flex-col w-full h-full min-h-[400px] cursor-pointer hover:scale-95"
+      className={`
+        bg-[#151515] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-white/10 flex flex-col w-full h-full min-h-[400px] cursor-pointer hover:scale-95
+        ${isSelected ? "border-2 border-blue-500 scale-95" : ""}`}
       onClick={!isDelete ? onClick : undefined}
     >
       <div className="relative w-full aspect-square overflow-hidden group flex-shrink-0 max-h-[220px]">

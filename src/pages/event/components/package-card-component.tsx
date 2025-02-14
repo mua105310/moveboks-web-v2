@@ -6,10 +6,11 @@ import { useOrderProvider } from "@/provider/order-provider";
 
 interface PackageCardProps {
   item: PackageModel;
+  isImage?: boolean;
   onClick?: () => void;
 }
 
-export default function PackageCardComponent({ item, onClick }: PackageCardProps) {
+export default function PackageCardComponent({ item, onClick, isImage }: PackageCardProps) {
   if (!item) return null;
   const { bookingCreation } = useOrderProvider();
 
@@ -22,11 +23,11 @@ export default function PackageCardComponent({ item, onClick }: PackageCardProps
     onClick={onClick}
     className={`
       relative flex-1 rounded-lg border-2 bg-[#151515] border-white/20 p-24  sm:p-28 lg:p-24 overflow-hidden cursor-pointer hover:scale-95 transition
-      ${bookingCreation?.package?.ID === item.ID && 'border-blue-700 scale-95'}
+      ${bookingCreation?.package?.ID === item.ID && 'border-blue-600 scale-95'}
 
       `}
     >
-      {/* {item.image_url && (
+      {item.image_url && isImage && (
         <Image
           src={item.image_url}
           alt={`Image of ${item.title}`}
@@ -34,7 +35,7 @@ export default function PackageCardComponent({ item, onClick }: PackageCardProps
           className="object-cover"
           loading="lazy"
         />
-      )} */}
+      )}
 
       {/* <div className="absolute inset-0 bg-black/70 p-2 sm:p-3" /> */}
 

@@ -5,8 +5,8 @@ import { ProductModel } from "../models/product"
 
 
 export type BookingCreation = {
-    event: number
-    package: PackageModel | undefined
+    event?: string
+    package?: PackageModel | undefined
     reserved_dates?: DateTime[]
     duration?: number 
     start_date?: DateTime
