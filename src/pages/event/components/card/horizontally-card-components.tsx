@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Minus, Plus, ShoppingCart, Trash2 } from "lucide-react"
 import type { ProductModel } from "@/internal/models/product"
 import { useOrderProvider } from "@/provider/order-provider"
-import  useOrderHook  from "../hooks/use-order-hook"
+import  useOrderHook  from "../../hooks/use-order-hook"
 
 interface ProductAccessoryCardProps {
   product: ProductModel
@@ -84,10 +84,10 @@ export default function HorizontallyCardComponent({
           <p className="text-gray-300 text-xs line-clamp-1 text-ellipsis">{product.short_description}</p>
         </div>
         <div className="flex justify-between items-center">
-          <span className="text-lg font-bold text-white">{isSelected ? totalPrice : price} kr</span>
+          <span className="text-lg font-bold text-white">{isSelected ? totalPrice : price},-</span>
           {isSelected ? (
-            <div className="flex items-center space-x-2">
-              <div className="flex items-center border border-white/20 rounded-md overflow-hidden">
+            <div className="flex items-center space-x-5">
+              <div className="flex items-center border border-white/20 rounded-md overflow-hidden p-0.5 ">
                 <button
                   className="p-1 hover:bg-white/10 transition-colors duration-200"
                   onClick={handleDecreaseQuantity}
@@ -99,7 +99,7 @@ export default function HorizontallyCardComponent({
                   className="p-1 hover:bg-white/10 transition-colors duration-200"
                   onClick={handleIncreaseQuantity}
                 >
-                  <Plus size={12} className="text-white" />
+                  <Plus size={16} className="text-white" />
                 </button>
               </div>
               <button

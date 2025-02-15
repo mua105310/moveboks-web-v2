@@ -2,12 +2,12 @@
 
 import { useOrderProvider } from "@/provider/order-provider"
 import useOrderHook from "../hooks/use-order-hook"
-import SectionComponent from "./section-component"
-import PackageCardComponent from "./package-card-component"
+import SectionComponent from "./section/section-component"
+import PackageCardComponent from "./card/package-card-component"
 import { getMinimumPrice } from "@/utils/pricing/price.calculating"
 import SwiperCarousel from "@/components/carousel/swiper-carousel"
-import HorizontallyCardComponent from "./horizontally-card-components"
-import FormComponent from "./form-component"
+import HorizontallyCardComponent from "./card/horizontally-card-components"
+import FormComponent from "./form/form-component"
 
 export default function SideMenuComponent() {
   const { bookingCreation, isOrderOpen } = useOrderProvider()

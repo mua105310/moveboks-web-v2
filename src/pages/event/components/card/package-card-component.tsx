@@ -45,7 +45,7 @@ export default function PackageCardComponent({ item, onClick, isImage }: Package
       <div className="absolute inset-0 p-2 sm:p-3 flex flex-row justify-between">
         <div>
           <h3 className="text-lg sm:text-2xl lg:text-3xl font-semibold lightning-text">{item.title}</h3>
-          <p className="text-xs sm:text-sm opacity-80">{item.short_description}</p>
+          {/* <p className="text-xs sm:text-sm opacity-80">{item.short_description}</p> */}
           <p className="text-xs sm:text-sm opacity-80">{item.long_description}</p>
         </div>
       </div>

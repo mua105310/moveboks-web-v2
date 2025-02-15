@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Minus, Plus, ShoppingCart } from "lucide-react"
 import { ProductModel } from "@/internal/models/product"
 import { useOrderProvider } from "@/provider/order-provider"
-import  useOrderHook  from "../hooks/use-order-hook"
+import  useOrderHook  from "../../hooks/use-order-hook"
 
 interface ProductCardProps {
   product: ProductModel
@@ -75,7 +75,7 @@ export default function ProductCardComponent({ product, onClick, price, isDelete
         </div>
         <div>
           <div className="flex justify-between items-center mb-4">
-          <span className="text-2xl font-bold text-white">{isSelected ? totalPrice : price}</span>
+          <span className="text-2xl font-bold text-white">{isSelected ? totalPrice : price},-</span>
               {isSelected && (
                 <div className="flex items-center border border-white/20 rounded-lg overflow-hidden">
                   {/* Decrease quantity button */}
