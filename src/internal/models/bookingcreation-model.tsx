@@ -17,7 +17,7 @@ export type BookingCreation = {
 }   
 
 export type ProductionSelection = {
-    product: ProductModel,
+    product?: ProductModel,
     quantity: number,
     constraint?: ProductConstraintModel
     accessories?: AccesorySelection[],

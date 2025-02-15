@@ -11,12 +11,12 @@ function emptyOrder() {
     setBookingCreation({
         event: undefined,
         package: undefined,
-        reserved_dates: [],
-        duration: undefined,
-        start_date: undefined,
-        selected_option: undefined,
-        pickup_point: undefined,
-        dropoff_Point: undefined,
+        selected_option: {
+            product: undefined,
+            quantity: 0,
+            constraint: undefined,
+            accessories: [],
+        }
     });
 }
 // Set intial event id
@@ -47,8 +47,19 @@ function setProduct(constraint: ProductConstraintModel) {
         }
     })
 }
+// setProductQuantity
+function setProductQuantity(quantity: number) {
+    if (!bookingCreation || !bookingCreation.selected_option) return;
+    setBookingCreation({
+        ...bookingCreation,
+        selected_option: {
+            ...bookingCreation.selected_option, 
+            quantity: Math.min(Math.max(quantity, 1), bookingCreation.selected_option.constraint?.allowed_quantity!), 
+        }
+    });
+}
 
-return { setPackage, setProduct, emptyOrder, setEvent };
+return { setPackage, setProduct, emptyOrder, setEvent, setProductQuantity };
 }
 
 

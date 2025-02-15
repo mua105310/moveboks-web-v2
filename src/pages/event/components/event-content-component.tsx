@@ -19,12 +19,13 @@ export default function EventContentComponent({event}: {event: EventModel}) {
     const { setPackage, setProduct, emptyOrder, setEvent } = useOrderHook();
     // Update page everytime event changes
     useEffect(() => {
-        const getEvent = async () => {
-            emptyOrder();
+        const fetchEvent = async () => {
             setEvent(event.ID);
-            setActualEvent(await getEventById(event.ID));
-        };
-        getEvent();
+            emptyOrder();
+            const fetchedEvent = await getEventById(event.ID);
+            setActualEvent(fetchedEvent);
+        };    
+        fetchEvent();
     }, [event]);
 
     return(

@@ -3,6 +3,7 @@ import Image from "next/image"
 import { Minus, Plus, ShoppingCart } from "lucide-react"
 import { ProductModel } from "@/internal/models/product"
 import { useOrderProvider } from "@/provider/order-provider"
+import { useOrderHook } from "../hooks/use-order-hook"
 
 interface ProductCardProps {
   product: ProductModel
@@ -14,9 +15,11 @@ interface ProductCardProps {
 export default function ProductCardComponent({ product, onClick, price, isDelete }: ProductCardProps) {
   // Provider
   const { bookingCreation } = useOrderProvider()
+  const { setProductQuantity } = useOrderHook()
   //Variables
-  const isSelected = bookingCreation?.selected_option?.product.ID === product.ID
-  const quantity = bookingCreation?.selected_option?.quantity
+  const isSelected = bookingCreation?.selected_option?.product?.ID === product.ID;
+  let quantity = bookingCreation?.selected_option?.quantity;
+  const totalPrice = price! * (quantity || 1);
   //Settings for buttons state
   function getButtonProps(isSelected: boolean, isDelete: boolean) {
     switch (true) {
@@ -37,13 +40,22 @@ export default function ProductCardComponent({ product, onClick, price, isDelete
         };
     }
   }
-  
+  function handleIncreaseQuantity(event: React.MouseEvent) {
+    event.stopPropagation();
+    setProductQuantity((quantity || 0) + 1);
+  }
+  function handleDecreaseQuantity(event: React.MouseEvent) {
+    event.stopPropagation(); 
+    setProductQuantity(quantity! - 1);
+  }
+
   const { color, text } = getButtonProps(isSelected, !!isDelete);
   return (
     <div
-      className={`bg-[#151515] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-white/10 flex flex-col w-full h-full min-h-[400px] cursor-pointer hover:scale-95
-        ${isSelected ? "border-2 border-solid scale-95" : ""}`}
-      onClick={!isDelete ? onClick : undefined}
+      className={`bg-[#151515] rounded-xl overflow-hidden  shadow-sm hover:shadow-md transition border border-white/10 flex flex-col w-full h-full min-h-[400px] cursor-pointer hover:scale-95
+        ${isSelected && "scale-95"}`}
+        style={{ border: isSelected ? "solid var(--primary)" : undefined }}
+        onClick={!isDelete ? onClick : undefined}
     >
       <div className="relative w-full aspect-square overflow-hidden group flex-shrink-0 max-h-[220px]">
         <Image
@@ -63,19 +75,19 @@ export default function ProductCardComponent({ product, onClick, price, isDelete
         <div>
 
           <div className="flex justify-between items-center mb-4">
-          <span className="text-2xl font-bold text-white">{price}</span>
+          <span className="text-2xl font-bold text-white">{isSelected ? totalPrice : price}</span>
               {isSelected && (
                 <div className="flex items-center border border-white/20 rounded-lg overflow-hidden">
                   {/* Decrease quantity button */}
-                  <button className="p-2 hover:bg-white/10 transition-colors duration-200">
-                    <Minus size={16} className="text-white" />
+                  <button className="p-2 hover:bg-white/10 transition-colors duration-200" onClick={handleDecreaseQuantity}>
+                    <Minus size={16} className="text-white"/>
                   </button>
                   
                   {/* Quantity Display */}
                   <span className="px-2 py-1 text-center w-12 font-medium text-white">{quantity}</span>
                   
                   {/* Increase quantity button */}
-                  <button className="p-2 hover:bg-white/10 transition-colors duration-200">
+                  <button className="p-2 hover:bg-white/10 transition-colors duration-200" onClick={handleIncreaseQuantity}>
                     <Plus size={16} className="text-white" />
                   </button>
                 </div>
