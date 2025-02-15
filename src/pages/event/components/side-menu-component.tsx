@@ -6,6 +6,7 @@ import SectionComponent from "./section-component"
 import PackageCardComponent from "./package-card-component"
 import ProductCardComponent from "./product-card-component"
 import { getMinimumPrice } from "@/utils/pricing/price.calculating"
+import AccessoryCardComponent from "./accessory-card-components"
 
 export default function SideMenuComponent() {
   const { bookingCreation, setBookingCreation, isOrderOpen, setIsOrderOpen } = useOrderProvider()
@@ -42,10 +43,9 @@ export default function SideMenuComponent() {
         </SectionComponent>
         <SectionComponent title="Tilbehør">
           {bookingCreation?.selected_option?.constraint?.accessories?.map((accessory) => (
-            <ProductCardComponent
+            <AccessoryCardComponent
                 product={accessory.product} 
                 key={accessory.product.ID} 
-                isAccessory={true}
                 price={getMinimumPrice(accessory)}
                 onClick={() => setAccessory(accessory)}
             />

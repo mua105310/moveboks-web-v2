@@ -1,5 +1,7 @@
 "use client";
+import { getEventById } from "@/controller/controller-service";
 import { AccessoryConstraints } from "@/internal/models/accessory";
+import { EventModel } from "@/internal/models/event";
 import { PackageModel, ProductConstraintModel } from "@/internal/models/package";
 import { ProductModel } from "@/internal/models/product";
 import { useOrderProvider } from "@/provider/order-provider";
@@ -14,30 +16,33 @@ function toggleOrder(){
 // Used to empty the order
 function emptyOrder() {
     setBookingCreation({
-        event: undefined,
-        package: undefined,
-        selected_option: {
-            product: undefined,
-            quantity: 0,
-            constraint: undefined,
-            accessories: [],
-        }
-    });
-}
+      event: undefined,
+      package: undefined,
+      selected_option: {
+        product: undefined,
+        quantity: 0,
+        constraint: undefined,
+        accessories: [],
+      },
+    })
+  }
 // Set intial event id
-function setEvent(event: string) {
+async function setEvent(event: EventModel) {
+    if (!event) return
+    // Empty the order before setting the new event
+    emptyOrder()
+    const fetchedEvent = await getEventById(event.ID)
+    setBookingCreation({
+      event: fetchedEvent!,
+    })
+  }
+// Used to set a package in the booking creation
+async function setPackage(pack: PackageModel) {
+    if (!pack) return;
     setBookingCreation({
         ...bookingCreation,
-        event: event,
-    })
-}
-// Used to set a package in the booking creation
-function setPackage(pack: PackageModel) {
-    if (!pack) return;
-  setBookingCreation({
-    ...bookingCreation,
-    package: pack,
-  })
+        package: pack,
+    });
 }
 // Used to set a product in the booking creation
 function setProduct(constraint: ProductConstraintModel) {
@@ -95,6 +100,8 @@ function setAccessory(accessory: AccessoryConstraints) {
             ],
         }
     });
+
+    console.log(bookingCreation)
 }
 // setAccessoryQuantity
 function setAccessoryQuantity(accessory: ProductModel, quantity: number) {
@@ -107,13 +114,22 @@ function setAccessoryQuantity(accessory: ProductModel, quantity: number) {
                 if (acc.product?.ID === accessory.ID) {
                     return {
                         ...acc,
-                        quantity: Math.min(Math.max(quantity, 1), acc.constraint?.allowed_quantity!),
+                        quantity: Math.min(Math.max(quantity, 0), acc.constraint?.allowed_quantity!),
                     }
                 }
                 return acc;
             })
         }
     });
+
+}
+
+//remove the accessory from the bookingCreation constraint
+function removeAccessory(accessory: ProductModel) {
+    if (!bookingCreation || !bookingCreation.selected_option) return;
+    console.log(bookingCreation)
+    alert(bookingCreation.selected_option.accessories?.length);
+
 }
 
 return { 
@@ -126,5 +142,6 @@ return {
     removeProduct,
     setAccessory,
     setAccessoryQuantity,
+    removeAccessory
 };
 }

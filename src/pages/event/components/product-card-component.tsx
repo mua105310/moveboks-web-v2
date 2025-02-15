@@ -10,30 +10,17 @@ interface ProductCardProps {
   onClick?: () => void
   price?: number
   isDelete?: boolean
-  isAccessory?: boolean
 }
 
-export default function ProductCardComponent({ product, onClick, price, isDelete, isAccessory }: ProductCardProps) {
+export default function ProductCardComponent({ product, onClick, price, isDelete}: ProductCardProps) {
   // Provider
   const { bookingCreation } = useOrderProvider()
-  const { setProductQuantity, setAccessoryQuantity } = useOrderHook()
+  const { setProductQuantity } = useOrderHook()
   //Variables
-  let isSelected = undefined;
-  let quantity: number | undefined = undefined;
-  let totalPrice = price! * (quantity || 1);
-  // Check if product is selected
-  switch (isAccessory) {
-    case true:
-      const accessory = bookingCreation?.selected_option?.accessories?.find((acc) => acc.product?.ID === product.ID)
-      isSelected = !!accessory
-      quantity = accessory?.quantity
-      break
+  const isSelected = bookingCreation?.selected_option?.product?.ID === product.ID;
+  let quantity = bookingCreation?.selected_option?.quantity;
+  const totalPrice = price! * (quantity || 1);
 
-    default:
-      isSelected = bookingCreation?.selected_option?.product?.ID === product.ID
-      quantity = isSelected ? bookingCreation?.selected_option?.quantity : undefined
-      break
-  }
   //Settings for buttons state
   function getButtonProps(isSelected: boolean, isDelete: boolean) {
     switch (true) {
@@ -54,25 +41,12 @@ export default function ProductCardComponent({ product, onClick, price, isDelete
         };
     }
   }
-  //Functions
-  function handleIncreaseQuantity(event: React.MouseEvent, accessory?: ProductModel ) {
+  function handleIncreaseQuantity(event: React.MouseEvent) {
     event.stopPropagation();
-    if (isAccessory) {
-      if (accessory) {
-        setAccessoryQuantity(accessory, (quantity || 0) + 1);
-      }
-      return;
-    }
     setProductQuantity((quantity || 0) + 1);
   }
-  function handleDecreaseQuantity(event: React.MouseEvent, accessory?: ProductModel ) {
+  function handleDecreaseQuantity(event: React.MouseEvent) {
     event.stopPropagation(); 
-    if (isAccessory) {
-      if (accessory) {
-        setAccessoryQuantity(accessory, quantity! - 1);
-      }
-      return;
-    }
     setProductQuantity(quantity! - 1);
   }
 
@@ -105,7 +79,7 @@ export default function ProductCardComponent({ product, onClick, price, isDelete
               {isSelected && (
                 <div className="flex items-center border border-white/20 rounded-lg overflow-hidden">
                   {/* Decrease quantity button */}
-                  <button className="p-2 hover:bg-white/10 transition-colors duration-200" onClick={(event) => handleDecreaseQuantity(event, product)}>
+                  <button className="p-2 hover:bg-white/10 transition-colors duration-200" onClick={handleDecreaseQuantity}>
                     <Minus size={16} className="text-white"/>
                   </button>
                   
@@ -113,7 +87,7 @@ export default function ProductCardComponent({ product, onClick, price, isDelete
                   <span className="px-2 py-1 text-center w-12 font-medium text-white">{quantity}</span>
                   
                   {/* Increase quantity button */}
-                  <button className="p-2 hover:bg-white/10 transition-colors duration-200" onClick={(event) => handleIncreaseQuantity(event, product)}>
+                  <button className="p-2 hover:bg-white/10 transition-colors duration-200" onClick={handleIncreaseQuantity}>
                     <Plus size={16} className="text-white" />
                   </button>
                 </div>

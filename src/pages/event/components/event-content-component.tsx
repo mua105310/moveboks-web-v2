@@ -11,27 +11,22 @@ import ProductCardComponent from "./product-card-component";
 import { getMinimumPrice } from "@/utils/pricing/price.calculating";
 
 export default function EventContentComponent({event}: {event: EventModel}) {
-    // State
-    const [actualEvent, setActualEvent] = useState<EventModel | null>(null);
     // Provider
-    const { bookingCreation} = useOrderProvider();
+    const {bookingCreation} = useOrderProvider();
     // Hook
     const { setPackage, setProduct, emptyOrder, setEvent } = useOrderHook();
-    // Update page everytime event changes
+    // Variables
+    const actualEvent = bookingCreation?.event;
+
     useEffect(() => {
-        const fetchEvent = async () => {
-            setEvent(event.ID);
-            emptyOrder();
-            const fetchedEvent = await getEventById(event.ID);
-            setActualEvent(fetchedEvent);
-        };    
-        fetchEvent();
+        if(!event) return;
+        setEvent(event);
     }, [event]);
 
     return(
         <div>
             {/* Show packages */}
-            <SectionComponent key={bookingCreation?.event} title='Vælg pakke'>
+            <SectionComponent key={`packages-${actualEvent?.ID}`} title="Vælg pakke">
                     <SwiperCarousel>
                         {actualEvent?.packages.map((pack, index) => (
                             <PackageCardComponent key={index} item={pack} isImage={false} onClick={() => setPackage(pack)}/>
