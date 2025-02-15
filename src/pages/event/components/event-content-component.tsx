@@ -5,7 +5,7 @@ import { EventModel } from "@/internal/models/event";
 import PackageCardComponent from "./package-card-component";
 import { getEventById } from "@/controller/controller-service";
 import SectionComponent from "./section-component";
-import { useOrderHook } from "../hooks/use-order-hook";
+import  useOrderHook  from "../hooks/use-order-hook";
 import { useOrderProvider } from "@/provider/order-provider";
 import ProductCardComponent from "./product-card-component";
 import { getMinimumPrice } from "@/utils/pricing/price.calculating";
@@ -14,7 +14,7 @@ export default function EventContentComponent({event}: {event: EventModel}) {
     // Provider
     const {bookingCreation, setIsOrderOpen, isOrderOpen} = useOrderProvider();
     // Hook
-    const { setPackage, setProduct, emptyOrder, setEvent } = useOrderHook();
+    const { setPackage, setProduct, setEvent } = useOrderHook();
     // Variables
     const actualEvent = bookingCreation?.event;
 
@@ -25,7 +25,7 @@ export default function EventContentComponent({event}: {event: EventModel}) {
     }, [event]);
 
     return(
-        <div>
+        <div className="">
             {/* Cover when sidemenu are open */}
             <div className={`w-full h-svh fixed bg-black top-0 left-0 transition opacity-0 ${isOrderOpen && "opacity-80 z-50" }`}/>
             {/* Show packages */}

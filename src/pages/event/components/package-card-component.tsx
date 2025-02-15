@@ -25,7 +25,7 @@ export default function PackageCardComponent({ item, onClick, isImage }: Package
     <div
     onClick={onClick}
     className={`
-      relative flex-1 rounded-lg border-2 bg-[#151515] border-white/20 p-24  sm:p-28 lg:p-24 overflow-hidden cursor-pointer hover:scale-95 transition
+      relative flex-1 rounded-lg border-2 bg-[#151515] border-white/20 p-24 sm:p-28 lg:p-24 overflow-hidden cursor-pointer hover:scale-95 transition
       ${bookingCreation?.package?.ID === item.ID && 'scale-95'}
       `}
       style={{ border: isSelected ? "solid var(--primary)" : undefined }}

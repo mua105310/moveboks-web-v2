@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Minus, Plus, ShoppingCart, Trash2 } from "lucide-react"
 import type { ProductModel } from "@/internal/models/product"
 import { useOrderProvider } from "@/provider/order-provider"
-import { useOrderHook } from "../hooks/use-order-hook"
+import  useOrderHook  from "../hooks/use-order-hook"
 
 interface ProductAccessoryCardProps {
   product: ProductModel
@@ -123,4 +123,3 @@ export default function HorizontallyCardComponent({
     </div>
   )
 }
-

@@ -6,7 +6,7 @@ import { PackageModel, ProductConstraintModel } from "@/internal/models/package"
 import { ProductModel } from "@/internal/models/product";
 import { useOrderProvider } from "@/provider/order-provider";
 
-export function useOrderHook(){
+export default function useOrderHook(){
 const { bookingCreation, setBookingCreation, isOrderOpen, setIsOrderOpen } = useOrderProvider();
 
 function toggleOrder(){

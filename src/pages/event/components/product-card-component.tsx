@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Minus, Plus, ShoppingCart } from "lucide-react"
 import { ProductModel } from "@/internal/models/product"
 import { useOrderProvider } from "@/provider/order-provider"
-import { useOrderHook } from "../hooks/use-order-hook"
+import  useOrderHook  from "../hooks/use-order-hook"
 
 interface ProductCardProps {
   product: ProductModel

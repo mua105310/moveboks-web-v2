@@ -1,12 +1,13 @@
 "use client"
 
 import { useOrderProvider } from "@/provider/order-provider"
-import { useOrderHook } from "../hooks/use-order-hook"
+import useOrderHook from "../hooks/use-order-hook"
 import SectionComponent from "./section-component"
 import PackageCardComponent from "./package-card-component"
 import { getMinimumPrice } from "@/utils/pricing/price.calculating"
 import SwiperCarousel from "@/components/carousel/swiper-carousel"
 import HorizontallyCardComponent from "./horizontally-card-components"
+import FormComponent from "./form-component"
 
 export default function SideMenuComponent() {
   const { bookingCreation, isOrderOpen } = useOrderProvider()
@@ -27,7 +28,7 @@ export default function SideMenuComponent() {
         </button>
       </div>
       {/* Content */}
-      <div className="flex-1 overflow-y-auto px-4 sm:px-6 md:px-8">
+      <div className="flex-1 overflow-y-auto">
         <SectionComponent title="Valgt pakke">
           <SwiperCarousel slidesPerView={1.2}>
             {bookingCreation?.package && <PackageCardComponent item={bookingCreation.package} />}
@@ -57,10 +58,9 @@ export default function SideMenuComponent() {
           ))}
         </SectionComponent>
         <SectionComponent title="Dine informationer">
-          <div></div>
+          <FormComponent/>
         </SectionComponent>
       </div>
     </div>
   )
 }
-
