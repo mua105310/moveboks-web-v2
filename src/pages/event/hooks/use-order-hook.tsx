@@ -113,7 +113,7 @@ function setAccessoryQuantity(accessory: ProductModel, quantity: number) {
                 if (acc.product?.ID === accessory.ID) {
                     return {
                         ...acc,
-                        quantity: Math.min(Math.max(quantity, 0), acc.constraint?.allowed_quantity!),
+                        quantity: Math.min(Math.max(quantity, 1), acc.constraint?.allowed_quantity!),
                     }
                 }
                 return acc;

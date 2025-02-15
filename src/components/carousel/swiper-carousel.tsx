@@ -29,7 +29,7 @@ export default function SwiperCarousel({ children, slidesPerView }: SwiperCarous
   }
 
   return (
-    <div>
+    <div className={`${isSingleSlide && "pl-8 pr-8"}`}>
       <Swiper
         modules={[Navigation, Autoplay]}
         spaceBetween={20}

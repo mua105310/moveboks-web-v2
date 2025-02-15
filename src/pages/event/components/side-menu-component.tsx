@@ -4,59 +4,63 @@ import { useOrderProvider } from "@/provider/order-provider"
 import { useOrderHook } from "../hooks/use-order-hook"
 import SectionComponent from "./section-component"
 import PackageCardComponent from "./package-card-component"
-import ProductCardComponent from "./product-card-component"
 import { getMinimumPrice } from "@/utils/pricing/price.calculating"
-import AccessoryCardComponent from "./accessory-card-components"
 import SwiperCarousel from "@/components/carousel/swiper-carousel"
+import HorizontallyCardComponent from "./horizontally-card-components"
 
 export default function SideMenuComponent() {
-  const { bookingCreation, isOrderOpen} = useOrderProvider()
-  const { toggleOrder, removeProduct, setAccessory } = useOrderHook()
+  const { bookingCreation, isOrderOpen } = useOrderProvider()
+  const { toggleOrder, setAccessory } = useOrderHook()
 
   return (
     <div
-      className={`fixed bg-[#151515] h-screen w-full lg:w-1/2 sm:w-64 top-0 right-0 transform transition-transform duration-300 ease-in-out z-40 ${
-        isOrderOpen ? "translate-x-0" : "translate-x-full"
+      className={`fixed bg-[#151515] h-screen w-full xl:max-w-[600px] top-0 right-0 transform transition-transform duration-300 ease-in-out z-40 ${
+        isOrderOpen ? "translate-y-0 xl:translate-x-0" : "xl:translate-x-full translate-y-full"
       } flex flex-col`}
       style={{ zIndex: 9999 }}
     >
       {/* Header */}
-      <div className="flex flex-row justify-between p-5 lg:p-12 bg-white/10">
-        <p className="text-2xl">Kurv</p>
-        <button className="text-2xl cursor-pointer" onClick={toggleOrder}>
+      <div className="flex flex-row justify-between p-5 sm:p-8 lg:p-12 bg-white/10 mb-5">
+        <p className="text-xl sm:text-2xl">Kurv</p>
+        <button className="text-xl sm:text-2xl cursor-pointer" onClick={toggleOrder}>
           X
         </button>
       </div>
       {/* Content */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto px-4 sm:px-6 md:px-8">
         <SectionComponent title="Valgt pakke">
-          {bookingCreation?.package && <PackageCardComponent item={bookingCreation.package} />}
+          <SwiperCarousel slidesPerView={1.2}>
+            {bookingCreation?.package && <PackageCardComponent item={bookingCreation.package} />}
+          </SwiperCarousel>
         </SectionComponent>
         <SectionComponent title="Valgt Produkt">
           {bookingCreation?.selected_option?.product && (
-            <SwiperCarousel>
-              <ProductCardComponent
+            <SwiperCarousel slidesPerView={1.2}>
+              <HorizontallyCardComponent
+                key={bookingCreation.selected_option.product.ID}
                 product={bookingCreation.selected_option.product}
-                isDelete={true}
+                isProduct={true}
                 price={getMinimumPrice(bookingCreation.selected_option.constraint!)}
-                onClick={removeProduct}
               />
             </SwiperCarousel>
           )}
         </SectionComponent>
         <SectionComponent title="Tilbehør">
           {bookingCreation?.selected_option?.constraint?.accessories?.map((accessory) => (
-            <SwiperCarousel slidesPerView={1.2}>
-              <AccessoryCardComponent
-                  product={accessory.product} 
-                  key={accessory.product.ID} 
-                  price={getMinimumPrice(accessory)}
-                  onClick={() => setAccessory(accessory)}
+            <SwiperCarousel key={accessory.product.ID} slidesPerView={1.2}>
+              <HorizontallyCardComponent
+                product={accessory.product}
+                price={getMinimumPrice(accessory)}
+                onClick={() => setAccessory(accessory)}
               />
             </SwiperCarousel>
-            ))}
+          ))}
+        </SectionComponent>
+        <SectionComponent title="Dine informationer">
+          <div></div>
         </SectionComponent>
       </div>
     </div>
   )
 }
+

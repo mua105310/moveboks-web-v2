@@ -1,74 +1,81 @@
 "use client"
 
 import type React from "react"
-
 import Image from "next/image"
 import { Minus, Plus, ShoppingCart, Trash2 } from "lucide-react"
 import type { ProductModel } from "@/internal/models/product"
 import { useOrderProvider } from "@/provider/order-provider"
 import { useOrderHook } from "../hooks/use-order-hook"
 
-interface AccessoryCardProps {
+interface ProductAccessoryCardProps {
   product: ProductModel
   onClick?: () => void
   price?: number
-  isDelete?: boolean
+  isProduct?: boolean
 }
 
-export default function AccessoryCardComponent({ product, onClick, price, isDelete }: AccessoryCardProps) {
+export default function HorizontallyCardComponent({
+  product,
+  onClick,
+  price,
+  isProduct,
+}: ProductAccessoryCardProps) {
   const { bookingCreation } = useOrderProvider()
-  const { setAccessoryQuantity, removeAccessory } = useOrderHook()
+  const { setAccessoryQuantity, removeAccessory, setProductQuantity, removeProduct } = useOrderHook()
 
-  const accessory = bookingCreation?.selected_option?.accessories?.find((acc) => acc.product?.ID === product.ID)
-  const isSelected = !!accessory
-  const quantity = accessory?.quantity || 0
+  const isSelected = isProduct
+    ? bookingCreation?.selected_option?.product?.ID === product.ID
+    : !!bookingCreation?.selected_option?.accessories?.find((acc) => acc.product?.ID === product.ID)
+
+  const quantity = isProduct
+    ? bookingCreation?.selected_option?.quantity || 0
+    : bookingCreation?.selected_option?.accessories?.find((acc) => acc.product?.ID === product.ID)?.quantity || 0
+
   const totalPrice = price! * (quantity || 1)
 
-  function getButtonProps(isSelected: boolean, isDelete: boolean) {
-    switch (true) {
-      case isDelete:
-        return {
-          color: "bg-red-600 text-white hover:bg-red-700",
-          text: "Fjern",
-        }
-      case isSelected:
-        return {
+  function getButtonProps(isSelected: boolean) {
+    return isSelected
+      ? {
           color: "bg-blue-600 text-white",
           text: "Valgt",
         }
-      default:
-        return {
+      : {
           color: "bg-white text-[#151515] hover:bg-white/90",
-          text: "Tilføj",
+          text: isProduct ? "Tilføj til kurv" : "Tilføj",
         }
-    }
   }
 
   function handleIncreaseQuantity(event: React.MouseEvent) {
     event.stopPropagation()
-    setAccessoryQuantity(product, quantity + 1)
+    isProduct ? setProductQuantity(quantity + 1) : setAccessoryQuantity(product, quantity + 1)
   }
 
   function handleDecreaseQuantity(event: React.MouseEvent) {
     event.stopPropagation()
-    setAccessoryQuantity(product, quantity - 1)
+    isProduct ? setProductQuantity(quantity - 1) : setAccessoryQuantity(product, quantity - 1)
   }
-  const { color, text } = getButtonProps(isSelected, !!isDelete)
+
+  function handleRemove(event: React.MouseEvent) {
+    event.stopPropagation()
+    isProduct ? removeProduct() : removeAccessory(product)
+  }
+
+  const { color, text } = getButtonProps(isSelected)
 
   return (
     <div
       className={`bg-[#151515] rounded-lg overflow-hidden shadow-sm hover:shadow-md transition border border-white/10 flex w-full h-24 cursor-pointer hover:scale-98
         ${isSelected ? "scale-98" : ""}`}
       style={{ border: isSelected ? "solid var(--primary)" : undefined }}
-      onClick={!isDelete ? onClick : undefined}
+      onClick={onClick}
     >
-      <div className="relative w-24 h-full overflow-hidden group flex-shrink-0">
+      <div className="relative w-24 h-24 flex-shrink-0 flex items-center justify-center p-2">
         <Image
           src={product.image_url || "/placeholder.svg?height=96&width=96"}
           alt={product.title}
-          layout="fill"
-          objectFit="cover"
-          className="group-hover:scale-105 transition ease-in-out"
+          width={96}
+          height={96}
+          className="object-contain max-w-full max-h-full group-hover:scale-105 transition ease-in-out"
         />
       </div>
       <div className="flex flex-col justify-between p-2 flex-grow">
@@ -97,7 +104,7 @@ export default function AccessoryCardComponent({ product, onClick, price, isDele
               </div>
               <button
                 className="bg-red-600 text-white hover:bg-red-700 p-1 cursor-pointer rounded-md transition-colors duration-200"
-                onClick={() => removeAccessory(product)}
+                onClick={handleRemove}
               >
                 <Trash2 size={16} />
               </button>
@@ -107,14 +114,8 @@ export default function AccessoryCardComponent({ product, onClick, price, isDele
               className={`font-medium py-1 px-2 rounded-md transition-colors duration-200 ease-in-out flex items-center justify-center text-sm ${color}`}
               onClick={onClick}
             >
-              {isDelete ? (
-                text
-              ) : (
-                <>
-                  <ShoppingCart size={14} className="mr-1" />
-                  {text}
-                </>
-              )}
+              <ShoppingCart size={14} className="mr-1" />
+              {text}
             </button>
           )}
         </div>

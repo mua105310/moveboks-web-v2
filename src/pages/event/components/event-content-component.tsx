@@ -12,7 +12,7 @@ import { getMinimumPrice } from "@/utils/pricing/price.calculating";
 
 export default function EventContentComponent({event}: {event: EventModel}) {
     // Provider
-    const {bookingCreation} = useOrderProvider();
+    const {bookingCreation, setIsOrderOpen, isOrderOpen} = useOrderProvider();
     // Hook
     const { setPackage, setProduct, emptyOrder, setEvent } = useOrderHook();
     // Variables
@@ -21,10 +21,13 @@ export default function EventContentComponent({event}: {event: EventModel}) {
     useEffect(() => {
         if(!event) return;
         setEvent(event);
+        setIsOrderOpen(false);
     }, [event]);
 
     return(
         <div>
+            {/* Cover when sidemenu are open */}
+            <div className={`w-full h-svh fixed bg-black top-0 left-0 transition opacity-0 ${isOrderOpen && "opacity-80 z-50" }`}/>
             {/* Show packages */}
             <SectionComponent key={`packages-${actualEvent?.ID}`} title="Vælg pakke">
                     <SwiperCarousel>
