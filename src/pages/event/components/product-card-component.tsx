@@ -73,7 +73,6 @@ export default function ProductCardComponent({ product, onClick, price, isDelete
           <p className="text-gray-300 text-sm mb-4 line-clamp-1 text-ellipsis">{product.short_description}</p>
         </div>
         <div>
-
           <div className="flex justify-between items-center mb-4">
           <span className="text-2xl font-bold text-white">{isSelected ? totalPrice : price}</span>
               {isSelected && (
@@ -93,7 +92,6 @@ export default function ProductCardComponent({ product, onClick, price, isDelete
                 </div>
               )}
             </div>
-
           <div className="flex gap-2">
             <button className={`flex-1 font-medium py-2 px-4 rounded-lg transition-colors duration-200 ease-in-out flex items-center justify-center ${color}`}>
               {isDelete ? text : <>

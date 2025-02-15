@@ -4,7 +4,11 @@ import { ProductModel } from "@/internal/models/product";
 import { useOrderProvider } from "@/provider/order-provider";
 
 export function useOrderHook(){
-const { bookingCreation, setBookingCreation } = useOrderProvider();
+const { bookingCreation, setBookingCreation, isOrderOpen, setIsOrderOpen } = useOrderProvider();
+
+function toggleOrder(){
+    setIsOrderOpen(!isOrderOpen);
+}
 
 // Used to empty the order
 function emptyOrder() {
@@ -45,7 +49,9 @@ function setProduct(constraint: ProductConstraintModel) {
             constraint: constraint,
             accessories: [],
         }
-    })
+    });
+    //open order
+    toggleOrder();
 }
 // setProductQuantity
 function setProductQuantity(quantity: number) {
@@ -59,7 +65,7 @@ function setProductQuantity(quantity: number) {
     });
 }
 
-return { setPackage, setProduct, emptyOrder, setEvent, setProductQuantity };
+return { setPackage, setProduct, emptyOrder, setEvent, setProductQuantity, toggleOrder };
 }
 
 

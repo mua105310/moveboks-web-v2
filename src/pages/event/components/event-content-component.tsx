@@ -31,7 +31,7 @@ export default function EventContentComponent({event}: {event: EventModel}) {
     return(
         <div>
             {/* Show packages */}
-            <SectionComponent title='Vælg pakke'>
+            <SectionComponent key={bookingCreation?.event} title='Vælg pakke'>
                     <SwiperCarousel>
                         {actualEvent?.packages.map((pack, index) => (
                             <PackageCardComponent key={index} item={pack} isImage={false} onClick={() => setPackage(pack)}/>
@@ -40,13 +40,13 @@ export default function EventContentComponent({event}: {event: EventModel}) {
             </SectionComponent>
             {/* Show Products */}
             {bookingCreation?.package && (
-            <SectionComponent title='Vælg Produkt'>
-                <SwiperCarousel>
-                    {bookingCreation.package.options?.map((option, index) => (
-                        <ProductCardComponent key={index} product={option.product} onClick={() => setProduct(option)} price={getMinimumPrice(option)}  />
-                    ))}
-                </SwiperCarousel>
-            </SectionComponent>
+                <SectionComponent key={bookingCreation.package.ID}title='Vælg Produkt'>
+                    <SwiperCarousel>
+                        {bookingCreation.package.options?.map((option, index) => (
+                            <ProductCardComponent key={index} product={option.product} onClick={() => setProduct(option)} price={getMinimumPrice(option)} />
+                        ))}
+                    </SwiperCarousel>
+                </SectionComponent>
             )}
         </div>
     )
