@@ -7,9 +7,10 @@ import PackageCardComponent from "./package-card-component"
 import ProductCardComponent from "./product-card-component"
 import { getMinimumPrice } from "@/utils/pricing/price.calculating"
 import AccessoryCardComponent from "./accessory-card-components"
+import SwiperCarousel from "@/components/carousel/swiper-carousel"
 
 export default function SideMenuComponent() {
-  const { bookingCreation, setBookingCreation, isOrderOpen, setIsOrderOpen } = useOrderProvider()
+  const { bookingCreation, isOrderOpen} = useOrderProvider()
   const { toggleOrder, removeProduct, setAccessory } = useOrderHook()
 
   return (
@@ -33,22 +34,26 @@ export default function SideMenuComponent() {
         </SectionComponent>
         <SectionComponent title="Valgt Produkt">
           {bookingCreation?.selected_option?.product && (
-            <ProductCardComponent
-              product={bookingCreation.selected_option.product}
-              isDelete={true}
-              price={getMinimumPrice(bookingCreation.selected_option.constraint!)}
-              onClick={removeProduct}
-            />
+            <SwiperCarousel>
+              <ProductCardComponent
+                product={bookingCreation.selected_option.product}
+                isDelete={true}
+                price={getMinimumPrice(bookingCreation.selected_option.constraint!)}
+                onClick={removeProduct}
+              />
+            </SwiperCarousel>
           )}
         </SectionComponent>
         <SectionComponent title="Tilbehør">
           {bookingCreation?.selected_option?.constraint?.accessories?.map((accessory) => (
-            <AccessoryCardComponent
-                product={accessory.product} 
-                key={accessory.product.ID} 
-                price={getMinimumPrice(accessory)}
-                onClick={() => setAccessory(accessory)}
-            />
+            <SwiperCarousel slidesPerView={1.2}>
+              <AccessoryCardComponent
+                  product={accessory.product} 
+                  key={accessory.product.ID} 
+                  price={getMinimumPrice(accessory)}
+                  onClick={() => setAccessory(accessory)}
+              />
+            </SwiperCarousel>
             ))}
         </SectionComponent>
       </div>

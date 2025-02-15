@@ -12,7 +12,6 @@ const { bookingCreation, setBookingCreation, isOrderOpen, setIsOrderOpen } = use
 function toggleOrder(){
     setIsOrderOpen(!isOrderOpen);
 }
-
 // Used to empty the order
 function emptyOrder() {
     setBookingCreation({
@@ -86,6 +85,8 @@ function removeProduct() {
 // setAccessory 
 function setAccessory(accessory: AccessoryConstraints) {
     if (!bookingCreation || !bookingCreation.selected_option) return;
+    // Check if the accessory is already in the bookingCreation constraint
+    if (bookingCreation.selected_option.accessories?.some((acc) => acc.product?.ID === accessory.product.ID)) return;
     setBookingCreation({
         ...bookingCreation,
         selected_option: {
@@ -100,8 +101,6 @@ function setAccessory(accessory: AccessoryConstraints) {
             ],
         }
     });
-
-    console.log(bookingCreation)
 }
 // setAccessoryQuantity
 function setAccessoryQuantity(accessory: ProductModel, quantity: number) {
@@ -123,13 +122,16 @@ function setAccessoryQuantity(accessory: ProductModel, quantity: number) {
     });
 
 }
-
 //remove the accessory from the bookingCreation constraint
 function removeAccessory(accessory: ProductModel) {
     if (!bookingCreation || !bookingCreation.selected_option) return;
-    console.log(bookingCreation)
-    alert(bookingCreation.selected_option.accessories?.length);
-
+    setBookingCreation({
+        ...bookingCreation,
+        selected_option: {
+            ...bookingCreation.selected_option,
+            accessories: bookingCreation.selected_option.accessories?.filter((acc) => acc.product?.ID !== accessory.ID),
+        }
+    });
 }
 
 return { 
