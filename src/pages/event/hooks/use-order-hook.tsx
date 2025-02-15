@@ -1,4 +1,5 @@
 "use client";
+import { AccessoryConstraints } from "@/internal/models/accessory";
 import { PackageModel, ProductConstraintModel } from "@/internal/models/package";
 import { ProductModel } from "@/internal/models/product";
 import { useOrderProvider } from "@/provider/order-provider";
@@ -64,8 +65,66 @@ function setProductQuantity(quantity: number) {
         }
     });
 }
-
-return { setPackage, setProduct, emptyOrder, setEvent, setProductQuantity, toggleOrder };
+// Remove product from order
+function removeProduct() {
+    setBookingCreation({
+        ...bookingCreation,
+        selected_option: {
+            product: undefined,
+            quantity: 0,
+            constraint: undefined,
+            accessories: [],
+        }
+    });
+    toggleOrder();
+}
+// setAccessory 
+function setAccessory(accessory: AccessoryConstraints) {
+    if (!bookingCreation || !bookingCreation.selected_option) return;
+    setBookingCreation({
+        ...bookingCreation,
+        selected_option: {
+            ...bookingCreation.selected_option,
+            accessories: [
+                ...(bookingCreation.selected_option.accessories || []),
+                {
+                    product: accessory.product,
+                    constraint: accessory,
+                    quantity: 1,
+                }
+            ],
+        }
+    });
+}
+// setAccessoryQuantity
+function setAccessoryQuantity(accessory: ProductModel, quantity: number) {
+    if (!bookingCreation || !bookingCreation.selected_option) return;
+    setBookingCreation({
+        ...bookingCreation,
+        selected_option: {
+            ...bookingCreation.selected_option,
+            accessories: bookingCreation.selected_option.accessories?.map((acc) => {
+                if (acc.product?.ID === accessory.ID) {
+                    return {
+                        ...acc,
+                        quantity: Math.min(Math.max(quantity, 1), acc.constraint?.allowed_quantity!),
+                    }
+                }
+                return acc;
+            })
+        }
+    });
 }
 
-
+return { 
+    setPackage, 
+    setProduct, 
+    emptyOrder, 
+    setEvent,
+    setProductQuantity, 
+    toggleOrder, 
+    removeProduct,
+    setAccessory,
+    setAccessoryQuantity,
+};
+}

@@ -1,7 +1,8 @@
 import { ProductConstraintModel } from "@/internal/models/package";
+import { AccessoryConstraints } from "@/internal/models/accessory";
 
 //get mminium price from productConstraint
-export const getMinimumPrice = (productConstraint: ProductConstraintModel): number => {
+export const getMinimumPrice = (productConstraint: ProductConstraintModel | AccessoryConstraints): number => {
     let totalPrice: number = 0;
     
     if (productConstraint.type === "buy") {

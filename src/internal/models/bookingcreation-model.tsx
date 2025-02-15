@@ -24,7 +24,7 @@ export type ProductionSelection = {
 }
 
 export type AccesorySelection = {
-    product: ProductModel,
-    constraint: AccessoryConstraints,
-    quantity: number
+    product?: ProductModel,
+    constraint?: AccessoryConstraints,
+    quantity?: number
 }
