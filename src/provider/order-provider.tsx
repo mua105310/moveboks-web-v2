@@ -1,6 +1,6 @@
 "use client";
 import { BookingCreation } from '@/internal/models/bookingcreation-model';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 // Define intial state
 interface OrderState {
@@ -18,13 +18,14 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     const [bookingCreation, setBookingCreation] = useState<BookingCreation | undefined>(undefined);
     const [isOrderOpen, setIsOrderOpen] = useState<boolean>(false);
 
-    if(isOrderOpen) {
-        document.body.style.overflow = 'hidden';
-    }
-    else {
-        document.body.style.overflow = 'auto';
-    }
-
+    useEffect(() => {
+        if (isOrderOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }, [isOrderOpen]);
+    
     return (
         <OrderContext.Provider value={{ bookingCreation, setBookingCreation, isOrderOpen, setIsOrderOpen }}>
             {children}

@@ -18,7 +18,7 @@ export default function SideMenuComponent() {
       className={`fixed bg-black h-screen w-full xl:max-w-[600px] top-0 right-0 transform transition-transform duration-300 ease-in-out z-40 ${
         isOrderOpen ? "translate-y-0 xl:translate-x-0" : "xl:translate-x-full translate-y-full"
       } flex flex-col`}
-      style={{ zIndex: 9999 }}
+      style={{ zIndex: 50 }}
     >
       {/* Header */}
       <div className="flex flex-row justify-between p-10 sm:p-8 lg:p-12 border-b-2 mb-5">
