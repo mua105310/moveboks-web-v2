@@ -15,15 +15,15 @@ export default function SideMenuComponent() {
 
   return (
     <div
-      className={`fixed bg-[#151515] h-screen w-full xl:max-w-[600px] top-0 right-0 transform transition-transform duration-300 ease-in-out z-40 ${
+      className={`fixed bg-black h-screen w-full xl:max-w-[600px] top-0 right-0 transform transition-transform duration-300 ease-in-out z-40 ${
         isOrderOpen ? "translate-y-0 xl:translate-x-0" : "xl:translate-x-full translate-y-full"
       } flex flex-col`}
       style={{ zIndex: 9999 }}
     >
       {/* Header */}
-      <div className="flex flex-row justify-between p-5 sm:p-8 lg:p-12 bg-white/10 mb-5">
-        <p className="text-xl sm:text-2xl">Kurv</p>
-        <button className="text-xl sm:text-2xl cursor-pointer" onClick={toggleOrder}>
+      <div className="flex flex-row justify-between p-10 sm:p-8 lg:p-12 border-b-2 mb-5">
+        <p className="text-2xl sm:text-3xl font-bold">Kurv</p>
+        <button className="text-2xl sm:text-3xl cursor-pointer font-bold" onClick={toggleOrder}>
           X
         </button>
       </div>

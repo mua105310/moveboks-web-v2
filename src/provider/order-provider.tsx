@@ -18,6 +18,13 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     const [bookingCreation, setBookingCreation] = useState<BookingCreation | undefined>(undefined);
     const [isOrderOpen, setIsOrderOpen] = useState<boolean>(false);
 
+    if(isOrderOpen) {
+        document.body.style.overflow = 'hidden';
+    }
+    else {
+        document.body.style.overflow = 'auto';
+    }
+
     return (
         <OrderContext.Provider value={{ bookingCreation, setBookingCreation, isOrderOpen, setIsOrderOpen }}>
             {children}

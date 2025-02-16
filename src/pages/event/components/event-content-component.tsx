@@ -27,7 +27,7 @@ export default function EventContentComponent({event}: {event: EventModel}) {
     return(
         <div className="lg:pl-32 lg:pr-32 2xl:pl-96 2xl:pr-96">
             {/* Cover when sidemenu are open */}
-            <div className={`w-full h-svh fixed bg-black top-0 left-0 transition opacity-0 ${isOrderOpen && "opacity-80 z-50" }`}/>
+            <div className={`w-full h-svh fixed bg-[#151515] top-0 left-0 transition opacity-0 ${isOrderOpen && "opacity-40 z-50" }`}/>
             {/* Show packages */}
             <SectionComponent key={`packages-${actualEvent?.ID}`} title="Vælg pakke">
                     <SwiperCarousel>
