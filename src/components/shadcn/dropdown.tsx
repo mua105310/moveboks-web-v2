@@ -35,7 +35,7 @@ interface ShadcnDropdownProps {
 
 export function ShadcnDropdown({
   items,
-  placeholder = "Select item...",
+  placeholder = "Vælg en",
   emptyMessage = "No item found.",
   searchPlaceholder = "Search item...",
   onSelect,
@@ -58,7 +58,7 @@ export function ShadcnDropdown({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-[200px] justify-between", className)}
+          className={cn("w-full justify-between", className)}
         >
           {value
             ? items.find((item) => item.value === value)?.label
@@ -68,7 +68,7 @@ export function ShadcnDropdown({
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder={searchPlaceholder} className="h-9" />
+          {/* <CommandInput placeholder={searchPlaceholder} className="h-9" /> */}
           <CommandList>
             <CommandEmpty>{emptyMessage}</CommandEmpty>
             <CommandGroup>

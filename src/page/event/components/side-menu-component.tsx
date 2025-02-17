@@ -7,7 +7,8 @@ import PackageCardComponent from "./card/package-card-component"
 import { getMinimumPrice } from "@/utils/pricing/price.calculating"
 import SwiperCarousel from "@/components/carousel/swiper-carousel"
 import HorizontallyCardComponent from "./card/horizontally-card-components"
-import FormComponent from "./form/form-component"
+import { FormComponent } from "../../../components/shadcn/form-component"
+import DefaultFormComponent  from "./form/default-form-component"
 
 export default function SideMenuComponent() {
   const { bookingCreation, isOrderOpen } = useOrderProvider()
@@ -57,8 +58,8 @@ export default function SideMenuComponent() {
             </SwiperCarousel>
           ))}
         </SectionComponent>
-        <SectionComponent title="Dine informationer">
-          <FormComponent/>
+        <SectionComponent title="Dine informationer" customClass={"px-10"}>
+          <DefaultFormComponent/>
         </SectionComponent>
       </div>
     </div>
