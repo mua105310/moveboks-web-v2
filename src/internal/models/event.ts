@@ -3,24 +3,23 @@ import { PackageModel } from "./package";
 export type EventModel = {
     ID: string,
     title: string,
-    subtitle?: string,
     path: string,
     description: string,
     short_description: string,
     long_description: string,
-    lonm: string,
     color: string,
     packages: PackageModel[],
     dateInfo: DatesModel,
     image_url: string,
-    meta_data: MetaModel,
-    fixedPackageInfo?: FixedPackageInfo,
+    start_date: Date,
+    pickup_points: PickupPoint[],
+    return_points: PickupPoint[],
 }
 
 type DatesModel = {
-    fromDate: Date,
-    toDate: Date,
-    showDate?: Date,
+    from_datate: Date,
+    to_date: Date,
+    show_date?: Date,
 }
 
 export type MetaModel = {
@@ -29,18 +28,14 @@ export type MetaModel = {
     meta_keywords?: string;          
 };
 
-export type FixedPackageInfo = {
-    pickup_point?: PickupPoint,
-    return_point?: PickupPoint,
-    start_date?: DateTime,
-    end_time_remark?: String
-    duration?: number,
-}
-
 export type PickupPoint = {
     address: string,
     city: string,
-    zip: string,
+    country: string,
+    postal_code: string,
+    image_url: string,
+    latitude: number,
+    longitude: number,
 }
 
 export type DateTime = {
